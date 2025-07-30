@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://crq0ubo4sdfwt"]
+
+[ext_resource type="Script" uid="uid://c41hwqustuavw" path="res://scripts/prefabs/player.gd" id="1_tou0u"]
+[ext_resource type="Texture2D" uid="uid://c5agtf2hvhq7j" path="res://assets/art/player/tiny_cowboy_stick_gmtk_concept.png" id="2_n0leu"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_tou0u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_n0leu")

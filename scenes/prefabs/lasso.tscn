@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://byjfep6lctpr3"]
+
+[ext_resource type="Script" uid="uid://b6lsnmkiiqj30" path="res://scripts/prefabs/lasso_draw_test.gd" id="1_vaqmv"]
+
+[node name="Lasso" type="Line2D"]
+script = ExtResource("1_vaqmv")
