@@ -4,15 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://c5agtf2hvhq7j" path="res://assets/art/player/tiny_cowboy_stick_gmtk_concept.png" id="2_n0leu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tou0u"]
-size = Vector2(32, 56)
+size = Vector2(8, 14)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_tou0u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(4, 4)
 texture = ExtResource("2_n0leu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_tou0u")

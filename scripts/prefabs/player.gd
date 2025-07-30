@@ -19,7 +19,7 @@ extends CharacterBody2D
 
 @export_group("Gravity")
 @export var jump_gravity: float = 980
-@export var terminal_velocity: float = 100.0
+@export var terminal_velocity: float = 1000
 
 var jump_held_time: float = INF
 var last_jump_attempt: float = INF
