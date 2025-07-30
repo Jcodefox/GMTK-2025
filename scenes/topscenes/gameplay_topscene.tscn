@@ -1,3 +1,22 @@
-[gd_scene format=3 uid="uid://dwe36qbpqlr3w"]
+[gd_scene load_steps=3 format=3 uid="uid://dwe36qbpqlr3w"]
+
+[ext_resource type="PackedScene" uid="uid://crq0ubo4sdfwt" path="res://scenes/prefabs/player.tscn" id="1_rncwu"]
+[ext_resource type="PackedScene" uid="uid://byjfep6lctpr3" path="res://scenes/prefabs/lasso.tscn" id="2_u55sw"]
 
 [node name="GameplayTopscene" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_rncwu")]
+position = Vector2(478, 262)
+
+[node name="Lasso" parent="." instance=ExtResource("2_u55sw")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -128
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.312, 0.3302, 0.39, 1)

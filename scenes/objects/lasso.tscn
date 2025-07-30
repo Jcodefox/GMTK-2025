@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://byjfep6lctpr3"]
-
-[ext_resource type="Script" uid="uid://b6lsnmkiiqj30" path="res://scripts/lasso_draw_test.gd" id="1_iatq8"]
-
-[node name="Lasso" type="Line2D"]
-width = 5.0
-script = ExtResource("1_iatq8")
