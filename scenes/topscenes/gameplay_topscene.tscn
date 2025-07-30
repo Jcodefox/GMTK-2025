@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwe36qbpqlr3w"]
+[gd_scene load_steps=5 format=3 uid="uid://dwe36qbpqlr3w"]
 
 [ext_resource type="PackedScene" uid="uid://crq0ubo4sdfwt" path="res://scenes/prefabs/player.tscn" id="1_rncwu"]
 [ext_resource type="PackedScene" uid="uid://byjfep6lctpr3" path="res://scenes/prefabs/lasso.tscn" id="2_u55sw"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_rncwu"]
+size = Vector2(512, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u55sw"]
+size = Vector2(512, 64)
 
 [node name="GameplayTopscene" type="Node2D"]
 
@@ -20,3 +26,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.312, 0.3302, 0.39, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(488, 511)
+texture = SubResource("PlaceholderTexture2D_rncwu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D"]
+shape = SubResource("RectangleShape2D_u55sw")
