@@ -19,6 +19,7 @@ extends CharacterBody2D
 
 @export_group("Gravity")
 @export var jump_gravity: float = 980
+@export var normal_gravity: float = 2450
 @export var terminal_velocity: float = 1000
 
 var jump_held_time: float = INF
@@ -27,9 +28,7 @@ var last_on_floor: float = INF
 @onready var double_jumps_left: int = double_jumps
 
 func _physics_process(delta: float) -> void:
-	var gravity_strength: float = ProjectSettings.get_setting("physics/2d/default_gravity") * 2.5
-
-	var current_gravity = jump_gravity if jump_held_time < max_jump_held_time else gravity_strength
+	var current_gravity = jump_gravity if jump_held_time < max_jump_held_time else normal_gravity
 	
 	if not is_on_floor():
 		velocity.y += current_gravity * delta
