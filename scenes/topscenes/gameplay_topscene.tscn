@@ -1,3 +1,13 @@
 [gd_scene format=3 uid="uid://dwe36qbpqlr3w"]
 
 [node name="GameplayTopscene" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.312, 0.3302, 0.39, 1)
