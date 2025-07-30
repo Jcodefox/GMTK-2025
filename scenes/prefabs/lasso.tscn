@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://cbx6oc7sy20ab" path="res://scripts/prefabs/lasso_v2.gd" id="1_vaqmv"]
 
 [node name="Lasso" type="Line2D"]
-width = 4.0
+width = 2.0
+default_color = Color(0.81, 0.56295, 0.3159, 1)
 script = ExtResource("1_vaqmv")
 
 [node name="Area2D" type="Area2D" parent="."]
