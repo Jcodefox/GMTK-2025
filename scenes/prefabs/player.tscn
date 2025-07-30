@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://crq0ubo4sdfwt"]
 
-[ext_resource type="Script" uid="uid://c41hwqustuavw" path="res://scripts/prefabs/player.gd" id="1_tou0u"]
+[ext_resource type="Script" uid="uid://dgc1ud1pmx2lv" path="res://scripts/prefabs/player_v2.gd" id="1_tou0u"]
 [ext_resource type="Texture2D" uid="uid://c5agtf2hvhq7j" path="res://assets/art/player/tiny_cowboy_stick_gmtk_concept.png" id="2_n0leu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tou0u"]
