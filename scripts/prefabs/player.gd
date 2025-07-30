@@ -19,6 +19,7 @@ extends CharacterBody2D
 
 @export_group("Gravity")
 @export var jump_gravity: float = 980
+@export var terminal_velocity: float = 100.0
 
 var jump_held_time: float = INF
 var last_jump_attempt: float = INF
@@ -32,6 +33,7 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_on_floor():
 		velocity.y += current_gravity * delta
+	velocity.y = min(velocity.y, terminal_velocity)
 
 	var direction: float = Input.get_axis("move_left", "move_right")
 	if direction:
