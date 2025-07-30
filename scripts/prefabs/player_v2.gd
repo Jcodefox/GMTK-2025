@@ -46,7 +46,13 @@ func _physics_process(delta: float) -> void:
 		velocity.y = jump_init_y_velocity
 		time_since_jump_attempt = INF
 	elif (extra_jumps_left > 0) and (time_since_jump_attempt < jump_buffer_time): # air jump
-		velocity.x = Input.get_axis("move_left", "move_right") * air_jump_init_x_velocity
+		var direction: float = Input.get_axis("move_left", "move_right")
+		if direction < 0:
+			if not velocity.x < -1 * air_jump_init_x_velocity:
+				velocity.x = direction * air_jump_init_x_velocity
+		elif direction > 0:
+			if not velocity.x > air_jump_init_x_velocity:
+				velocity.x = direction * air_jump_init_x_velocity
 		extra_jumps_left -= 1
 		velocity.y = air_jump_init_y_velocity
 		time_since_jump_attempt = INF
