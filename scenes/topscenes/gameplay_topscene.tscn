@@ -37,4 +37,4 @@ texture = SubResource("PlaceholderTexture2D_rncwu")
 shape = SubResource("RectangleShape2D_u55sw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(475, 361)
+position = Vector2(479, 382)
