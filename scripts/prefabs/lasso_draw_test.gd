@@ -1,16 +1,16 @@
 extends Line2D
 
 @export var min_length: float = 50
-@export var closed_margin: float = 5
+@export var closed_margin: float = 15
 var mouse_points: PackedVector2Array = []
 
 func _physics_process(delta: float) -> void:
 	mouse_points.push_back(get_local_mouse_position())
 	points = mouse_points
-	while _sum_distance() > 500:
+	while _sum_distance() > 700:
 		mouse_points.remove_at(0)
 	if _is_closed():
-		print("Closed")
+		$Area2D/CollisionPolygon2D.polygon = mouse_points	
 
 func _sum_distance() -> float:
 	var sum: float = 0.0
@@ -36,6 +36,7 @@ func _is_closed() -> bool:
 
 	for i in range(0, mouse_points.size() - 1):
 		if mouse_points[i].distance_to(mouse_points[mouse_points.size() - 1]) < closed_margin:
-			return true
+			if _inline_distance(i, mouse_points.size() - 1) > 30:
+				return true
 
 	return false
