@@ -28,7 +28,7 @@ grow_vertical = 2
 color = Color(0.312, 0.3302, 0.39, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(488, 511)
+position = Vector2(241, 501)
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
 texture = SubResource("PlaceholderTexture2D_rncwu")
