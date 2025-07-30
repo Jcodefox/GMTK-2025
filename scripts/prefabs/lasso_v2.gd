@@ -19,6 +19,8 @@ func _ready():
 func _process(delta: float):
 	cumulative_delta += delta
 	
+	points = PackedVector2Array([Vector2(200, 200), get_local_mouse_position()])
+	
 	line_vertex_positions.push_back(get_local_mouse_position())
 	line_vertex_time.push_back(cumulative_delta)
 	while sum_line_distance() > max_line_distance:
