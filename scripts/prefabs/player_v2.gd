@@ -13,9 +13,10 @@ extends CharacterBody2D
 @export var jump_gravity_multiplier: float = 0.6
 @export var coyote_time: float = 0.1
 @export var jump_buffer_time: float = 0.1
+@export var air_jump_init_velocity: float = 60
 
-var max_jumps: int = 2
-var jumps_left: int = 1
+var max_extra_jumps: int = 2
+var extra_jumps_left: int = 1
 var time_since_on_floor: float = INF
 var time_since_jump_attempt: float = INF
 
@@ -32,7 +33,7 @@ func _physics_process(delta: float) -> void:
 	
 	if is_on_floor():
 		time_since_on_floor = 0
-		jumps_left = max_jumps
+		extra_jumps_left = max_extra_jumps
 		velocity.y = 0
 		velocity.x += ground_lateral_accel * Input.get_axis("move_left", "move_right") * delta
 		velocity.x *= pow(ground_lateral_drag, delta)
@@ -40,8 +41,12 @@ func _physics_process(delta: float) -> void:
 		velocity.x += air_lateral_accel * Input.get_axis("move_left", "move_right")
 		velocity *= pow(air_drag, delta)
 	
-	if ((time_since_jump_attempt < jump_buffer_time) and (time_since_on_floor < coyote_time or jumps_left > 0)):
-		jumps_left -= 1
+	if (time_since_on_floor < coyote_time) and (time_since_jump_attempt < jump_buffer_time): # ground jump
+		velocity.y = jump_init_velocity
+		time_since_jump_attempt = INF
+	elif (extra_jumps_left > 0) and (time_since_jump_attempt < jump_buffer_time): # air jump
+		velocity.x = Input.get_axis("move_left", "move_right") * air_jump_init_velocity
+		extra_jumps_left -= 1
 		velocity.y = jump_init_velocity
 		time_since_jump_attempt = INF
 	
