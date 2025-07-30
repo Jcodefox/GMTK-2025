@@ -1,6 +1,6 @@
 extends Line2D
 
-@export var max_line_distance: float = 800
+@export var max_line_distance: float = 1200
 @export var max_line_age: float = 1.0
 var line_vertex_positions: PackedVector2Array = []
 var line_vertex_time: PackedFloat32Array = []
@@ -43,10 +43,6 @@ func draw_lines():
 	lines_immediate_mesh.clear_surfaces()
 	lines_immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINES)
 	for i in range(0, line_vertex_positions.size() - 1):
-		
-		if i == 0:
-			print(cumulative_delta)
-		
 		lines_immediate_mesh.surface_set_color(Color.from_hsv(0, 0, 
 		1.0 - (0.5 * ((cumulative_delta - line_vertex_time[i]) / max_line_age)) ))
 		lines_immediate_mesh.surface_add_vertex_2d(line_vertex_positions[i])
