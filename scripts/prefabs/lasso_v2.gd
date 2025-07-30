@@ -13,6 +13,7 @@ var cumulative_delta: float = 0
 func _ready():
 	lines_mesh_instance.mesh = lines_immediate_mesh
 	lines_mesh_instance.name = "LinesMeshInstance"
+	lines_mesh_instance.z_index = 127
 	add_child(lines_mesh_instance)
 
 func _process(delta: float):
