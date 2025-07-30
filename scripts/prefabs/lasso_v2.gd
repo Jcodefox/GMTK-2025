@@ -43,6 +43,9 @@ func sum_line_distance(start_index: int = 0, count: int = -1) -> float:
 	return sum
 
 func draw_lines():
+	# Prevent trying to draw lines with less than 2 points
+	if line_vertex_positions.size() < 2:
+		return
 	lines_immediate_mesh.clear_surfaces()
 	lines_immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINES)
 	for i in range(0, line_vertex_positions.size() - 1):
