@@ -13,15 +13,15 @@ var cumulative_delta: float = 0
 func _ready():
 	lines_mesh_instance.mesh = lines_immediate_mesh
 	lines_mesh_instance.name = "LinesMeshInstance"
-	lines_mesh_instance.z_index = 127
-	add_child(lines_mesh_instance)
+	lines_mesh_instance.z_index = 4
+	get_tree().current_scene.add_child.call_deferred(lines_mesh_instance)
 
 func _process(delta: float):
 	cumulative_delta += delta
 	
-	points = PackedVector2Array([Vector2(200, 200), get_local_mouse_position()])
+	points = PackedVector2Array([Vector2(0, 0), get_local_mouse_position()])
 	
-	line_vertex_positions.push_back(get_local_mouse_position())
+	line_vertex_positions.push_back(get_global_mouse_position())
 	line_vertex_time.push_back(cumulative_delta)
 	while sum_line_distance() > max_line_distance:
 		line_vertex_positions.remove_at(0)

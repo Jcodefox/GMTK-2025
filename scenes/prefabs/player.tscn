@@ -13,6 +13,18 @@ script = ExtResource("1_tou0u")
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_tou0u")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-256, 1)
+shape = SubResource("RectangleShape2D_tou0u")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(0, -191)
+shape = SubResource("RectangleShape2D_tou0u")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(-256, -191)
+shape = SubResource("RectangleShape2D_tou0u")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_tou0u")
 animation = &"duckwalk"
@@ -20,7 +32,21 @@ autoplay = "idle"
 frame_progress = 0.0871731
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-position = Vector2(-256, -6)
+position = Vector2(-256, 0)
+sprite_frames = ExtResource("2_tou0u")
+animation = &"duckwalk"
+autoplay = "idle"
+frame_progress = 0.0871731
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+position = Vector2(-256, -192)
+sprite_frames = ExtResource("2_tou0u")
+animation = &"duckwalk"
+autoplay = "idle"
+frame_progress = 0.0871731
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -192)
 sprite_frames = ExtResource("2_tou0u")
 animation = &"duckwalk"
 autoplay = "idle"

@@ -79,17 +79,19 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func handle_edges() -> void:
-	while position.x > 256:
-		position.x -= 256
-	while position.x < 0:
+	while position.x < 128:
 		position.x += 256
+	while position.x > 384:
+		position.x -= 256
 
-	#while position.y > 256:
-	#	position.y -= 256
-	#while position.y < 256:
-	#	position.y += 256
+	while position.y < 96:
+		position.y += 192
+	while position.y > 288:
+		position.y -= 192
 
 func set_animation(anim: String) -> void:
 	if $AnimatedSprite2D.animation != anim:
 		$AnimatedSprite2D.animation = anim
 	$AnimatedSprite2D2.animation = $AnimatedSprite2D.animation
+	$AnimatedSprite2D3.animation = $AnimatedSprite2D.animation
+	$AnimatedSprite2D4.animation = $AnimatedSprite2D.animation
