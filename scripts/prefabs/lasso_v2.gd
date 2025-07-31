@@ -2,6 +2,9 @@ extends Line2D
 
 @export var max_line_distance: float = 400
 @export var max_line_age: float = 1.0
+
+@export var max_mouse_angle_amount: float = 400
+@export var max_mouse_angle_age: float = 1.0
 var line_vertex_positions: PackedVector2Array = []
 var line_vertex_time: PackedFloat32Array = []
 
@@ -18,6 +21,7 @@ var lasso_current_pos: Vector2 = Vector2.ZERO
 var last_mouse_pos: Vector2 = Vector2.ZERO
 
 var all_mouse_angles: Array[float] = []
+var mouse_angle_time: PackedFloat32Array = []
 
 func _ready():
 	lines_mesh_instance.mesh = lines_immediate_mesh
@@ -30,18 +34,32 @@ func _process(delta: float):
 
 	lasso_target_pos = get_average_line_point()
 	lasso_current_pos += (get_global_mouse_position() - lasso_current_pos) / 12.0
-	#lasso_current_pos.move_toward(lasso_target_pos, delta * 100)
+
 	var previous_angle: float = lasso_current_pos.angle_to_point(last_mouse_pos)
 	var current_angle: float = lasso_current_pos.angle_to_point(get_global_mouse_position())
 
-	var angle_difference: float = current_angle - previous_angle
-	if angle_difference > PI:
-		angle_difference = TAU - angle_difference
-	if angle_difference < -PI:
-		angle_difference = -TAU - angle_difference
-	all_mouse_angles.append(angle_difference)
+	var angle_diff: float = current_angle - previous_angle
+	if angle_diff > PI:
+		angle_diff = TAU - angle_diff
+	if angle_diff < -PI:
+		angle_diff = -TAU - angle_diff
+	all_mouse_angles.append(angle_diff)
+	mouse_angle_time.append(cumulative_delta)
 
-	lasso_loop_size = abs(all_mouse_angles.reduce(func(acc, val): return acc + val, 0)) * 2.0
+	var cumulative_angle: float = abs(all_mouse_angles.reduce(func(acc, val): return acc + val, 0))
+
+	while cumulative_angle > max_mouse_angle_amount:
+		all_mouse_angles.remove_at(0)
+		mouse_angle_time.remove_at(0)
+
+	for i in mouse_angle_time.size():
+		if (cumulative_delta - mouse_angle_time[i]) > max_line_age:
+			all_mouse_angles.remove_at(0)
+			mouse_angle_time.remove_at(0)
+		else:
+			break
+
+	lasso_loop_size = cumulative_angle * 2.0
 	
 	$Sprite2D.position = lasso_current_pos - global_position
 	$Sprite2D.scale = Vector2(lasso_loop_size, lasso_loop_size) / 64
@@ -58,12 +76,10 @@ func _process(delta: float):
 	while sum_line_distance() > max_line_distance:
 		line_vertex_positions.remove_at(0)
 		line_vertex_time.remove_at(0)
-		all_mouse_angles.remove_at(0)
 	for i in line_vertex_time.size():
 		if (cumulative_delta - line_vertex_time[i]) > max_line_age:
 			line_vertex_positions.remove_at(0)
 			line_vertex_time.remove_at(0)
-			all_mouse_angles.remove_at(0)
 		else:
 			break
 	draw_lines()
