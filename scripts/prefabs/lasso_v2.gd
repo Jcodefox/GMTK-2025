@@ -26,6 +26,8 @@ func _ready():
 	get_tree().current_scene.add_child.call_deferred(lines_mesh_instance)
 
 func _process(delta: float):
+	cumulative_delta += delta
+
 	lasso_target_pos = get_average_line_point()
 	lasso_current_pos += (get_global_mouse_position() - lasso_current_pos) / 12.0
 	#lasso_current_pos.move_toward(lasso_target_pos, delta * 100)
@@ -45,7 +47,6 @@ func _process(delta: float):
 	$Sprite2D.scale = Vector2(lasso_loop_size, lasso_loop_size) / 64
 	lasso_loop_size = max(lasso_loop_size, 0)
 
-	cumulative_delta += delta
 	
 	var pos: Vector2 = player_pos - global_position
 	var direction: Vector2 = pos.direction_to($Sprite2D.position)
@@ -61,6 +62,7 @@ func _process(delta: float):
 		if (cumulative_delta - line_vertex_time[i]) > max_line_age:
 			line_vertex_positions.remove_at(0)
 			line_vertex_time.remove_at(0)
+			all_mouse_angles.remove_at(0)
 		else:
 			break
 	draw_lines()
