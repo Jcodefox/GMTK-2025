@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dwe36qbpqlr3w"]
+[gd_scene load_steps=5 format=4 uid="uid://dwe36qbpqlr3w"]
 
 [ext_resource type="PackedScene" uid="uid://crq0ubo4sdfwt" path="res://scenes/prefabs/player.tscn" id="1_rncwu"]
 [ext_resource type="PackedScene" uid="uid://byjfep6lctpr3" path="res://scenes/prefabs/lasso.tscn" id="2_u55sw"]
@@ -30,10 +30,6 @@ layer = 64
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("3_pyq0w")
-
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(128, 96)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAoAAAAFAAAAAAAAAAsAAAAJAAAAAAADAAoAAAABAAAAAAADAAsAAAAKAAAAAAAEAAoAAAALAAAAAAAFAAoAAAALAAAAAAAGAAoAAAALAAAAAAAHAAoAAAALAAAAAAAIAAoAAAALAAAAAAAJAAoAAAALAAAAAAAKAAoAAAALAAAAAAALAAoAAAALAAAAAAAMAAoAAAAFAAAAAAAMAAsAAAAJAAAAAAALAAsAAAAAAAAAAAAKAAsAAAAAAAAAAAAJAAsAAAAAAAAAAAAIAAsAAAAAAAAAAAAHAAsAAAAAAAAAAAAGAAsAAAAAAAAAAAAFAAsAAAAAAAAAAAAEAAsAAAAAAAAAAAAPAAoAAAABAAAAAAAPAAsAAAAKAAAAAAA=")
