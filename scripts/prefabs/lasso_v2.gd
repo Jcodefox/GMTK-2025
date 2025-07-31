@@ -5,6 +5,10 @@ extends Line2D
 
 @export var max_mouse_angle_amount: float = 400
 @export var max_mouse_angle_age: float = 1.0
+
+@export var minimum_mouse_distance: float = 4.0
+@export var gradient_slope: float = 2.0
+
 var line_vertex_positions: PackedVector2Array = []
 var line_vertex_time: PackedFloat32Array = []
 
@@ -38,12 +42,14 @@ func _process(delta: float):
 	var previous_angle: float = lasso_current_pos.angle_to_point(last_mouse_pos)
 	var current_angle: float = lasso_current_pos.angle_to_point(get_global_mouse_position())
 
+	var angle_multiplier: float = clamp((lasso_current_pos.distance_to(get_global_mouse_position()) - minimum_mouse_distance) / gradient_slope, 0.0, 1.0)
+
 	var angle_diff: float = current_angle - previous_angle
 	if angle_diff > PI:
 		angle_diff = TAU - angle_diff
 	if angle_diff < -PI:
 		angle_diff = -TAU - angle_diff
-	all_mouse_angles.append(angle_diff)
+	all_mouse_angles.append(angle_diff * angle_multiplier)
 	mouse_angle_time.append(cumulative_delta)
 
 	var cumulative_angle: float = abs(all_mouse_angles.reduce(func(acc, val): return acc + val, 0))
