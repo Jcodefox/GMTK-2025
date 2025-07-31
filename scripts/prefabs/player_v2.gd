@@ -43,16 +43,16 @@ func _physics_process(delta: float) -> void:
 		velocity.x += air_lateral_accel * horizontal_input_axis
 		velocity *= pow(air_drag, delta)
 	
-	if horizontal_input_axis != 0:
-		$AnimatedSprite2D.flip_h = horizontal_input_axis < 0
-	
-	if velocity.y < 0:
+	if Input.is_action_pressed("move_down"):
+		set_animation("duckhide")
+	elif velocity.y < 0:
 		set_animation("jump")
 	else:
 		if horizontal_input_axis != 0:
-			set_animation("walk")
+			set_animation("run_right" if horizontal_input_axis > 0 else "run_left")
 		else:
 			set_animation("idle")
+	
 	
 	if (time_since_on_floor < coyote_time) and (time_since_jump_attempt < jump_buffer_time): # ground jump
 		velocity.y = jump_init_y_velocity
