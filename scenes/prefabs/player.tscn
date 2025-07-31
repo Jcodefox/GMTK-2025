@@ -16,9 +16,8 @@ shape = SubResource("RectangleShape2D_tou0u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_tou0u")
-animation = &"duckwalk"
+animation = &"jump_left"
 autoplay = "idle"
-frame_progress = 0.0871731
 
 [node name="Lasso" parent="." instance=ExtResource("3_n0leu")]
 z_index = 4
