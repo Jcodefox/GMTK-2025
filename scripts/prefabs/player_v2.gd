@@ -17,10 +17,25 @@ extends CharacterBody2D
 @export var air_jump_init_y_velocity: float = -125
 @export var air_jump_init_x_velocity: float = 60
 
+@export_group("Looping")
+@export var world_top_left: Vector2 = Vector2(8, 24)
+@export var world_bottom_right: Vector2 = Vector2(248, 184)
+
+@onready var world_dimensions: Vector2 = (world_top_left - world_bottom_right).abs()
+
 var max_extra_jumps: int = 2
 var extra_jumps_left: int = 1
 var time_since_on_floor: float = INF
 var time_since_jump_attempt: float = INF
+
+func _ready() -> void:
+	$AnimatedSprite2D2.position.x = -world_dimensions.x
+	$AnimatedSprite2D3.position = -world_dimensions
+	$AnimatedSprite2D4.position.y = -world_dimensions.y
+
+	$CollisionShape2D2.position.x = -world_dimensions.x
+	$CollisionShape2D3.position = -world_dimensions
+	$CollisionShape2D4.position.y = -world_dimensions.y
 
 func _physics_process(delta: float) -> void:
 	handle_edges()
@@ -79,15 +94,16 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func handle_edges() -> void:
-	while position.x < 128:
-		position.x += 256
-	while position.x > 384:
-		position.x -= 256
+	var world_center: Vector2 = (world_dimensions / 2) + world_top_left
+	while position.x < world_center.x:
+		position.x += world_dimensions.x
+	while position.x > world_center.y + world_dimensions.y:
+		position.x -= world_dimensions.x
 
-	while position.y < 96:
-		position.y += 192
-	while position.y > 288:
-		position.y -= 192
+	while position.y < world_center.y:
+		position.y += world_dimensions.y
+	while position.y > world_center.y + world_dimensions.y:
+		position.y -= world_dimensions.y
 
 func set_animation(anim: String) -> void:
 	if $AnimatedSprite2D.animation != anim:
@@ -95,3 +111,15 @@ func set_animation(anim: String) -> void:
 	$AnimatedSprite2D2.animation = $AnimatedSprite2D.animation
 	$AnimatedSprite2D3.animation = $AnimatedSprite2D.animation
 	$AnimatedSprite2D4.animation = $AnimatedSprite2D.animation
+
+func get_visible_player_pos() -> Vector2:
+	var p: Vector2 = global_position
+	while p.x > world_bottom_right.x:
+		p.x -= world_dimensions.x
+	while p.x < world_top_left.x:
+		p.x += world_dimensions.x
+	while p.y > world_bottom_right.y:
+		p.y -= world_dimensions.y
+	while p.y < world_top_left.y:
+		p.y += world_dimensions.y
+	return p
