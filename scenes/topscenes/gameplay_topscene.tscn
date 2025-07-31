@@ -9,7 +9,6 @@
 [node name="Player" parent="." instance=ExtResource("1_rncwu")]
 z_index = 8
 position = Vector2(126, 96)
-air_lateral_accel = 1.0
 
 [node name="BackCanvasLayer" type="CanvasLayer" parent="."]
 layer = -128

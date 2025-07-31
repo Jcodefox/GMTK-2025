@@ -4,9 +4,9 @@ extends CharacterBody2D
 @export var air_drag: float = 0.95
 
 @export_group("Horizontal Movement")
-@export var ground_lateral_accel: float = 800
+@export var ground_lateral_accel: float = 450
 @export var ground_lateral_drag: float = 0.0002
-@export var air_lateral_accel: float = 0
+@export var air_lateral_accel: float = 0.25
 @export var crouch_lateral_multiplier: float = 0.25
 
 @export_group("Jumping")
