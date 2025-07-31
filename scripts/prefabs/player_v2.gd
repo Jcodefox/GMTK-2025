@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var default_gravity: float = 500
+@export var default_gravity: float = 625
 @export var air_drag: float = 0.95
 
 @export_group("Horizontal Movement")
@@ -9,11 +9,11 @@ extends CharacterBody2D
 @export var air_lateral_accel: float = 0
 
 @export_group("Jumping")
-@export var jump_init_y_velocity: float = -200
+@export var jump_init_y_velocity: float = -160
 @export var jump_gravity_multiplier: float = 0.6
 @export var coyote_time: float = 0.1
 @export var jump_buffer_time: float = 0.1
-@export var air_jump_init_y_velocity: float = -150
+@export var air_jump_init_y_velocity: float = -125
 @export var air_jump_init_x_velocity: float = 60
 
 var max_extra_jumps: int = 2
