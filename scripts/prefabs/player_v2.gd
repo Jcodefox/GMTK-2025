@@ -33,7 +33,7 @@ func _ready() -> void:
 	$AnimatedSprite2D2.position.x = -world_dimensions.x
 	$AnimatedSprite2D3.position = -world_dimensions
 	$AnimatedSprite2D4.position.y = -world_dimensions.y
-
+	
 	$CollisionShape2D2.position.x = -world_dimensions.x
 	$CollisionShape2D3.position = -world_dimensions
 	$CollisionShape2D4.position.y = -world_dimensions.y
@@ -98,11 +98,8 @@ func _physics_process(delta: float) -> void:
 	$Lasso.player_pos = get_visible_player_pos()
 
 func handle_edges() -> void:
-	var world_center: Vector2 = (world_dimensions / 2) + world_top_left
-
-	position -= world_center
-	position = position.posmodv(world_dimensions)
-	position += world_center
+	var world_center: Vector2 = (world_dimensions / 2.0) + world_top_left
+	position = (position - world_center).posmodv(world_dimensions) + world_center
 
 func set_animation(anim: String) -> void:
 	if $AnimatedSprite2D.animation != anim:
@@ -112,10 +109,4 @@ func set_animation(anim: String) -> void:
 	$AnimatedSprite2D4.animation = $AnimatedSprite2D.animation
 
 func get_visible_player_pos() -> Vector2:
-	var p: Vector2 = global_position
-
-	p -= world_top_left
-	p = p.posmodv(world_dimensions)
-	p += world_top_left
-
-	return p
+	return (global_position - world_top_left).posmodv(world_dimensions) + world_top_left
