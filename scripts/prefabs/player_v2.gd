@@ -26,6 +26,8 @@ var time_since_jump_attempt: float = INF
 var animated_sprite_ghosts: Array[Node2D] = []
 var collision_shape_ghosts: Array[Node2D] = []
 
+var visual_facing_left: bool = false
+
 func _ready() -> void:
 	animated_sprite_ghosts = Globals.make_loop_ghosts_of($AnimatedSprite2D)
 	collision_shape_ghosts = Globals.make_loop_ghosts_of($CollisionShape2D)
@@ -54,6 +56,9 @@ func _physics_process(delta: float) -> void:
 		velocity.x += air_lateral_accel * horizontal_accel_multiplier * horizontal_input_axis
 		velocity *= pow(air_drag, delta)
 	
+	if horizontal_input_axis != 0:
+		visual_facing_left = horizontal_input_axis < 0
+	
 	if Input.is_action_pressed("move_down"):
 		if horizontal_input_axis != 0:
 			set_animation("duckwalk")
@@ -61,10 +66,12 @@ func _physics_process(delta: float) -> void:
 			set_animation("duckhide")
 	else:
 		if velocity.y < 0:
-			set_animation("jump")
+			set_animation("jump_left" if visual_facing_left else "jump_right")
+		elif velocity.y > 0:
+			set_animation("fall_left" if visual_facing_left else "fall_right")
 		else:
 			if horizontal_input_axis != 0:
-				set_animation("run_right" if horizontal_input_axis > 0 else "run_left")
+				set_animation("run_left" if visual_facing_left else "run_right")
 			else:
 				set_animation("idle")
 	
