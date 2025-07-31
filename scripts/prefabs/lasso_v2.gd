@@ -12,6 +12,10 @@ var cumulative_delta: float = 0
 
 var player_pos: Vector2 = Vector2.ZERO
 
+var lasso_loop_size: float = 1
+var lasso_target_pos: Vector2 = Vector2.ZERO
+var lasso_current_pos: Vector2 = Vector2.ZERO
+
 func _ready():
 	lines_mesh_instance.mesh = lines_immediate_mesh
 	lines_mesh_instance.name = "LinesMeshInstance"
@@ -19,9 +23,19 @@ func _ready():
 	get_tree().current_scene.add_child.call_deferred(lines_mesh_instance)
 
 func _process(delta: float):
+	lasso_target_pos = get_average_line_point()
+	lasso_current_pos = lasso_current_pos.move_toward(lasso_target_pos, delta * 100)
+	$Sprite2D.position = lasso_current_pos - global_position
+	$Sprite2D.scale = Vector2(lasso_loop_size, lasso_loop_size) / 64
+	lasso_loop_size = sum_line_distance() / 8
+	lasso_loop_size = max(lasso_loop_size, 0)
+
 	cumulative_delta += delta
 	
-	points = PackedVector2Array([player_pos - global_position, get_local_mouse_position()])
+	var pos: Vector2 = player_pos - global_position
+	var direction: Vector2 = pos.direction_to($Sprite2D.position)
+	var distance: float = pos.distance_to($Sprite2D.position) - lasso_loop_size / 2 + 2
+	points = PackedVector2Array([pos, pos + direction * distance])
 	
 	line_vertex_positions.push_back(get_global_mouse_position())
 	line_vertex_time.push_back(cumulative_delta)
@@ -35,6 +49,15 @@ func _process(delta: float):
 		else:
 			break
 	draw_lines()
+
+func get_average_line_point() -> Vector2:
+	if line_vertex_positions.size() == 0:
+		return Vector2.ZERO
+
+	var sum: Vector2 = Vector2.ZERO
+	for point in line_vertex_positions:
+		sum += point
+	return sum / line_vertex_positions.size()
 
 func sum_line_distance(start_index: int = 0, count: int = -1) -> float:
 	var sum: float = 0.0
