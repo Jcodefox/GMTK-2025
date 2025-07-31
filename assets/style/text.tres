@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bk5ddumg2jusp"]
+
+[ext_resource type="FontFile" uid="uid://bd76c45vwyqcg" path="res://assets/font/Tiny5-Regular.ttf" id="1_1xnau"]
+
+[resource]
+RichTextLabel/constants/line_separation = 1
+RichTextLabel/font_sizes/normal_font_size = 8
+RichTextLabel/fonts/normal_font = ExtResource("1_1xnau")

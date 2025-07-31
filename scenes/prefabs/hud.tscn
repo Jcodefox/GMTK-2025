@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://des4eilq7pml8"]
+
+[ext_resource type="Theme" uid="uid://bk5ddumg2jusp" path="res://assets/style/text.tres" id="1_eo3kg"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 9.0
+offset_right = 247.0
+offset_bottom = 20.0
+
+[node name="Score" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_right = 180.0
+offset_bottom = 20.0
+theme = ExtResource("1_eo3kg")
+bbcode_enabled = true
+text = "Score:
+0000000001900"
+
+[node name="Time" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 186.0
+offset_right = 238.0
+offset_bottom = 20.0
+theme = ExtResource("1_eo3kg")
+bbcode_enabled = true
+text = "Time:
+00:30"
+horizontal_alignment = 2
+
+[node name="Lives" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 52.0
+offset_bottom = 20.0
+theme = ExtResource("1_eo3kg")
+bbcode_enabled = true
+text = "Lives:
+COWBOY x 3"
