@@ -1,8 +1,8 @@
 [gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://bf6o51up71rto"]
 
-[ext_resource type="Texture2D" uid="uid://b5n4f6h6w0w2t" path="res://assets/art/player/cowboy stick idle 1.png" id="1_624lm"]
 [ext_resource type="Texture2D" uid="uid://c20xmus612fao" path="res://assets/art/player/cowboy_duckhide.png" id="1_ta81v"]
-[ext_resource type="Texture2D" uid="uid://cqu0pn3xsa7k" path="res://assets/art/player/cowboy stick idle 2.png" id="2_m2r1r"]
+[ext_resource type="Texture2D" uid="uid://dhm8irt3v75fh" path="res://assets/art/player/cowboy_idle_1.png" id="2_ta81v"]
+[ext_resource type="Texture2D" uid="uid://dca3iao3t7vju" path="res://assets/art/player/cowboy_idle_2.png" id="3_3lfx2"]
 [ext_resource type="Texture2D" uid="uid://c02yf6jxupv3m" path="res://assets/art/player/cowboy stick jump.png" id="3_4nujj"]
 [ext_resource type="Texture2D" uid="uid://ctu62lns3081l" path="res://assets/art/player/cowboy_run_left_1.png" id="4_hr8ky"]
 [ext_resource type="Texture2D" uid="uid://dhcno4yk2mfns" path="res://assets/art/player/cowboy_run_left_2.png" id="5_ta81v"]
@@ -19,12 +19,17 @@ animations = [{
 "name": &"duckhide",
 "speed": 5.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"duckwalk",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_624lm")
+"texture": ExtResource("2_ta81v")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_m2r1r")
+"texture": ExtResource("3_3lfx2")
 }],
 "loop": true,
 "name": &"idle",
