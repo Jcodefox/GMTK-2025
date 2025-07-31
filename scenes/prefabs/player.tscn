@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://crq0ubo4sdfwt"]
 
 [ext_resource type="Script" uid="uid://dgc1ud1pmx2lv" path="res://scripts/prefabs/player_v2.gd" id="1_tou0u"]
-[ext_resource type="Texture2D" uid="uid://c5agtf2hvhq7j" path="res://assets/art/player/tiny_cowboy_stick_gmtk_concept.png" id="2_n0leu"]
+[ext_resource type="SpriteFrames" uid="uid://bf6o51up71rto" path="res://assets/art/player/player_sprite_frames.tres" id="2_tou0u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tou0u"]
 size = Vector2(8, 14)
@@ -9,9 +9,12 @@ size = Vector2(8, 14)
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_tou0u")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_n0leu")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_tou0u")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_tou0u")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.386379
