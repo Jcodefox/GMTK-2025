@@ -111,8 +111,8 @@ func set_animation(anim: String) -> void:
 func get_visible_player_pos() -> Vector2:
 	var p: Vector2 = global_position
 
-	p += world_top_left
-	p = p.posmodv(world_dimensions)
 	p -= world_top_left
+	p = p.posmodv(world_dimensions)
+	p += world_top_left
 
 	return p
