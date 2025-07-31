@@ -92,6 +92,7 @@ func _physics_process(delta: float) -> void:
 		time_since_jump_attempt = INF
 	
 	move_and_slide()
+	$Lasso.player_pos = get_visible_player_pos()
 
 func handle_edges() -> void:
 	var world_center: Vector2 = (world_dimensions / 2) + world_top_left
@@ -118,6 +119,7 @@ func get_visible_player_pos() -> Vector2:
 		p.x -= world_dimensions.x
 	while p.x < world_top_left.x:
 		p.x += world_dimensions.x
+
 	while p.y > world_bottom_right.y:
 		p.y -= world_dimensions.y
 	while p.y < world_top_left.y:

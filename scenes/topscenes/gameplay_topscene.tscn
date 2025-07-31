@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=4 uid="uid://dwe36qbpqlr3w"]
+[gd_scene load_steps=4 format=4 uid="uid://dwe36qbpqlr3w"]
 
 [ext_resource type="PackedScene" uid="uid://crq0ubo4sdfwt" path="res://scenes/prefabs/player.tscn" id="1_rncwu"]
-[ext_resource type="PackedScene" uid="uid://byjfep6lctpr3" path="res://scenes/prefabs/lasso.tscn" id="2_u55sw"]
 [ext_resource type="Texture2D" uid="uid://drjswa8p2rpnx" path="res://assets/art/ui_hud/hudframe.png" id="3_pyq0w"]
 [ext_resource type="TileSet" uid="uid://cl63qdxuqflth" path="res://assets/art/terrain/main_tile_set.tres" id="3_u55sw"]
 
@@ -11,10 +10,6 @@
 z_index = 8
 position = Vector2(126, 96)
 air_lateral_accel = 1.0
-
-[node name="Lasso" parent="Player" instance=ExtResource("2_u55sw")]
-z_index = 4
-z_as_relative = false
 
 [node name="BackCanvasLayer" type="CanvasLayer" parent="."]
 layer = -128

@@ -10,6 +10,8 @@ var lines_immediate_mesh: ImmediateMesh = ImmediateMesh.new()
 
 var cumulative_delta: float = 0
 
+var player_pos: Vector2 = Vector2.ZERO
+
 func _ready():
 	lines_mesh_instance.mesh = lines_immediate_mesh
 	lines_mesh_instance.name = "LinesMeshInstance"
@@ -19,7 +21,7 @@ func _ready():
 func _process(delta: float):
 	cumulative_delta += delta
 	
-	points = PackedVector2Array([Vector2(0, 0), get_local_mouse_position()])
+	points = PackedVector2Array([global_position - player_pos, get_local_mouse_position()])
 	
 	line_vertex_positions.push_back(get_global_mouse_position())
 	line_vertex_time.push_back(cumulative_delta)
