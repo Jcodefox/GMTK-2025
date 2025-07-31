@@ -18,28 +18,20 @@ extends CharacterBody2D
 @export var air_jump_init_x_velocity: float = 60
 @export var terminal_fall_velocity: float = 275
 
-@export_group("Looping")
-@export var world_top_left: Vector2 = Vector2(8, 24)
-@export var world_bottom_right: Vector2 = Vector2(248, 184)
-
-@onready var world_dimensions: Vector2 = (world_top_left - world_bottom_right).abs()
-
 var max_extra_jumps: int = 1
 var extra_jumps_left: int = 0
 var time_since_on_floor: float = INF
 var time_since_jump_attempt: float = INF
 
+var animated_sprite_ghosts: Array[Node2D] = []
+var collision_shape_ghosts: Array[Node2D] = []
+
 func _ready() -> void:
-	$AnimatedSprite2D2.position.x = -world_dimensions.x
-	$AnimatedSprite2D3.position = -world_dimensions
-	$AnimatedSprite2D4.position.y = -world_dimensions.y
-	
-	$CollisionShape2D2.position.x = -world_dimensions.x
-	$CollisionShape2D3.position = -world_dimensions
-	$CollisionShape2D4.position.y = -world_dimensions.y
+	animated_sprite_ghosts = Globals.make_loop_ghosts_of($AnimatedSprite2D)
+	collision_shape_ghosts = Globals.make_loop_ghosts_of($CollisionShape2D)
 
 func _physics_process(delta: float) -> void:
-	handle_edges()
+	global_position = Globals.apply_loop_teleport(global_position)
 	time_since_on_floor += delta
 	time_since_jump_attempt += delta
 	
@@ -95,18 +87,11 @@ func _physics_process(delta: float) -> void:
 	velocity.y = minf(velocity.y, terminal_fall_velocity)
 	
 	move_and_slide()
-	$Lasso.player_pos = get_visible_player_pos()
-
-func handle_edges() -> void:
-	var world_center: Vector2 = (world_dimensions / 2.0) + world_top_left
-	position = (position - world_center).posmodv(world_dimensions) + world_center
+	$Lasso.player_pos = Globals.convert_to_visible_pos(global_position)
 
 func set_animation(anim: String) -> void:
 	if $AnimatedSprite2D.animation != anim:
 		$AnimatedSprite2D.animation = anim
-	$AnimatedSprite2D2.animation = $AnimatedSprite2D.animation
-	$AnimatedSprite2D3.animation = $AnimatedSprite2D.animation
-	$AnimatedSprite2D4.animation = $AnimatedSprite2D.animation
+	for sprite in animated_sprite_ghosts:
+		sprite.animation = $AnimatedSprite2D.animation
 
-func get_visible_player_pos() -> Vector2:
-	return (global_position - world_top_left).posmodv(world_dimensions) + world_top_left
