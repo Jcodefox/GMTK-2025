@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=4 uid="uid://dwe36qbpqlr3w"]
 
 [ext_resource type="PackedScene" uid="uid://crq0ubo4sdfwt" path="res://scenes/prefabs/player.tscn" id="1_rncwu"]
-[ext_resource type="PackedScene" uid="uid://des4eilq7pml8" path="res://scenes/prefabs/hud.tscn" id="3_ks65t"]
+[ext_resource type="PackedScene" path="res://scenes/prefabs/hud.tscn" id="3_ks65t"]
 [ext_resource type="Texture2D" uid="uid://drjswa8p2rpnx" path="res://assets/art/ui_hud/hudframe.png" id="3_pyq0w"]
 [ext_resource type="TileSet" uid="uid://cl63qdxuqflth" path="res://assets/art/terrain/main_tile_set.tres" id="3_u55sw"]
 
