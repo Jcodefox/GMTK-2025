@@ -8,9 +8,9 @@
 [node name="GameplayTopscene" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_rncwu")]
-position = Vector2(129, 151)
+position = Vector2(101, 108)
 
-[node name="Lasso" parent="." instance=ExtResource("2_u55sw")]
+[node name="Lasso" parent="Player" instance=ExtResource("2_u55sw")]
 
 [node name="BackCanvasLayer" type="CanvasLayer" parent="."]
 layer = -128

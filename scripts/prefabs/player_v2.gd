@@ -23,6 +23,7 @@ var time_since_on_floor: float = INF
 var time_since_jump_attempt: float = INF
 
 func _physics_process(delta: float) -> void:
+	handle_edges()
 	time_since_on_floor += delta
 	time_since_jump_attempt += delta
 	
@@ -77,6 +78,18 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
+func handle_edges() -> void:
+	while position.x > 256:
+		position.x -= 256
+	while position.x < 0:
+		position.x += 256
+
+	#while position.y > 256:
+	#	position.y -= 256
+	#while position.y < 256:
+	#	position.y += 256
+
 func set_animation(anim: String) -> void:
 	if $AnimatedSprite2D.animation != anim:
 		$AnimatedSprite2D.animation = anim
+	$AnimatedSprite2D2.animation = $AnimatedSprite2D.animation
