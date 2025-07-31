@@ -96,15 +96,10 @@ func _physics_process(delta: float) -> void:
 
 func handle_edges() -> void:
 	var world_center: Vector2 = (world_dimensions / 2) + world_top_left
-	while position.x < world_center.x:
-		position.x += world_dimensions.x
-	while position.x > world_center.y + world_dimensions.y:
-		position.x -= world_dimensions.x
 
-	while position.y < world_center.y:
-		position.y += world_dimensions.y
-	while position.y > world_center.y + world_dimensions.y:
-		position.y -= world_dimensions.y
+	position -= world_center
+	position = position.posmodv(world_dimensions)
+	position += world_center
 
 func set_animation(anim: String) -> void:
 	if $AnimatedSprite2D.animation != anim:
@@ -115,13 +110,9 @@ func set_animation(anim: String) -> void:
 
 func get_visible_player_pos() -> Vector2:
 	var p: Vector2 = global_position
-	while p.x > world_bottom_right.x:
-		p.x -= world_dimensions.x
-	while p.x < world_top_left.x:
-		p.x += world_dimensions.x
+	var world_center: Vector2 = (world_dimensions / 2) + world_top_left
 
-	while p.y > world_bottom_right.y:
-		p.y -= world_dimensions.y
-	while p.y < world_top_left.y:
-		p.y += world_dimensions.y
+	p -= world_center
+	p = p.posmodv(world_dimensions)
+	p += world_center
 	return p
