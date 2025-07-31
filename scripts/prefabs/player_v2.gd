@@ -32,21 +32,33 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y += default_gravity * delta
 	
+	var horizontal_input_axis: float = Input.get_axis("move_left", "move_right")
 	if is_on_floor():
 		time_since_on_floor = 0
 		extra_jumps_left = max_extra_jumps
 		velocity.y = 0
-		velocity.x += ground_lateral_accel * Input.get_axis("move_left", "move_right") * delta
+		velocity.x += ground_lateral_accel * horizontal_input_axis * delta
 		velocity.x *= pow(ground_lateral_drag, delta)
 	else:
-		velocity.x += air_lateral_accel * Input.get_axis("move_left", "move_right")
+		velocity.x += air_lateral_accel * horizontal_input_axis
 		velocity *= pow(air_drag, delta)
+	
+	if horizontal_input_axis != 0:
+		$AnimatedSprite2D.flip_h = horizontal_input_axis < 0
+	
+	if velocity.y < 0:
+		set_animation("jump")
+	else:
+		if horizontal_input_axis != 0:
+			set_animation("walk")
+		else:
+			set_animation("idle")
 	
 	if (time_since_on_floor < coyote_time) and (time_since_jump_attempt < jump_buffer_time): # ground jump
 		velocity.y = jump_init_y_velocity
 		time_since_jump_attempt = INF
 	elif (extra_jumps_left > 0) and (time_since_jump_attempt < jump_buffer_time): # air jump
-		var direction: float = Input.get_axis("move_left", "move_right")
+		var direction: float = horizontal_input_axis
 		if direction < 0:
 			if not velocity.x < -1 * air_jump_init_x_velocity:
 				velocity.x = direction * air_jump_init_x_velocity
@@ -58,3 +70,7 @@ func _physics_process(delta: float) -> void:
 		time_since_jump_attempt = INF
 	
 	move_and_slide()
+
+func set_animation(anim: String) -> void:
+	if $AnimatedSprite2D.animation != anim:
+		$AnimatedSprite2D.animation = anim
