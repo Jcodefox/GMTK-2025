@@ -21,7 +21,7 @@ func _ready():
 func _process(delta: float):
 	cumulative_delta += delta
 	
-	points = PackedVector2Array([global_position - player_pos, get_local_mouse_position()])
+	points = PackedVector2Array([player_pos - global_position, get_local_mouse_position()])
 	
 	line_vertex_positions.push_back(get_global_mouse_position())
 	line_vertex_time.push_back(cumulative_delta)
