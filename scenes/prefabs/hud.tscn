@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://des4eilq7pml8"]
+[gd_scene load_steps=3 format=3 uid="uid://des4eilq7pml8"]
 
 [ext_resource type="Theme" uid="uid://bk5ddumg2jusp" path="res://assets/style/text.tres" id="1_eo3kg"]
+[ext_resource type="Script" uid="uid://o4f3t1b6uml7" path="res://scripts/prefabs/hud.gd" id="1_ijk2n"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -8,33 +9,36 @@ anchors_preset = 0
 offset_left = 9.0
 offset_right = 247.0
 offset_bottom = 20.0
+script = ExtResource("1_ijk2n")
 
-[node name="Score" type="RichTextLabel" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(238, 20)
 layout_mode = 0
-offset_left = 128.0
-offset_right = 180.0
-offset_bottom = 20.0
-theme = ExtResource("1_eo3kg")
-bbcode_enabled = true
-text = "Score:
-0000000001900"
-
-[node name="Time" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 186.0
 offset_right = 238.0
 offset_bottom = 20.0
-theme = ExtResource("1_eo3kg")
-bbcode_enabled = true
-text = "Time:
-00:30"
-horizontal_alignment = 2
 
-[node name="Lives" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_right = 52.0
-offset_bottom = 20.0
+[node name="Lives" type="RichTextLabel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("1_eo3kg")
 bbcode_enabled = true
 text = "Lives:
 COWBOY x 3"
+
+[node name="Score" type="RichTextLabel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_eo3kg")
+bbcode_enabled = true
+text = "Score:
+0000000000000"
+horizontal_alignment = 1
+
+[node name="Time" type="RichTextLabel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_eo3kg")
+bbcode_enabled = true
+text = "Time:
+00:00"
+horizontal_alignment = 2
