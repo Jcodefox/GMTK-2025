@@ -15,6 +15,9 @@ var player_pos: Vector2 = Vector2.ZERO
 var lasso_loop_size: float = 1
 var lasso_target_pos: Vector2 = Vector2.ZERO
 var lasso_current_pos: Vector2 = Vector2.ZERO
+var last_mouse_pos: Vector2 = Vector2.ZERO
+
+var all_mouse_angles: Array[float] = []
 
 func _ready():
 	lines_mesh_instance.mesh = lines_immediate_mesh
@@ -26,10 +29,20 @@ func _process(delta: float):
 	lasso_target_pos = get_average_line_point()
 	lasso_current_pos += (get_global_mouse_position() - lasso_current_pos) / 12.0
 	#lasso_current_pos.move_toward(lasso_target_pos, delta * 100)
+	var previous_angle: float = lasso_current_pos.angle_to_point(last_mouse_pos)
+	var current_angle: float = lasso_current_pos.angle_to_point(get_global_mouse_position())
+
+	var angle_difference: float = current_angle - previous_angle
+	if angle_difference > PI:
+		angle_difference = TAU - angle_difference
+	if angle_difference < -PI:
+		angle_difference = -TAU - angle_difference
+	all_mouse_angles.append(angle_difference)
+
+	lasso_loop_size = abs(all_mouse_angles.reduce(func(acc, val): return acc + val, 0))
 	
 	$Sprite2D.position = lasso_current_pos - global_position
 	$Sprite2D.scale = Vector2(lasso_loop_size, lasso_loop_size) / 64
-	lasso_loop_size = sum_line_distance() / 8
 	lasso_loop_size = max(lasso_loop_size, 0)
 
 	cumulative_delta += delta
@@ -51,6 +64,7 @@ func _process(delta: float):
 		else:
 			break
 	draw_lines()
+	last_mouse_pos = get_global_mouse_position()
 
 func get_average_line_point() -> Vector2:
 	if line_vertex_positions.size() == 0:
