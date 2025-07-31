@@ -47,7 +47,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run_left",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -58,5 +58,5 @@ animations = [{
 }],
 "loop": true,
 "name": &"run_right",
-"speed": 5.0
+"speed": 10.0
 }]
