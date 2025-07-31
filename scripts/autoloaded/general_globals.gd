@@ -3,9 +3,14 @@ extends Node
 var world_top_left: Vector2 = Vector2(8, 24)
 var world_bottom_right: Vector2 = Vector2(248, 184)
 
+var lives: int = 3
+var time_passed: float = 0
+var score: int = 0
+
 @onready var world_dimensions: Vector2 = (world_top_left - world_bottom_right).abs()
 
 func _process(delta):
+	time_passed += delta
 	if Input.is_action_just_pressed("fullscreen_toggle"):
 		if not DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
