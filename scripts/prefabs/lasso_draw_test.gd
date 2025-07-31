@@ -33,10 +33,10 @@ func _is_closed() -> bool:
 		return false
 	if mouse_points.size() == 0:
 		return false
-
+	
 	for i in range(0, mouse_points.size() - 1):
 		if mouse_points[i].distance_to(mouse_points[mouse_points.size() - 1]) < closed_margin:
 			if _inline_distance(i, mouse_points.size() - 1) > 30:
 				return true
-
+	
 	return false

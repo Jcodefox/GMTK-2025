@@ -24,8 +24,8 @@ extends CharacterBody2D
 
 @onready var world_dimensions: Vector2 = (world_top_left - world_bottom_right).abs()
 
-var max_extra_jumps: int = 2
-var extra_jumps_left: int = 1
+var max_extra_jumps: int = 1
+var extra_jumps_left: int = 0
 var time_since_on_floor: float = INF
 var time_since_jump_attempt: float = INF
 

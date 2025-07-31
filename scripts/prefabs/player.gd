@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += current_gravity * delta
 	velocity.y = min(velocity.y, terminal_velocity)
-
+	
 	var direction: float = Input.get_axis("move_left", "move_right")
 	if direction:
 		velocity.x = direction * move_speed
@@ -43,16 +43,16 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, delta * ground_drag)
 	else:
 		velocity.x = 0
-
+	
 	# Keep track of these for coyote time and jump buffering
 	last_jump_attempt += delta
 	last_on_floor += delta
-
+	
 	if is_on_floor():
 		last_on_floor = 0
 		# We do one above, because the jump off the floor uses one double jump (simpler that way)
 		double_jumps_left = double_jumps + 1
-
+	
 	if Input.is_action_just_pressed("move_jump"):
 		last_jump_attempt = 0
 	
@@ -69,5 +69,5 @@ func _physics_process(delta: float) -> void:
 		# This prevents all double jumps from executing at once
 		last_jump_attempt = INF
 	
-
+	
 	move_and_slide()
