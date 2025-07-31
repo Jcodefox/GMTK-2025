@@ -24,7 +24,9 @@ func _ready():
 
 func _process(delta: float):
 	lasso_target_pos = get_average_line_point()
-	lasso_current_pos = lasso_current_pos.move_toward(lasso_target_pos, delta * 100)
+	lasso_current_pos += (get_global_mouse_position() - lasso_current_pos) / 12.0
+	#lasso_current_pos.move_toward(lasso_target_pos, delta * 100)
+	
 	$Sprite2D.position = lasso_current_pos - global_position
 	$Sprite2D.scale = Vector2(lasso_loop_size, lasso_loop_size) / 64
 	lasso_loop_size = sum_line_distance() / 8
