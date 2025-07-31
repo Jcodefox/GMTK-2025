@@ -94,4 +94,3 @@ func set_animation(anim: String) -> void:
 		$AnimatedSprite2D.animation = anim
 	for sprite in animated_sprite_ghosts:
 		sprite.animation = $AnimatedSprite2D.animation
-
