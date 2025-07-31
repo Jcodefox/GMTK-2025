@@ -16,6 +16,7 @@ extends CharacterBody2D
 @export var jump_buffer_time: float = 0.1
 @export var air_jump_init_y_velocity: float = -125
 @export var air_jump_init_x_velocity: float = 60
+@export var terminal_fall_velocity: float = 275
 
 @export_group("Looping")
 @export var world_top_left: Vector2 = Vector2(8, 24)
@@ -90,6 +91,8 @@ func _physics_process(delta: float) -> void:
 		extra_jumps_left -= 1
 		velocity.y = air_jump_init_y_velocity
 		time_since_jump_attempt = INF
+	
+	velocity.y = minf(velocity.y, terminal_fall_velocity)
 	
 	move_and_slide()
 	$Lasso.player_pos = get_visible_player_pos()
