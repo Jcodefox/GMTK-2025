@@ -41,7 +41,7 @@ func _process(delta: float):
 		angle_difference = -TAU - angle_difference
 	all_mouse_angles.append(angle_difference)
 
-	lasso_loop_size = abs(all_mouse_angles.reduce(func(acc, val): return acc + val, 0))
+	lasso_loop_size = abs(all_mouse_angles.reduce(func(acc, val): return acc + val, 0)) * 2.0
 	
 	$Sprite2D.position = lasso_current_pos - global_position
 	$Sprite2D.scale = Vector2(lasso_loop_size, lasso_loop_size) / 64
