@@ -1,5 +1,7 @@
 extends Line2D
 
+@export var min_lasso_capture_size: float = 20.0
+
 @export var max_line_distance: float = 80
 @export var max_line_age: float = 0.1
 
@@ -66,10 +68,18 @@ func _process(delta: float):
 			break
 
 	lasso_loop_size = cumulative_angle * 2.0
+	lasso_loop_size = max(lasso_loop_size, 0)
 	
 	$Sprite2D.position = lasso_current_pos - global_position
 	$Sprite2D.scale = Vector2(lasso_loop_size, lasso_loop_size) / 64
-	lasso_loop_size = max(lasso_loop_size, 0)
+
+	# Adding a minimum size here prevents issues of collider being too small
+	# Which Godot doesn't like (I think)
+	$Area2D/CollisionShape2D.shape.radius = max(lasso_loop_size / 2, 0.1)
+	$Area2D.position = lasso_current_pos - global_position
+
+	if Input.is_action_just_pressed("pull_lasso"):
+		pull_lasso()
 
 	
 	var pos: Vector2 = player_pos - global_position
@@ -120,3 +130,14 @@ func draw_lines():
 		lines_immediate_mesh.surface_add_vertex_2d(line_vertex_positions[i])
 		lines_immediate_mesh.surface_add_vertex_2d(line_vertex_positions[i + 1])
 	lines_immediate_mesh.surface_end()
+
+func pull_lasso() -> void:
+	if lasso_loop_size < min_lasso_capture_size:
+		return
+
+	all_mouse_angles.clear()
+	mouse_angle_time.clear()
+
+	for body in $Area2D.get_overlapping_bodies():
+		if body.is_in_group("enemy"):
+			body.queue_free()

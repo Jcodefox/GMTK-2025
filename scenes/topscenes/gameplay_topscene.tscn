@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bwx4duhuh37jy" path="res://assets/art/terrain/cloud 1.png" id="5_emnkm"]
 [ext_resource type="PackedScene" uid="uid://duckh0hi5syg7" path="res://scenes/prefabs/enemies/mothick.tscn" id="5_ks65t"]
 [ext_resource type="Texture2D" uid="uid://cwak838kpjbeg" path="res://assets/art/terrain/cloud 2.png" id="6_ed28v"]
-[ext_resource type="Script" uid="uid://cbsnpfn5tcbcj" path="res://scripts/prefabs/cloud.gd" id="6_rfs2g"]
+[ext_resource type="Script" path="res://scripts/prefabs/cloud.gd" id="6_rfs2g"]
 [ext_resource type="PackedScene" uid="uid://dkamy1f0f5j1m" path="res://scenes/prefabs/float_score_num.tscn" id="9_rfs2g"]
 
 [node name="GameplayTopscene" type="Node2D"]
@@ -60,84 +60,64 @@ tile_set = ExtResource("3_u55sw")
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Mothick" parent="Enemies" instance=ExtResource("5_ks65t")]
-z_index = -1
-position = Vector2(81, 146)
+position = Vector2(112, 48)
 
 [node name="Mothick2" parent="Enemies" instance=ExtResource("5_ks65t")]
-z_index = -1
-position = Vector2(81, 146)
+position = Vector2(112, 48)
 
 [node name="Mothick3" parent="Enemies" instance=ExtResource("5_ks65t")]
-z_index = -1
-position = Vector2(81, 146)
+position = Vector2(112, 48)
 
 [node name="Mothick4" parent="Enemies" instance=ExtResource("5_ks65t")]
-z_index = -1
-position = Vector2(81, 146)
+position = Vector2(112, 48)
 
 [node name="Mothick5" parent="Enemies" instance=ExtResource("5_ks65t")]
-z_index = -1
-position = Vector2(81, 146)
+position = Vector2(112, 48)
 
 [node name="Mothick6" parent="Enemies" instance=ExtResource("5_ks65t")]
-z_index = -1
-position = Vector2(81, 146)
+position = Vector2(112, 48)
 
 [node name="Mothick7" parent="Enemies" instance=ExtResource("5_ks65t")]
-z_index = -1
-position = Vector2(81, 146)
+position = Vector2(112, 48)
 
 [node name="Mothick8" parent="Enemies" instance=ExtResource("5_ks65t")]
-z_index = -1
-position = Vector2(81, 146)
+position = Vector2(112, 48)
 
 [node name="Mothick9" parent="Enemies" instance=ExtResource("5_ks65t")]
-z_index = -1
-position = Vector2(81, 146)
+position = Vector2(112, 48)
 
 [node name="Mothick10" parent="Enemies" instance=ExtResource("5_ks65t")]
-z_index = -1
-position = Vector2(81, 146)
+position = Vector2(112, 48)
 
 [node name="Mothick11" parent="Enemies" instance=ExtResource("5_ks65t")]
-z_index = -1
-position = Vector2(81, 146)
+position = Vector2(143, 48)
 
 [node name="Mothick12" parent="Enemies" instance=ExtResource("5_ks65t")]
-z_index = -1
-position = Vector2(81, 146)
+position = Vector2(143, 48)
 
 [node name="Mothick13" parent="Enemies" instance=ExtResource("5_ks65t")]
-z_index = -1
-position = Vector2(81, 146)
+position = Vector2(143, 48)
 
 [node name="Mothick14" parent="Enemies" instance=ExtResource("5_ks65t")]
-z_index = -1
-position = Vector2(81, 146)
+position = Vector2(143, 48)
 
 [node name="Mothick15" parent="Enemies" instance=ExtResource("5_ks65t")]
-z_index = -1
-position = Vector2(81, 146)
+position = Vector2(143, 48)
 
 [node name="Mothick16" parent="Enemies" instance=ExtResource("5_ks65t")]
-z_index = -1
-position = Vector2(81, 146)
+position = Vector2(143, 48)
 
 [node name="Mothick17" parent="Enemies" instance=ExtResource("5_ks65t")]
-z_index = -1
-position = Vector2(81, 146)
+position = Vector2(143, 48)
 
 [node name="Mothick18" parent="Enemies" instance=ExtResource("5_ks65t")]
-z_index = -1
-position = Vector2(81, 146)
+position = Vector2(143, 48)
 
 [node name="Mothick19" parent="Enemies" instance=ExtResource("5_ks65t")]
-z_index = -1
-position = Vector2(81, 146)
+position = Vector2(143, 48)
 
 [node name="Mothick20" parent="Enemies" instance=ExtResource("5_ks65t")]
-z_index = -1
-position = Vector2(81, 146)
+position = Vector2(143, 48)
 
 [node name="FloatScoreNum" parent="." instance=ExtResource("9_rfs2g")]
 offset_left = 173.0

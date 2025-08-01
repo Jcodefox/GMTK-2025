@@ -1,6 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://byjfep6lctpr3"]
+[gd_scene load_steps=5 format=3 uid="uid://byjfep6lctpr3"]
 
 [ext_resource type="Script" uid="uid://cbx6oc7sy20ab" path="res://scripts/prefabs/lasso_v2.gd" id="1_vaqmv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vaqmv"]
+radius = 32.0
 
 [sub_resource type="Gradient" id="Gradient_vaqmv"]
 interpolation_mode = 1
@@ -20,8 +23,15 @@ default_color = Color(0.81, 0.56295, 0.3159, 1)
 script = ExtResource("1_vaqmv")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_vaqmv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_ogh4t")
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
