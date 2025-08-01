@@ -12,8 +12,8 @@ func _physics_process(delta: float) -> void:
 	for sprite in animated_sprite_ghosts:
 		sprite.animation = $AnimatedSprite2D.animation
 
-	velocity.x += randf_range(-1.0, 1.0)
-	velocity.y += randf_range(-1.0, 1.0)
-	velocity = velocity.clamp(Vector2(-10.0, -10.0), Vector2(10.0, 10.0))
+	velocity.x += randf_range(-3.0, 3.0)
+	velocity.y += randf_range(-3.0, 3.0)
+	velocity = velocity.normalized() * 25
 	
 	move_and_slide()
