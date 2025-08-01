@@ -30,6 +30,7 @@ var hurtbox_shape_ghosts: Array[Node2D] = []
 var visual_facing_left: bool = false
 # Used to prevent player input when playing death animation
 var dead: bool = false
+var dead_hat_velocity: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	animated_sprite_ghosts = Globals.make_loop_ghosts_of($AnimatedSprite2D)
@@ -41,6 +42,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if dead:
 		velocity.y += default_gravity * delta
+		$Hat.position += dead_hat_velocity * delta
 		move_and_slide()
 		return 
 
@@ -122,6 +124,12 @@ func area_hit_body(body: Node2D) -> void:
 		for sprite in animated_sprite_ghosts:
 			if sprite.global_position.y != on_screen_pos.y:
 				sprite.visible = false
+
+		$Hat.visible = true
+		$Hat.position += on_screen_pos - global_position
+		dead_hat_velocity = Vector2(randf_range(-15.0, 15.0), -50)
+
+		$Lasso.visible = false
 
 		# Disable collision so you can fall out of world
 		collision_mask = 0
