@@ -12,6 +12,10 @@ func _physics_process(delta: float) -> void:
 	for sprite in animated_sprite_ghosts:
 		sprite.animation = $AnimatedSprite2D.animation
 
+	if is_on_wall():
+		velocity.x = -velocity.x
+	if is_on_ceiling() or is_on_floor():
+		velocity.y = -velocity.y
 	velocity.x += randf_range(-3.0, 3.0)
 	velocity.y += randf_range(-3.0, 3.0)
 	velocity = velocity.normalized() * 25
