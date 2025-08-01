@@ -2,10 +2,12 @@ extends CharacterBody2D
 
 var animated_sprite_ghosts: Array[Node2D] = []
 var collision_shape_ghosts: Array[Node2D] = []
+var jump_check_shape_ghosts: Array[Node2D] = []
 
 func _ready() -> void:
 	animated_sprite_ghosts = Globals.make_loop_ghosts_of($AnimatedSprite2D)
 	collision_shape_ghosts = Globals.make_loop_ghosts_of($CollisionShape2D)
+	jump_check_shape_ghosts = Globals.make_loop_ghosts_of($JumpOverCheck/CollisionShape2D)
 
 func _physics_process(delta: float) -> void:
 	global_position = Globals.apply_loop_teleport(global_position)

@@ -24,7 +24,7 @@ var max_extra_jumps: int = 1
 var extra_jumps_left: int = 0
 var time_since_on_floor: float = INF
 var time_since_jump_attempt: float = INF
-var jump_over_combo = 1;
+var jump_over_combo = 1
 
 var animated_sprite_ghosts: Array[Node2D] = []
 var collision_shape_ghosts: Array[Node2D] = []
@@ -172,10 +172,10 @@ func area_hit_body(body: Node2D) -> void:
 		
 func area_exited_area(area: Area2D) -> void:
 	if dead:
-		return;
+		return
 	if (area.name == "JumpOverCheck"):
-		Globals.add_score(jump_over_combo * 10, area.global_position, $"..");
-		jump_over_combo += 1;
+		Globals.add_score(jump_over_combo * 10, Globals.convert_to_visible_pos(area.global_position), $"..")
+		jump_over_combo += 1
 
 func set_animation(anim: String) -> void:
 	if $AnimatedSprite2D.animation != anim:
