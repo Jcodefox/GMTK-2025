@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var max_bounces: int = -1
 @export var max_lifetime: float = 2
+@export var flashing_start_time: float = 1
 
 var sprite_ghosts: Array[Node2D] = []
 var collision_shape_ghosts: Array[Node2D] = []
@@ -24,6 +25,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	cumulative_delta += delta
+	update_disappear_blink()
 	global_position = Globals.apply_loop_teleport(global_position)
 
 	if is_on_wall():
@@ -47,3 +49,9 @@ func hit_object(body: Node2D) -> void:
 		enemies_killed += 1
 		Globals.add_score(enemies_killed * 10, Globals.convert_to_visible_pos(global_position), get_tree().current_scene, enemies_in_ball)
 		body.queue_free()
+
+func update_disappear_blink() -> void:
+	if cumulative_delta < flashing_start_time:
+		visible = true
+		return
+	visible = int(cumulative_delta * 8) % 2 < 1

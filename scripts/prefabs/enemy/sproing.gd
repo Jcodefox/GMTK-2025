@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var time_until_enemy_hurts: float = 1.0
+
 @export var default_gravity: float = 625
 @export var min_start_crouch_time: float = 0.5
 @export var max_start_crouch_time: float = 2.5
@@ -32,6 +34,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	time_alive += delta
+	update_i_frames()
 	global_position = Globals.apply_loop_teleport(global_position)
 
 	if is_on_floor():
@@ -56,6 +59,12 @@ func _physics_process(delta: float) -> void:
 	velocity.y += default_gravity * delta
 	
 	move_and_slide()
+
+func update_i_frames() -> void:
+	if time_alive >= time_until_enemy_hurts:
+		visible = true
+		return
+	visible = int(time_alive * 8) % 2 < 1
 
 func set_animation(anim: String, speed: float = 1.0) -> void:
 	if $AnimatedSprite2D.animation != anim:

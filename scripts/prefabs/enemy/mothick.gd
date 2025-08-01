@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var time_until_enemy_hurts: float = 1.0
+
 var animated_sprite_ghosts: Array[Node2D] = []
 var collision_shape_ghosts: Array[Node2D] = []
 var jump_check_shape_ghosts: Array[Node2D] = []
@@ -12,6 +14,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	time_alive += delta
+	update_i_frames()
 	global_position = Globals.apply_loop_teleport(global_position)
 	for sprite in animated_sprite_ghosts:
 		sprite.animation = $AnimatedSprite2D.animation
@@ -25,3 +28,9 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity.normalized() * 25
 	
 	move_and_slide()
+
+func update_i_frames() -> void:
+	if time_alive >= time_until_enemy_hurts:
+		visible = true
+		return
+	visible = int(time_alive * 8) % 2 < 1

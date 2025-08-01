@@ -147,7 +147,7 @@ func pull_lasso() -> void:
 
 	var sum_pos: Vector2 = Vector2.ZERO
 	for body in $Area2D.get_overlapping_bodies():
-		if body.is_in_group("enemy"):
+		if body.is_in_group("enemy") and body.time_alive > body.time_until_enemy_hurts:
 			sum_pos += Globals.convert_to_visible_pos(body.global_position)
 			killed_enemies += 1
 			body.queue_free()

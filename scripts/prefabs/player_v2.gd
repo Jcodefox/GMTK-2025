@@ -1,9 +1,6 @@
 extends CharacterBody2D
 
-
 @export var game_over_screen: Node
-
-@export var time_until_enemy_hurts: float = 1.0
 
 @export var default_gravity: float = 625
 @export var air_drag: float = 0.95
@@ -132,7 +129,7 @@ func _physics_process(delta: float) -> void:
 func area_hit_body(body: Node2D) -> void:
 	if dead:
 		return
-	if body.is_in_group("enemy") and body.time_alive > time_until_enemy_hurts:
+	if body.is_in_group("enemy") and body.time_alive > body.time_until_enemy_hurts:
 		dead = true
 		Globals.lives -= 1
 		set_animation("death")
@@ -177,7 +174,8 @@ func area_hit_body(body: Node2D) -> void:
 func area_exited_area(area: Area2D) -> void:
 	if dead:
 		return
-	if (area.name == "JumpOverCheck" and area.get_parent().time_alive > time_until_enemy_hurts):
+	var parent: Node2D = area.get_parent()
+	if (area.name == "JumpOverCheck" and parent.time_alive > parent.time_until_enemy_hurts):
 		Globals.add_score(jump_over_combo * 1, Globals.convert_to_visible_pos(area.global_position), $"..")
 		jump_over_combo += 1
 
