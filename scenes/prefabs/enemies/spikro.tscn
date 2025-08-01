@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://fl7r1l7ldhc4"]
+
+[ext_resource type="Script" uid="uid://cjdv0yqg5hwm0" path="res://scripts/prefabs/spikro.gd" id="1_5ikm6"]
+[ext_resource type="SpriteFrames" uid="uid://dx8m1e462tv15" path="res://assets/art/enemies/spikro_sprite_frames.tres" id="1_cfwy6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cfwy6"]
+size = Vector2(12, 12)
+
+[node name="Spikro" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_5ikm6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_cfwy6")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemy"]]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_cfwy6")

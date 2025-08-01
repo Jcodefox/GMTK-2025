@@ -10,8 +10,12 @@ var score: int = 0
 @onready var world_dimensions: Vector2 = (world_top_left - world_bottom_right).abs()
 @onready var float_score_num: PackedScene = preload("res://scenes/prefabs/float_score_num.tscn");
 
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 func _process(delta):
-	time_passed += delta
+	if not get_tree().paused:
+		time_passed += delta
 	if Input.is_action_just_pressed("fullscreen_toggle"):
 		if not DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
@@ -41,6 +45,7 @@ func make_loop_ghosts_of(obj: Node2D) -> Array[Node2D]:
 	original_parent.add_child(ghosts[2])
 	return ghosts
 
+
 func add_score(score_to_add: int, position: Vector2, parent: Node2D) -> void:
 	score += score_to_add;
 	
@@ -48,3 +53,18 @@ func add_score(score_to_add: int, position: Vector2, parent: Node2D) -> void:
 	score_to_display.point_value = score_to_add;
 	parent.add_child(score_to_display);
 	score_to_display.set_position(position);
+
+func game_over() -> void:
+	var tween: Tween = get_tree().create_tween()
+	tween.set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
+	tween.parallel().tween_property(self, "time_passed", 0, 1)
+	tween.parallel().tween_property(self, "score", score + int(time_passed) * 10, 1)
+	await tween.finished
+
+func reset_game() -> void:
+	lives = 3
+	time_passed = 0
+	score = 0
+	get_tree().paused = false
+	await get_tree().process_frame
+	get_tree().reload_current_scene()
