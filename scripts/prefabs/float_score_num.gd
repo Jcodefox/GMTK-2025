@@ -4,7 +4,6 @@ extends Label
 
 func _ready():
 	self.text = str(point_value)
-	print(self.size)
 
 var cumulative_delta: float = 0
 func _process(delta):
