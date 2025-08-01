@@ -1,0 +1,27 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://c6qloqv7c2epr"]
+
+[ext_resource type="Texture2D" uid="uid://d34pmul2eitcy" path="res://assets/art/enemies/sproing_1.png" id="1_pepvk"]
+[ext_resource type="Texture2D" uid="uid://b0q4m7wk80wbf" path="res://assets/art/enemies/sproing_2.png" id="2_3ubmg"]
+[ext_resource type="Texture2D" uid="uid://sh2jmye4uqha" path="res://assets/art/enemies/sproing_3.png" id="3_18wl0"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3ubmg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_pepvk")
+}],
+"loop": false,
+"name": &"duck",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_18wl0")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
+}]

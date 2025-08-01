@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtvjbmxdirq5p"]
+
+[ext_resource type="Script" uid="uid://pj8hbb33oxt2" path="res://scripts/prefabs/sproing.gd" id="1_l4pwe"]
+[ext_resource type="SpriteFrames" uid="uid://c6qloqv7c2epr" path="res://assets/art/enemies/sproing_sprite_frames.tres" id="2_l4pwe"]
+[ext_resource type="PackedScene" uid="uid://8u4a6kbsptoe" path="res://scenes/prefabs/jump_over_check.tscn" id="3_0ti0u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cfwy6"]
+size = Vector2(10, 14)
+
+[node name="Sproing" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_l4pwe")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_l4pwe")
+animation = &"jump"
+autoplay = "jump"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemy"]]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_cfwy6")
+
+[node name="JumpOverCheck" parent="." instance=ExtResource("3_0ti0u")]
+position = Vector2(0, -14)
