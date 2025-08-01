@@ -51,11 +51,12 @@ func make_loop_ghosts_of(obj: Node2D) -> Array[Node2D]:
 	return ghosts
 
 
-func add_score(score_to_add: int, position: Vector2, parent: Node2D) -> void:
-	score += score_to_add
+func add_score(score_to_add: int, position: Vector2, parent: Node2D, multiplier: int = 1) -> void:
+	score += score_to_add * multiplier
 	
 	var score_to_display = float_score_num.instantiate()
 	score_to_display.point_value = score_to_add*10
+	score_to_display.multiplier = multiplier
 	parent.add_child(score_to_display)
 	score_to_display.set_position(position)
 

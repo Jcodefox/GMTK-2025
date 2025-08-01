@@ -45,6 +45,5 @@ func _physics_process(delta: float) -> void:
 func hit_object(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		enemies_killed += 1
-		var points: int = enemies_killed * enemies_in_ball * 10
-		Globals.add_score(points, Globals.convert_to_visible_pos(global_position), get_tree().current_scene)
+		Globals.add_score(enemies_killed * 10, Globals.convert_to_visible_pos(global_position), get_tree().current_scene, enemies_in_ball)
 		body.queue_free()

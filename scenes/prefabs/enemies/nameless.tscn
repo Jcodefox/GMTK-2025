@@ -4,7 +4,8 @@
 [ext_resource type="SpriteFrames" uid="uid://ckf4smp680jph" path="res://assets/art/enemies/nameless_sprite_frames.tres" id="2_ikum1"]
 [ext_resource type="PackedScene" uid="uid://8u4a6kbsptoe" path="res://scenes/prefabs/jump_over_check.tscn" id="3_npmwq"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ghjc1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ikum1"]
+size = Vector2(10, 12)
 
 [node name="Nameless" type="CharacterBody2D" groups=["enemy"]]
 z_index = 1
@@ -12,13 +13,14 @@ collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_ikum1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ghjc1")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_ikum1")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_ikum1")
 
 [node name="JumpOverCheck" parent="." instance=ExtResource("3_npmwq")]
 position = Vector2(0, -15)

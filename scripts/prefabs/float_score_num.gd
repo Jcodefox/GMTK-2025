@@ -1,9 +1,13 @@
 extends Label
 
 @export var point_value: int = 100
+@export var multiplier: int = 1
 
 func _ready():
-	self.text = str(point_value)
+	if multiplier == 1:
+		self.text = str(point_value)
+	else:
+		self.text = "%d x%d" % [point_value, multiplier]
 
 var cumulative_delta: float = 0
 func _process(delta):
