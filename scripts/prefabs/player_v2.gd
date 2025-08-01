@@ -47,7 +47,7 @@ func _ready() -> void:
 		all_shape_ghosts_original_poses.append(shape.position)
 
 	$HurtBox.body_entered.connect(area_hit_body)
-	$HurtBox.area_entered.connect(area_hit_area)
+	$HurtBox.area_exited.connect(area_exited_area)
 
 func _physics_process(delta: float) -> void:
 	if dead:
@@ -170,10 +170,10 @@ func area_hit_body(body: Node2D) -> void:
 					Globals.game_over()
 			)
 		
-func area_hit_area(area: Area2D) -> void:
+func area_exited_area(area: Area2D) -> void:
 	if dead:
 		return;
-	if (area.name == "JumpOverCheck" && !is_on_floor()):
+	if (area.name == "JumpOverCheck"):
 		Globals.add_score(jump_over_combo * 10, area.global_position, $"..");
 		jump_over_combo += 1;
 

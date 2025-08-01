@@ -50,18 +50,21 @@ func add_score(score_to_add: int, position: Vector2, parent: Node2D) -> void:
 	score += score_to_add;
 	
 	var score_to_display = float_score_num.instantiate();
-	score_to_display.point_value = score_to_add;
+	score_to_display.point_value = score_to_add*10;
 	parent.add_child(score_to_display);
 	score_to_display.set_position(position);
 
+var tween: Tween
+
 func game_over() -> void:
-	var tween: Tween = get_tree().create_tween()
+	tween = get_tree().create_tween()
 	tween.set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
 	tween.parallel().tween_property(self, "time_passed", 0, 1)
 	tween.parallel().tween_property(self, "score", score + int(time_passed) * 10, 1)
 	await tween.finished
 
 func reset_game() -> void:
+	tween.stop();
 	lives = 3
 	time_passed = 0
 	score = 0

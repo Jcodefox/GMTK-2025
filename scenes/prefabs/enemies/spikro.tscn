@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://fl7r1l7ldhc4"]
+[gd_scene load_steps=5 format=3 uid="uid://fl7r1l7ldhc4"]
 
-[ext_resource type="Script" uid="uid://cjdv0yqg5hwm0" path="res://scripts/prefabs/spikro.gd" id="1_5ikm6"]
+[ext_resource type="Script" path="res://scripts/prefabs/spikro.gd" id="1_5ikm6"]
 [ext_resource type="SpriteFrames" uid="uid://dx8m1e462tv15" path="res://assets/art/enemies/spikro_sprite_frames.tres" id="1_cfwy6"]
+[ext_resource type="PackedScene" uid="uid://8u4a6kbsptoe" path="res://scenes/prefabs/jump_over_check.tscn" id="3_u83fi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cfwy6"]
 size = Vector2(12, 12)
@@ -18,3 +19,6 @@ autoplay = "default"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemy"]]
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_cfwy6")
+
+[node name="JumpOverCheck" parent="." instance=ExtResource("3_u83fi")]
+position = Vector2(0, -14)
