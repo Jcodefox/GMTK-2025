@@ -27,7 +27,7 @@ func _ready():
 
 func _process(delta: float):
 	cumulative_delta += delta
-
+	
 	lasso_target_pos = get_average_line_point()
 	lasso_current_pos += (get_global_mouse_position() - lasso_current_pos) / 12.0
 	#lasso_current_pos.move_toward(lasso_target_pos, delta * 100)
