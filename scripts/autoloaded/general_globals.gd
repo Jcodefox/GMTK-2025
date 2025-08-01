@@ -7,11 +7,14 @@ var lives: int = 3
 var time_passed: float = 0
 var score: int = 0
 
+var high_score: int = 0
+
 @onready var world_dimensions: Vector2 = (world_top_left - world_bottom_right).abs()
-@onready var float_score_num: PackedScene = preload("res://scenes/prefabs/float_score_num.tscn");
+@onready var float_score_num: PackedScene = preload("res://scenes/prefabs/float_score_num.tscn")
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	load_high_score()
 
 func _process(delta):
 	if not get_tree().paused:
@@ -57,10 +60,16 @@ func add_score(score_to_add: int, position: Vector2, parent: Node2D) -> void:
 var tween: Tween
 
 func game_over() -> void:
+	var new_score: int = score + int(time_passed) * 10
+
+	if new_score > high_score:
+		high_score = new_score
+		save_high_score()
+
 	tween = get_tree().create_tween()
 	tween.set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
 	tween.parallel().tween_property(self, "time_passed", 0, 1)
-	tween.parallel().tween_property(self, "score", score + int(time_passed) * 10, 1)
+	tween.parallel().tween_property(self, "score", new_score, 1)
 	await tween.finished
 
 func reset_game() -> void:
@@ -71,3 +80,15 @@ func reset_game() -> void:
 	get_tree().paused = false
 	await get_tree().process_frame
 	get_tree().reload_current_scene()
+
+func save_high_score() -> void:
+	var config = ConfigFile.new()
+	config.set_value("Player", "high_score", high_score)
+	config.save("user://high_score.cfg")
+
+func load_high_score() -> void:
+	var config: ConfigFile = ConfigFile.new()
+	var err = config.load("user://high_score.cfg")
+	if err != OK:
+		return
+	high_score = config.get_value("Player", "high_score")
