@@ -77,14 +77,17 @@ func _physics_process(delta: float) -> void:
 	if horizontal_input_axis != 0:
 		visual_facing_left = horizontal_input_axis < 0
 	
-	if Input.is_action_pressed("move_down"):
+	if Input.is_action_just_pressed("move_down"):
 		set_collision_height(9, 3.5)
+	if Input.is_action_just_released("move_down"):
+		set_collision_height(14, 1)
+	
+	if Input.is_action_pressed("move_down"):
 		if horizontal_input_axis != 0:
 			set_animation("duckwalk")
 		else:
 			set_animation("duckhide")
 	else:
-		set_collision_height(14, 1)
 		if velocity.y < 0:
 			set_animation("jump_left" if visual_facing_left else "jump_right")
 		elif velocity.y > 0:
