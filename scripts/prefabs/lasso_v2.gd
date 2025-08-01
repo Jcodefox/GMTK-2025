@@ -1,7 +1,7 @@
 extends Line2D
 
-@export var max_line_distance: float = 400
-@export var max_line_age: float = 1.0
+@export var max_line_distance: float = 80
+@export var max_line_age: float = 0.1
 
 @export var max_mouse_angle_amount: float = 400
 @export var max_mouse_angle_age: float = 1.0
@@ -59,7 +59,7 @@ func _process(delta: float):
 		mouse_angle_time.remove_at(0)
 
 	for i in mouse_angle_time.size():
-		if (cumulative_delta - mouse_angle_time[i]) > max_line_age:
+		if (cumulative_delta - mouse_angle_time[i]) > max_mouse_angle_age:
 			all_mouse_angles.remove_at(0)
 			mouse_angle_time.remove_at(0)
 		else:
