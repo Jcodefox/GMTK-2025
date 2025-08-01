@@ -12,6 +12,9 @@ var intended_velocity: Vector2 = Vector2.ZERO
 var bounces: int = 0
 var cumulative_delta: float = 0
 
+var enemies_in_ball: int = 0
+var enemies_killed: int = 0
+
 func _ready() -> void:
 	sprite_ghosts = Globals.make_loop_ghosts_of($SuspiciousPlaceholderSlingball)
 	collision_shape_ghosts = Globals.make_loop_ghosts_of($CollisionShape2D)
@@ -41,4 +44,6 @@ func _physics_process(delta: float) -> void:
 
 func hit_object(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
+		enemies_killed += 1
+		Globals.score += enemies_killed * enemies_in_ball * 10
 		body.queue_free()

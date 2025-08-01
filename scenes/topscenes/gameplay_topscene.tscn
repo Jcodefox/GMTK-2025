@@ -65,6 +65,7 @@ tile_set = ExtResource("3_u55sw")
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="FloatScoreNum" parent="." instance=ExtResource("9_rfs2g")]
+visible = false
 offset_left = 173.0
 offset_top = 137.0
 offset_right = 223.0

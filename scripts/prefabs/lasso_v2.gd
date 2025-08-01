@@ -148,8 +148,10 @@ func pull_lasso() -> void:
 			body.queue_free()
 	
 	if killed_enemies > 0:
+		Globals.score += killed_enemies * 10
 		var pull_direction: Vector2 = Globals.convert_to_visible_pos(lasso_current_pos).direction_to(Globals.convert_to_visible_pos(global_position))
 		var new_slingball: Node2D = slingball_prefab.instantiate()
+		new_slingball.enemies_in_ball = killed_enemies
 		new_slingball.global_position = Globals.convert_to_visible_pos(lasso_current_pos)
 		new_slingball.intended_velocity = pull_direction * 100
 		get_tree().current_scene.add_child(new_slingball)
