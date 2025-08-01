@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	time_alive += delta
-	update_i_frames()
+	Globals.update_enemy_i_frames(self)
 	global_position = Globals.apply_loop_teleport(global_position)
 
 	var desired_direction: Vector2 = Vector2.ZERO
@@ -30,12 +30,6 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity.normalized() * speed
 	
 	move_and_slide()
-
-func update_i_frames() -> void:
-	if time_alive >= time_until_enemy_hurts:
-		visible = true
-		return
-	visible = int(time_alive * 8) % 2 < 1
 
 func set_animation(anim: String) -> void:
 	if $AnimatedSprite2D.animation != anim:

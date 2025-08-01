@@ -95,3 +95,9 @@ func load_high_score() -> void:
 	if err != OK:
 		return
 	high_score = config.get_value("Player", "high_score")
+
+func update_enemy_i_frames(enemy: Node2D) -> void:
+	if enemy.time_alive >= enemy.time_until_enemy_hurts:
+		enemy.visible = true
+		return
+	enemy.visible = int(enemy.time_alive * 16) % 2 < 1
