@@ -21,4 +21,4 @@ autoplay = "default"
 frame_progress = 0.0844424
 
 [node name="JumpOverCheck" parent="." instance=ExtResource("3_uxnbl")]
-position = Vector2(-0.15872, -0.196739)
+position = Vector2(0, -16)

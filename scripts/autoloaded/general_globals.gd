@@ -8,6 +8,7 @@ var time_passed: float = 0
 var score: int = 0
 
 @onready var world_dimensions: Vector2 = (world_top_left - world_bottom_right).abs()
+@onready var float_score_num: PackedScene = preload("res://scenes/prefabs/float_score_num.tscn");
 
 func _process(delta):
 	time_passed += delta
@@ -39,3 +40,11 @@ func make_loop_ghosts_of(obj: Node2D) -> Array[Node2D]:
 	original_parent.add_child(ghosts[1])
 	original_parent.add_child(ghosts[2])
 	return ghosts
+
+func add_score(score_to_add: int, position: Vector2, parent: Node2D) -> void:
+	score += score_to_add;
+	
+	var score_to_display = float_score_num.instantiate();
+	score_to_display.point_value = score_to_add;
+	parent.add_child(score_to_display);
+	score_to_display.set_position(position);
