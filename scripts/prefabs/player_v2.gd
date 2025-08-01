@@ -38,9 +38,10 @@ var dead_hat_velocity: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	animated_sprite_ghosts = Globals.make_loop_ghosts_of($AnimatedSprite2D)
 	collision_shape_ghosts = Globals.make_loop_ghosts_of($CollisionShape2D)
+	hurtbox_shape_ghosts = Globals.make_loop_ghosts_of($HurtBox/CollisionShape2D)
+	hitbox_original_pos = $CollisionShape2D.position
 	for shape in collision_shape_ghosts:
 		all_shape_ghosts_original_poses.append(shape.position)
-	hurtbox_shape_ghosts = Globals.make_loop_ghosts_of($HurtBox/CollisionShape2D)
 
 	$HurtBox.body_entered.connect(area_hit_body)
 
@@ -78,9 +79,9 @@ func _physics_process(delta: float) -> void:
 		visual_facing_left = horizontal_input_axis < 0
 	
 	if Input.is_action_just_pressed("move_down"):
-		set_collision_height(9, 3.5)
+		set_collision_height(9, 2.5)
 	if Input.is_action_just_released("move_down"):
-		set_collision_height(14, 1)
+		set_collision_height(14, 0)
 	
 	if Input.is_action_pressed("move_down"):
 		if horizontal_input_axis != 0:

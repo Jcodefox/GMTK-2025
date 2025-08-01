@@ -30,9 +30,9 @@ func make_loop_ghosts_of(obj: Node2D) -> Array[Node2D]:
 	ghosts.push_back(obj.duplicate())
 	ghosts.push_back(obj.duplicate())
 
-	ghosts[0].position.x = -world_dimensions.x
-	ghosts[1].position = -world_dimensions
-	ghosts[2].position.y = -world_dimensions.y
+	ghosts[0].position.x = obj.position.x - world_dimensions.x
+	ghosts[1].position = obj.position - world_dimensions
+	ghosts[2].position.y = obj.position.y - world_dimensions.y
 
 	var original_parent: Node2D = obj.get_parent()
 	original_parent.add_child(ghosts[0])
