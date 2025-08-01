@@ -115,8 +115,19 @@ func area_hit_body(body: Node2D) -> void:
 		Globals.lives -= 1
 		set_animation("death")
 
+		# Hide all invisible players that are above screen
+		var on_screen_pos: Vector2 = Globals.convert_to_visible_pos(global_position)
+		if $AnimatedSprite2D.global_position.y != on_screen_pos.y:
+			$AnimatedSprite2D.visible = false
+		for sprite in animated_sprite_ghosts:
+			if sprite.global_position.y != on_screen_pos.y:
+				sprite.visible = false
+
+		# Disable collision so you can fall out of world
 		collision_mask = 0
 		collision_layer = 0
+		
+		# Make character bounce upward
 		velocity = Vector2(0, -100)
 
 		get_tree().paused = true
