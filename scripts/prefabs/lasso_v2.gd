@@ -58,6 +58,7 @@ func _process(delta: float):
 
 	var cumulative_angle: float = abs(all_mouse_angles.reduce(func(acc, val): return acc + val, 0))
 
+
 	while cumulative_angle > max_mouse_angle_amount:
 		all_mouse_angles.remove_at(0)
 		mouse_angle_time.remove_at(0)
@@ -71,9 +72,6 @@ func _process(delta: float):
 
 	lasso_loop_size = cumulative_angle * 2.0
 	lasso_loop_size = max(lasso_loop_size, 0)
-	
-	$Sprite2D.position = lasso_current_pos - global_position
-	$Sprite2D.scale = Vector2(lasso_loop_size, lasso_loop_size) / 64
 
 	# Adding a minimum size here prevents issues of collider being too small
 	# Which Godot doesn't like (I think)
@@ -85,9 +83,15 @@ func _process(delta: float):
 
 	
 	var pos: Vector2 = player_pos - global_position
-	var direction: Vector2 = pos.direction_to($Sprite2D.position)
-	var distance: float = pos.distance_to($Sprite2D.position) - lasso_loop_size / 2 + 2
-	points = PackedVector2Array([pos, pos + direction * distance])
+
+	var new_points: Array[Vector2] = []
+	new_points.append(pos)
+	var p: int = 20
+	for i in range(p + 1):
+		var x: float = cos(float(i)/p * TAU + current_angle)
+		var y: float = sin(float(i)/p * TAU + current_angle)
+		new_points.append(Vector2(x, y) * lasso_loop_size / 2 + lasso_current_pos - global_position)
+	points = PackedVector2Array(new_points)
 	
 	line_vertex_positions.push_back(get_global_mouse_position())
 	line_vertex_time.push_back(cumulative_delta)
