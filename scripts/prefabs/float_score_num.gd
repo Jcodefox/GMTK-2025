@@ -7,7 +7,7 @@ func _ready():
 	if multiplier == 1:
 		self.text = str(point_value)
 	else:
-		self.text = "%d x%d" % [point_value, multiplier]
+		self.text = "%dx%d" % [point_value, multiplier]
 
 var cumulative_delta: float = 0
 func _process(delta):
