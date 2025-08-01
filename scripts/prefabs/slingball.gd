@@ -27,5 +27,4 @@ func _physics_process(delta: float) -> void:
 
 func hit_object(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
-		print("Kill")
 		body.queue_free()
