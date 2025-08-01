@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://bp40dhuy614b0"]
+
+[ext_resource type="Texture2D" uid="uid://dn1kcad8k24hc" path="res://assets/art/enemies/mothick_1.png" id="1_mwtuw"]
+[ext_resource type="Texture2D" uid="uid://c1mdgus3yiihv" path="res://assets/art/enemies/mothick_2.png" id="2_ti8cx"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mwtuw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ti8cx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
