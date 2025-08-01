@@ -99,6 +99,8 @@ func _process(delta: float):
 		line_vertex_positions.remove_at(0)
 		line_vertex_time.remove_at(0)
 	for i in line_vertex_time.size():
+		if i >= line_vertex_time.size():
+			break
 		if (cumulative_delta - line_vertex_time[i]) > max_line_age:
 			line_vertex_positions.remove_at(0)
 			line_vertex_time.remove_at(0)
