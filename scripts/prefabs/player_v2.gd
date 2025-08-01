@@ -151,12 +151,13 @@ func area_hit_body(body: Node2D) -> void:
 		velocity = Vector2(0, -100)
 
 		get_tree().paused = true
-		get_tree().create_timer(2).timeout.connect(
-			func():
-				get_tree().paused = false
-				await get_tree().process_frame
-				get_tree().reload_current_scene()
-		)
+		if Globals.lives > 0:
+			get_tree().create_timer(2).timeout.connect(
+				func():
+					get_tree().paused = false
+					await get_tree().process_frame
+					get_tree().reload_current_scene()
+			)
 
 func set_animation(anim: String) -> void:
 	if $AnimatedSprite2D.animation != anim:

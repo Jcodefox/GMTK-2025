@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://dx8m1e462tv15"]
+
+[ext_resource type="Texture2D" uid="uid://dpnc1af7qhekp" path="res://assets/art/enemies/spikro_1.png" id="1_ft5ro"]
+[ext_resource type="Texture2D" uid="uid://dghunpjdgvnh" path="res://assets/art/enemies/spikro_2.png" id="2_jrp3m"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ft5ro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_jrp3m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
