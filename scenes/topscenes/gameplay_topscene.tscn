@@ -14,7 +14,7 @@
 
 [node name="Player" parent="." node_paths=PackedStringArray("game_over_screen") instance=ExtResource("1_rncwu")]
 z_index = 8
-position = Vector2(127, 144)
+position = Vector2(128, 152)
 game_over_screen = NodePath("../HudCanvasLayer/GameOverScreen")
 
 [node name="BackCanvasLayer" type="CanvasLayer" parent="."]

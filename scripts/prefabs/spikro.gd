@@ -8,12 +8,15 @@ var jump_check_shape_ghosts: Array[Node2D] = []
 
 var intended_direction: float = 1.0
 
+var time_alive: float = 0.0
+
 func _ready() -> void:
 	animated_sprite_ghosts = Globals.make_loop_ghosts_of($AnimatedSprite2D)
 	collision_shape_ghosts = Globals.make_loop_ghosts_of($CollisionShape2D)
 	jump_check_shape_ghosts = Globals.make_loop_ghosts_of($JumpOverCheck/CollisionShape2D)
 
 func _physics_process(delta: float) -> void:
+	time_alive += delta
 	global_position = Globals.apply_loop_teleport(global_position)
 	$AnimatedSprite2D.flip_h = intended_direction > 0
 	for sprite in animated_sprite_ghosts:
