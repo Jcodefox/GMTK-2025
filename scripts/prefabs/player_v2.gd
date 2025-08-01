@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var game_over_screen: Node
 
 @export var default_gravity: float = 625
 @export var air_drag: float = 0.95
@@ -157,6 +158,13 @@ func area_hit_body(body: Node2D) -> void:
 					get_tree().paused = false
 					await get_tree().process_frame
 					get_tree().reload_current_scene()
+			)
+		else:
+			get_tree().create_timer(2).timeout.connect(
+				func():
+					if game_over_screen != null:
+						game_over_screen.visible = true
+					Globals.game_over()
 			)
 
 func set_animation(anim: String) -> void:
