@@ -150,7 +150,7 @@ func area_hit_body(body: Node2D) -> void:
 		velocity = Vector2(0, -100)
 
 		get_tree().paused = true
-		get_tree().create_timer(1.5).timeout.connect(
+		get_tree().create_timer(2).timeout.connect(
 			func():
 				get_tree().paused = false
 				await get_tree().process_frame
