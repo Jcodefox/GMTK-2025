@@ -22,6 +22,7 @@ var max_extra_jumps: int = 1
 var extra_jumps_left: int = 0
 var time_since_on_floor: float = INF
 var time_since_jump_attempt: float = INF
+var jump_over_combo = 1;
 
 var animated_sprite_ghosts: Array[Node2D] = []
 var collision_shape_ghosts: Array[Node2D] = []
@@ -44,6 +45,7 @@ func _ready() -> void:
 		all_shape_ghosts_original_poses.append(shape.position)
 
 	$HurtBox.body_entered.connect(area_hit_body)
+	$HurtBox.area_entered.connect(area_hit_area)
 
 func _physics_process(delta: float) -> void:
 	if dead:
@@ -68,6 +70,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		time_since_on_floor = 0
 		extra_jumps_left = max_extra_jumps
+		jump_over_combo = 1
 		velocity.y = 0
 		velocity.x += ground_lateral_accel * horizontal_accel_multiplier * horizontal_input_axis * delta
 		velocity.x *= pow(ground_lateral_drag, delta)
@@ -156,6 +159,10 @@ func area_hit_body(body: Node2D) -> void:
 				await get_tree().process_frame
 				get_tree().reload_current_scene()
 		)
+		
+func area_hit_area(area: Area2D) -> void:
+	if (area.name == "JumpOverCheck"):
+		Globals.score += jump_over_combo * 10;
 
 func set_animation(anim: String) -> void:
 	if $AnimatedSprite2D.animation != anim:
