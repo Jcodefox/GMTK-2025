@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://duckh0hi5syg7"]
 
-[ext_resource type="Script" path="res://scripts/prefabs/mothick.gd" id="1_ghjc1"]
+[ext_resource type="Script" uid="uid://bguxqq0ikvf02" path="res://scripts/prefabs/mothick.gd" id="1_ghjc1"]
 [ext_resource type="SpriteFrames" uid="uid://bp40dhuy614b0" path="res://assets/art/enemies/mothic_sprite_frames.tres" id="1_q3fok"]
 [ext_resource type="PackedScene" uid="uid://8u4a6kbsptoe" path="res://scenes/prefabs/jump_over_check.tscn" id="3_uxnbl"]
 
