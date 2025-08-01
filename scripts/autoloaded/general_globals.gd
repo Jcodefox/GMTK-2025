@@ -60,7 +60,7 @@ func add_score(score_to_add: int, position: Vector2, parent: Node2D) -> void:
 var tween: Tween
 
 func game_over() -> void:
-	var new_score: int = score + int(time_passed) * 10
+	var new_score: int = score + int(time_passed)
 
 	if new_score > high_score:
 		high_score = new_score
