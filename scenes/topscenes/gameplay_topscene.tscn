@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://drjswa8p2rpnx" path="res://assets/art/ui_hud/hudframe.png" id="3_pyq0w"]
 [ext_resource type="TileSet" uid="uid://cl63qdxuqflth" path="res://assets/art/terrain/main_tile_set.tres" id="3_u55sw"]
 [ext_resource type="Texture2D" uid="uid://bwx4duhuh37jy" path="res://assets/art/terrain/cloud 1.png" id="5_emnkm"]
+[ext_resource type="PackedScene" uid="uid://duckh0hi5syg7" path="res://scenes/prefabs/enemies/mothick.tscn" id="5_ks65t"]
 [ext_resource type="Texture2D" uid="uid://cwak838kpjbeg" path="res://assets/art/terrain/cloud 2.png" id="6_ed28v"]
 [ext_resource type="Script" uid="uid://cbsnpfn5tcbcj" path="res://scripts/prefabs/cloud.gd" id="6_rfs2g"]
 [ext_resource type="PackedScene" uid="uid://dkamy1f0f5j1m" path="res://scenes/prefabs/float_score_num.tscn" id="9_rfs2g"]
