@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dtvjbmxdirq5p"]
 
-[ext_resource type="Script" uid="uid://pj8hbb33oxt2" path="res://scripts/prefabs/sproing.gd" id="1_l4pwe"]
+[ext_resource type="Script" uid="uid://pj8hbb33oxt2" path="res://scripts/prefabs/enemy/sproing.gd" id="1_l4pwe"]
 [ext_resource type="SpriteFrames" uid="uid://c6qloqv7c2epr" path="res://assets/art/enemies/sproing_sprite_frames.tres" id="2_l4pwe"]
 [ext_resource type="PackedScene" uid="uid://8u4a6kbsptoe" path="res://scenes/prefabs/jump_over_check.tscn" id="3_0ti0u"]
 

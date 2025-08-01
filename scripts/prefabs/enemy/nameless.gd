@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var speed: float = 15
+
 var animated_sprite_ghosts: Array[Node2D] = []
 var collision_shape_ghosts: Array[Node2D] = []
 var jump_check_shape_ghosts: Array[Node2D] = []
@@ -23,7 +25,7 @@ func _physics_process(delta: float) -> void:
 		set_animation("right" if desired_direction.x > 0 else "left")
 	
 	velocity += desired_direction
-	velocity = velocity.normalized() * 25
+	velocity = velocity.normalized() * speed
 	
 	move_and_slide()
 
