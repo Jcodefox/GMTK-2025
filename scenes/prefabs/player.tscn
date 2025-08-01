@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://crq0ubo4sdfwt"]
+[gd_scene load_steps=7 format=3 uid="uid://crq0ubo4sdfwt"]
 
 [ext_resource type="Script" uid="uid://dgc1ud1pmx2lv" path="res://scripts/prefabs/player_v2.gd" id="1_tou0u"]
 [ext_resource type="SpriteFrames" uid="uid://bf6o51up71rto" path="res://assets/art/player/player_sprite_frames.tres" id="2_tou0u"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://bd16750dl1tv5" path="res://assets/art/player/hat.png" id="4_8cdkg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tou0u"]
+size = Vector2(8, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8cdkg"]
 size = Vector2(8, 14)
 
 [node name="Player" type="CharacterBody2D"]
@@ -18,7 +21,7 @@ shape = SubResource("RectangleShape2D_tou0u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_tou0u")
-animation = &"death"
+animation = &"duckhide"
 autoplay = "idle"
 
 [node name="Lasso" parent="." instance=ExtResource("3_n0leu")]
@@ -31,7 +34,7 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_tou0u")
+shape = SubResource("RectangleShape2D_8cdkg")
 
 [node name="Hat" type="Sprite2D" parent="."]
 visible = false

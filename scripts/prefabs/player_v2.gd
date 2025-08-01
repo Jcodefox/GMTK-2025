@@ -26,6 +26,9 @@ var time_since_jump_attempt: float = INF
 var animated_sprite_ghosts: Array[Node2D] = []
 var collision_shape_ghosts: Array[Node2D] = []
 var hurtbox_shape_ghosts: Array[Node2D] = []
+var all_shape_ghosts_original_poses: PackedVector2Array = []
+
+@onready var hitbox_original_pos: Vector2 = Vector2.ZERO
 
 var visual_facing_left: bool = false
 # Used to prevent player input when playing death animation
@@ -35,6 +38,8 @@ var dead_hat_velocity: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	animated_sprite_ghosts = Globals.make_loop_ghosts_of($AnimatedSprite2D)
 	collision_shape_ghosts = Globals.make_loop_ghosts_of($CollisionShape2D)
+	for shape in collision_shape_ghosts:
+		all_shape_ghosts_original_poses.append(shape.position)
 	hurtbox_shape_ghosts = Globals.make_loop_ghosts_of($HurtBox/CollisionShape2D)
 
 	$HurtBox.body_entered.connect(area_hit_body)
@@ -73,11 +78,13 @@ func _physics_process(delta: float) -> void:
 		visual_facing_left = horizontal_input_axis < 0
 	
 	if Input.is_action_pressed("move_down"):
+		set_collision_height(9, 3.5)
 		if horizontal_input_axis != 0:
 			set_animation("duckwalk")
 		else:
 			set_animation("duckhide")
 	else:
+		set_collision_height(14, 1)
 		if velocity.y < 0:
 			set_animation("jump_left" if visual_facing_left else "jump_right")
 		elif velocity.y > 0:
@@ -151,3 +158,15 @@ func set_animation(anim: String) -> void:
 		$AnimatedSprite2D.animation = anim
 	for sprite in animated_sprite_ghosts:
 		sprite.animation = $AnimatedSprite2D.animation
+
+func set_collision_height(amount: float, offset: float) -> void:
+	$CollisionShape2D.shape.size.y = amount
+	$CollisionShape2D.position.y = hitbox_original_pos.y + offset
+
+	$HurtBox/CollisionShape2D.shape.size.y = amount
+	$HurtBox/CollisionShape2D.position.y = hitbox_original_pos.y + offset
+
+	for i in range(all_shape_ghosts_original_poses.size()):
+		collision_shape_ghosts[i].position.y = all_shape_ghosts_original_poses[i].y + offset
+		hurtbox_shape_ghosts[i].position.y = all_shape_ghosts_original_poses[i].y + offset
+		
