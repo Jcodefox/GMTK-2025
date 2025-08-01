@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://duckh0hi5syg7"]
 
-[ext_resource type="Script" path="res://scripts/prefabs/mothick.gd" id="1_ghjc1"]
+[ext_resource type="Script" uid="uid://bguxqq0ikvf02" path="res://scripts/prefabs/mothick.gd" id="1_ghjc1"]
 [ext_resource type="SpriteFrames" uid="uid://bp40dhuy614b0" path="res://assets/art/enemies/mothic_sprite_frames.tres" id="1_q3fok"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ghjc1"]
