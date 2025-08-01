@@ -16,9 +16,17 @@ shape = SubResource("RectangleShape2D_tou0u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_tou0u")
-animation = &"jump_left"
+animation = &"death"
 autoplay = "idle"
 
 [node name="Lasso" parent="." instance=ExtResource("3_n0leu")]
 z_index = 4
 z_as_relative = false
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_tou0u")

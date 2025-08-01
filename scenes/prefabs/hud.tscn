@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://o4f3t1b6uml7" path="res://scripts/prefabs/hud.gd" id="1_ijk2n"]
 
 [node name="HUD" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 offset_left = 9.0

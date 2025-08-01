@@ -25,12 +25,16 @@ var time_since_jump_attempt: float = INF
 
 var animated_sprite_ghosts: Array[Node2D] = []
 var collision_shape_ghosts: Array[Node2D] = []
+var hurtbox_shape_ghosts: Array[Node2D] = []
 
 var visual_facing_left: bool = false
 
 func _ready() -> void:
 	animated_sprite_ghosts = Globals.make_loop_ghosts_of($AnimatedSprite2D)
 	collision_shape_ghosts = Globals.make_loop_ghosts_of($CollisionShape2D)
+	hurtbox_shape_ghosts = Globals.make_loop_ghosts_of($HurtBox/CollisionShape2D)
+
+	$HurtBox.body_entered.connect(area_hit_body)
 
 func _physics_process(delta: float) -> void:
 	global_position = Globals.apply_loop_teleport(global_position)
@@ -95,6 +99,17 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	$Lasso.player_pos = Globals.convert_to_visible_pos(global_position)
+
+func area_hit_body(body: Node2D) -> void:
+	if body.is_in_group("enemy"):
+		Globals.lives -= 1
+		set_animation("death")
+		get_tree().paused = true
+		get_tree().create_timer(5).timeout.connect(
+			func():
+				get_tree().paused = false
+				get_tree().reload_current_scene() 
+		)
 
 func set_animation(anim: String) -> void:
 	if $AnimatedSprite2D.animation != anim:
