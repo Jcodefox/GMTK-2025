@@ -146,17 +146,20 @@ func pull_lasso() -> void:
 	all_mouse_angles.clear()
 	mouse_angle_time.clear()
 
+	var sum_pos: Vector2 = Vector2.ZERO
 	for body in $Area2D.get_overlapping_bodies():
 		if body.is_in_group("enemy"):
+			sum_pos += Globals.convert_to_visible_pos(body.global_position)
 			killed_enemies += 1
 			body.queue_free()
 	
 	if killed_enemies > 0:
+		var avg_pos: Vector2 = sum_pos / killed_enemies
 		var points: int = killed_enemies * 10
-		Globals.add_score(points, Globals.convert_to_visible_pos(lasso_current_pos), get_tree().current_scene)
-		var pull_direction: Vector2 = Globals.convert_to_visible_pos(lasso_current_pos).direction_to(Globals.convert_to_visible_pos(global_position))
+		Globals.add_score(points, Globals.convert_to_visible_pos(avg_pos), get_tree().current_scene)
+		var pull_direction: Vector2 = Globals.convert_to_visible_pos(avg_pos).direction_to(Globals.convert_to_visible_pos(global_position))
 		var new_slingball: Node2D = slingball_prefab.instantiate()
 		new_slingball.enemies_in_ball = killed_enemies
-		new_slingball.global_position = Globals.convert_to_visible_pos(lasso_current_pos)
+		new_slingball.global_position = Globals.convert_to_visible_pos(avg_pos)
 		new_slingball.intended_velocity = pull_direction * 100
 		get_tree().current_scene.add_child(new_slingball)
