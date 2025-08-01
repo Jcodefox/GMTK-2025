@@ -1,5 +1,7 @@
 extends Line2D
 
+@export var slingball_prefab: PackedScene
+
 @export var min_lasso_capture_size: float = 20.0
 
 @export var max_line_distance: float = 80
@@ -135,9 +137,20 @@ func pull_lasso() -> void:
 	if lasso_loop_size < min_lasso_capture_size:
 		return
 
+	var killed_enemies: int = 0
+
 	all_mouse_angles.clear()
 	mouse_angle_time.clear()
 
 	for body in $Area2D.get_overlapping_bodies():
 		if body.is_in_group("enemy"):
+			killed_enemies += 1
 			body.queue_free()
+	
+	if killed_enemies > 0:
+		var pull_direction: Vector2 = Globals.convert_to_visible_pos(lasso_current_pos).direction_to(Globals.convert_to_visible_pos(global_position))
+		var new_slingball: Node2D = slingball_prefab.instantiate()
+		new_slingball.global_position = Globals.convert_to_visible_pos(lasso_current_pos)
+		new_slingball.intended_velocity = pull_direction * 100
+		get_tree().current_scene.add_child(new_slingball)
+

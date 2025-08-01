@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+
 @export var default_gravity: float = 625
 @export var air_drag: float = 0.95
 
