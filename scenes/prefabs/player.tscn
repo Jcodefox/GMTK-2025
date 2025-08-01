@@ -8,6 +8,7 @@
 size = Vector2(8, 14)
 
 [node name="Player" type="CharacterBody2D"]
+process_mode = 3
 script = ExtResource("1_tou0u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -28,6 +28,8 @@ var collision_shape_ghosts: Array[Node2D] = []
 var hurtbox_shape_ghosts: Array[Node2D] = []
 
 var visual_facing_left: bool = false
+# Used to prevent player input when playing death animation
+var dead: bool = false
 
 func _ready() -> void:
 	animated_sprite_ghosts = Globals.make_loop_ghosts_of($AnimatedSprite2D)
@@ -37,6 +39,11 @@ func _ready() -> void:
 	$HurtBox.body_entered.connect(area_hit_body)
 
 func _physics_process(delta: float) -> void:
+	if dead:
+		velocity.y += default_gravity * delta
+		move_and_slide()
+		return 
+
 	global_position = Globals.apply_loop_teleport(global_position)
 	time_since_on_floor += delta
 	time_since_jump_attempt += delta
@@ -101,14 +108,23 @@ func _physics_process(delta: float) -> void:
 	$Lasso.player_pos = Globals.convert_to_visible_pos(global_position)
 
 func area_hit_body(body: Node2D) -> void:
+	if dead:
+		return
+	dead = true
 	if body.is_in_group("enemy"):
 		Globals.lives -= 1
 		set_animation("death")
+
+		collision_mask = 0
+		collision_layer = 0
+		velocity = Vector2(0, -100)
+
 		get_tree().paused = true
 		get_tree().create_timer(5).timeout.connect(
 			func():
 				get_tree().paused = false
-				get_tree().reload_current_scene() 
+				await get_tree().process_frame
+				get_tree().reload_current_scene()
 		)
 
 func set_animation(anim: String) -> void:
