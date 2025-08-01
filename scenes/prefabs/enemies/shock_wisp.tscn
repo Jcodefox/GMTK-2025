@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://cfouaodbpe5ht"]
+
+[ext_resource type="Script" uid="uid://c10oqykevo565" path="res://scripts/prefabs/shock_wisp.gd" id="1_70n4a"]
+[ext_resource type="SpriteFrames" uid="uid://cint4xupsaukt" path="res://assets/art/enemies/shockwisp_sprite_frames.tres" id="1_oaxne"]
+[ext_resource type="PackedScene" uid="uid://8u4a6kbsptoe" path="res://scenes/prefabs/jump_over_check.tscn" id="3_5top1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oaxne"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_70n4a"]
+size = Vector2(12, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5top1"]
+size = Vector2(2, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ybbm"]
+size = Vector2(2, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cuf6y"]
+size = Vector2(12, 2)
+
+[node name="ShockWisp" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_70n4a")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_oaxne")
+autoplay = "default"
+frame_progress = 0.313293
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oaxne")
+
+[node name="TopLeft" type="Area2D" parent="."]
+position = Vector2(-6, -6)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopLeft"]
+position = Vector2(5, 0)
+shape = SubResource("RectangleShape2D_70n4a")
+
+[node name="TopRight" type="Area2D" parent="."]
+position = Vector2(6, -6)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopRight"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_5top1")
+
+[node name="BottomLeft" type="Area2D" parent="."]
+position = Vector2(-6, 6)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomLeft"]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_6ybbm")
+
+[node name="BottomRight" type="Area2D" parent="."]
+position = Vector2(6, 6)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomRight"]
+position = Vector2(-5, 0)
+shape = SubResource("RectangleShape2D_cuf6y")
+
+[node name="JumpOverCheck" parent="." instance=ExtResource("3_5top1")]
+position = Vector2(0, -18)
