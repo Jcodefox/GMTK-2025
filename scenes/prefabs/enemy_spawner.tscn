@@ -1,10 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://ni48dlph7c7c"]
+[gd_scene load_steps=6 format=3 uid="uid://ni48dlph7c7c"]
 
 [ext_resource type="Script" uid="uid://c8cmk0rp5xbel" path="res://scripts/prefabs/enemy_spawner.gd" id="1_2fv7t"]
 [ext_resource type="PackedScene" uid="uid://duckh0hi5syg7" path="res://scenes/prefabs/enemies/mothick.tscn" id="2_pg5fs"]
 [ext_resource type="PackedScene" uid="uid://fl7r1l7ldhc4" path="res://scenes/prefabs/enemies/spikro.tscn" id="3_pg5fs"]
 [ext_resource type="PackedScene" uid="uid://cfouaodbpe5ht" path="res://scenes/prefabs/enemies/shock_wisp.tscn" id="4_vxkwm"]
+[ext_resource type="PackedScene" uid="uid://bpu8ngb4kep74" path="res://scenes/prefabs/enemies/nameless.tscn" id="5_khqpp"]
 
 [node name="EnemySpawner" type="Node2D"]
 script = ExtResource("1_2fv7t")
-enemy_scenes = Array[PackedScene]([ExtResource("2_pg5fs"), ExtResource("3_pg5fs"), ExtResource("4_vxkwm")])
+enemy_scenes = Array[PackedScene]([ExtResource("2_pg5fs"), ExtResource("3_pg5fs"), ExtResource("4_vxkwm"), ExtResource("5_khqpp")])

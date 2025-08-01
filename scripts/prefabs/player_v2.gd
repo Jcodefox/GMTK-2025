@@ -42,6 +42,7 @@ var dead: bool = false
 var dead_hat_velocity: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
+	Globals.player = self
 	animated_sprite_ghosts = Globals.make_loop_ghosts_of($AnimatedSprite2D)
 	collision_shape_ghosts = Globals.make_loop_ghosts_of($CollisionShape2D)
 	hurtbox_shape_ghosts = Globals.make_loop_ghosts_of($HurtBox/CollisionShape2D)
