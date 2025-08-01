@@ -98,14 +98,11 @@ func _process(delta: float):
 	while sum_line_distance() > max_line_distance:
 		line_vertex_positions.remove_at(0)
 		line_vertex_time.remove_at(0)
-	for i in line_vertex_time.size():
-		if i >= line_vertex_time.size():
+	while line_vertex_time.size() > 0:
+		if cumulative_delta - line_vertex_time[0] <= max_line_age:
 			break
-		if (cumulative_delta - line_vertex_time[i]) > max_line_age:
-			line_vertex_positions.remove_at(0)
-			line_vertex_time.remove_at(0)
-		else:
-			break
+		line_vertex_positions.remove_at(0)
+		line_vertex_time.remove_at(0)
 	draw_lines()
 	last_mouse_pos = get_global_mouse_position()
 
