@@ -21,7 +21,7 @@ func _physics_process(delta: float) -> void:
 func lassod() -> void:
 	queue_free()
 
-func slingballed() -> void:
+func slingballed(ball: Node2D) -> void:
 	die()
 
 func die() -> void:
