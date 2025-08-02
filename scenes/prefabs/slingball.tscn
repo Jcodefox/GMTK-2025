@@ -20,7 +20,7 @@ script = ExtResource("1_f5sfi")
 
 [node name="AnimatedSlingball" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_s0lpe")
-animation = &"pop_small"
+animation = &"medium"
 autoplay = "small"
 
 [node name="SlingballRope" type="AnimatedSprite2D" parent="."]

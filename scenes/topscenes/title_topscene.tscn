@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://2jgx211gio68" path="res://scripts/prefabs/title_topscene.gd" id="1_gbtve"]
 [ext_resource type="Theme" uid="uid://bk5ddumg2jusp" path="res://assets/style/text.tres" id="1_yqnk8"]
-[ext_resource type="Script" uid="uid://do14ocxpjhslc" path="res://scripts/credits.gd" id="3_68jhd"]
+[ext_resource type="Script" path="res://scripts/credits.gd" id="3_68jhd"]
 
 [node name="TitleTopscene" type="Control"]
 layout_mode = 3
