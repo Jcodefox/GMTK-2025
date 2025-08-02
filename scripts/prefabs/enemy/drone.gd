@@ -32,6 +32,6 @@ func set_animation(anim: String) -> void:
 		if sprite.animation != anim:
 			sprite.play(anim)
 			
-func slingballed(ball: Node2D) -> int:
+func slingballed(_ball: Node2D) -> int:
 	die()
 	return 30

@@ -4,7 +4,7 @@ func _init():
 	position.x = randi_range(-64, 300)
 	position.y = randi_range(-32, 224)
 
-func _process(delta):
+func _process(_delta):
 	position.x -= 0.025
 	
 	if position.x < -32:

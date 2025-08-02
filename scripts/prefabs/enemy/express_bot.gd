@@ -58,7 +58,7 @@ func set_animation(anim: String) -> void:
 		if sprite.animation != anim:
 			sprite.play(anim)
 
-func slingballed(ball: Node2D) -> int:
+func slingballed(_ball: Node2D) -> int:
 	if time_since_hurt < hurt_i_frame_time:
 		return 0
 	health -= 1
