@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by5juikn7ogwb"
-path="res://.godot/imported/enemy_explosion_a_3.png-a7cc9f27d466a847c08d77a41cf776a7.ctex"
+uid="uid://dacypvtq88ekl"
+path="res://.godot/imported/standard_enemy_explosion_1.png-37ce9b7f44578812241efd61d32c76bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/enemies/enemy_explosion_a_3.png"
-dest_files=["res://.godot/imported/enemy_explosion_a_3.png-a7cc9f27d466a847c08d77a41cf776a7.ctex"]
+source_file="res://assets/art/enemies/standard_enemy_explosion_1.png"
+dest_files=["res://.godot/imported/standard_enemy_explosion_1.png-37ce9b7f44578812241efd61d32c76bc.ctex"]
 
 [params]
 
