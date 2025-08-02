@@ -7,14 +7,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lj4q4"]
 size = Vector2(5, 5)
 
-[node name="Sproing" type="CharacterBody2D" groups=["can_be_lassod", "enemy"]]
+[node name="Spikeball" type="CharacterBody2D" groups=["can_be_lassod", "enemy"]]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_lj4q4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_lj4q4")
-frame_progress = 0.0504328
+frame_progress = 0.154278
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemy"]]
 shape = SubResource("RectangleShape2D_lj4q4")
