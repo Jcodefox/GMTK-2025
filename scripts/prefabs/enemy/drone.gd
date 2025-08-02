@@ -31,3 +31,7 @@ func set_animation(anim: String) -> void:
 	for sprite in animated_sprite_ghosts:
 		if sprite.animation != anim:
 			sprite.play(anim)
+			
+func slingballed(ball: Node2D) -> int:
+	die()
+	return 30

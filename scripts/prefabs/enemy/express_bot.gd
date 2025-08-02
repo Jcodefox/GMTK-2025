@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 		var new_spikeball: Node2D = spikeball_prefab.instantiate()
 		new_spikeball.global_position = Globals.convert_to_visible_pos(global_position)
 		get_parent().add_child(new_spikeball)
-
+	
 	var desired_direction: Vector2 = Vector2.ZERO
 	if Globals.player != null and Globals.player.is_inside_tree():
 		desired_direction = Globals.convert_to_visible_pos(global_position).direction_to(Globals.convert_to_visible_pos(Globals.player.global_position))
@@ -58,10 +58,12 @@ func set_animation(anim: String) -> void:
 		if sprite.animation != anim:
 			sprite.play(anim)
 
-func slingballed(ball: Node2D) -> void:
+func slingballed(ball: Node2D) -> int:
 	if time_since_hurt < hurt_i_frame_time:
-		return
+		return 0
 	health -= 1
 	time_since_hurt = 0.0
 	if health == 0:
 		die()
+		return 80
+	return 0
