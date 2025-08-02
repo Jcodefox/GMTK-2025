@@ -24,7 +24,6 @@ var cumulative_delta: float = 0
 var player_pos: Vector2 = Vector2.ZERO
 
 var lasso_loop_size: float = 1
-var lasso_target_pos: Vector2 = Vector2.ZERO
 var lasso_current_pos: Vector2 = Vector2.ZERO
 var last_mouse_pos: Vector2 = Vector2.ZERO
 
@@ -40,7 +39,6 @@ func _ready():
 func _process(delta: float):
 	cumulative_delta += delta
 	
-	lasso_target_pos = get_average_line_point()
 	lasso_current_pos += (get_global_mouse_position() - lasso_current_pos) / 12.0
 
 	var previous_angle: float = lasso_current_pos.angle_to_point(last_mouse_pos)
@@ -80,7 +78,9 @@ func _process(delta: float):
 
 	if Input.is_action_just_pressed("pull_lasso"):
 		pull_lasso()
-
+	if Input.is_action_pressed("pull_lasso"):
+		all_mouse_angles.clear()
+		mouse_angle_time.clear()
 	
 	var pos: Vector2 = player_pos - global_position
 

@@ -20,8 +20,10 @@ var frames_alive: int = 0
 var player: Node2D = null
 var still_held: bool = true
 var old_collision_mask: int = 0
+var slingball_held_pos: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
+	slingball_held_pos = global_position
 	old_collision_mask = collision_mask
 	collision_mask = 0
 	sprite_ghosts = Globals.make_loop_ghosts_of($AnimatedSlingball)
@@ -48,8 +50,8 @@ func _physics_process(delta: float) -> void:
 			var pull_direction: Vector2 = Globals.convert_to_visible_pos(global_position).direction_to(Globals.convert_to_visible_pos(player.global_position))
 			intended_velocity = pull_direction * ((Globals.convert_to_visible_pos(global_position).distance_to(Globals.convert_to_visible_pos(player.global_position)) / 2.0) + 60)
 	if still_held:
-		global_position = get_global_mouse_position()
-		global_position = Globals.apply_loop_teleport(global_position)
+		slingball_held_pos += (get_global_mouse_position() - slingball_held_pos) / 12.0
+		global_position = Globals.apply_loop_teleport(slingball_held_pos)
 		return
 	if $WallCheck.get_overlapping_bodies().size() == 0:
 		collision_mask = old_collision_mask
