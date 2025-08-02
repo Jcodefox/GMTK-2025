@@ -1,5 +1,7 @@
 extends Enemy
 
+@export var spikeball_lifespan: float = 10.0
+
 var collision_shape_ghosts: Array[Node2D] = []
 var jump_check_shape_ghosts: Array[Node2D] = []
 
@@ -15,12 +17,21 @@ func _ready() -> void:
 	hitbox_original_pos = $CollisionShape2D.position
 	for shape in collision_shape_ghosts:
 		all_shape_ghosts_original_poses.append(shape.position)
+		
+func _process(_delta: float) -> void:
+	if time_alive > time_until_enemy_hurts and not time_alive > spikeball_lifespan - 0.5:
+		visible = true
+	elif Globals.do_things_flicker:
+		visible = frames_alive % 4 < 2
+		frames_alive += 1
 
 func _physics_process(delta: float) -> void:
 	if dead:
 		return
 	super(delta)
 	global_position = Globals.apply_loop_teleport(global_position)
+	if time_alive > spikeball_lifespan:
+		die()
 
 	velocity.y += default_gravity * delta
 	
