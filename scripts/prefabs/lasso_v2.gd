@@ -40,6 +40,7 @@ func _process(delta: float):
 	cumulative_delta += delta
 	
 	lasso_current_pos += (get_global_mouse_position() - lasso_current_pos) / 12.0
+	print("a: " + str(lasso_current_pos))
 
 	var previous_angle: float = lasso_current_pos.angle_to_point(last_mouse_pos)
 	var current_angle: float = lasso_current_pos.angle_to_point(get_global_mouse_position())

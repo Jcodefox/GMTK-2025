@@ -56,6 +56,7 @@ func _physics_process(delta: float) -> void:
 			intended_velocity = pull_direction * ((Globals.convert_to_visible_pos(global_position).distance_to(Globals.convert_to_visible_pos(player.global_position)) / 2.0) + 60)
 	if still_held:
 		slingball_held_pos += (get_global_mouse_position() - slingball_held_pos) / 12.0
+		print("b: " + str(slingball_held_pos))
 		global_position = Globals.apply_loop_teleport(slingball_held_pos)
 		return
 	if $WallCheck.get_overlapping_bodies().size() == 0:
