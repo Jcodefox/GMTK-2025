@@ -24,7 +24,7 @@ func _ready() -> void:
 			Globals.make_loop_ghosts_of(child)
 
 func _physics_process(delta: float) -> void:
-	time_alive += delta
+	super(delta)
 	global_position = Globals.apply_loop_teleport(global_position)
 
 	var angle: float = float(move_direction)/4 * TAU

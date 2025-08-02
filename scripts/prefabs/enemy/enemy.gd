@@ -13,3 +13,8 @@ func _process(_delta: float) -> void:
 	elif Globals.do_things_flicker:
 		visible = frames_alive % 4 < 2
 		frames_alive += 1
+
+func _physics_process(delta: float) -> void:
+	time_alive += delta
+	collision_layer = 4 if time_alive > time_until_enemy_hurts else 0
+

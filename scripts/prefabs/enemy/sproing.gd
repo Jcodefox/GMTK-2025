@@ -29,7 +29,7 @@ func _ready() -> void:
 		all_shape_ghosts_original_poses.append(shape.position)
 
 func _physics_process(delta: float) -> void:
-	time_alive += delta
+	super(delta)
 	global_position = Globals.apply_loop_teleport(global_position)
 
 	if is_on_floor():
