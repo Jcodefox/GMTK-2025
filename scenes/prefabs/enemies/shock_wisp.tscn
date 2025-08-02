@@ -19,10 +19,11 @@ size = Vector2(2, 12)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cuf6y"]
 size = Vector2(12, 2)
 
-[node name="ShockWisp" type="CharacterBody2D" groups=["enemy"]]
+[node name="ShockWisp" type="CharacterBody2D" groups=["can_be_lassod", "enemy"]]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_70n4a")
+metadata/_custom_type_script = "uid://73xsoj8bfe8b"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_oaxne")
