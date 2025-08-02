@@ -55,6 +55,7 @@ func _process(delta: float):
 	mouse_angle_time.append(cumulative_delta)
 
 	var cumulative_angle: float = abs(all_mouse_angles.reduce(func(acc, val): return acc + val, 0))
+	cumulative_angle = log(cumulative_angle * 2.5) * cumulative_angle * 0.2
 
 
 	while cumulative_angle > max_mouse_angle_amount:
