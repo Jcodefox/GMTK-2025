@@ -72,8 +72,10 @@ func game_over() -> void:
 	if new_score > high_score:
 		high_score = new_score
 		save_high_score()
+	if int(time_passed) > longest_time:
+		longest_time = int(time_passed)
 
-	var time_passed_tmp: int = time_passed
+	var time_passed_tmp: float = time_passed
 	tween = get_tree().create_tween()
 	tween.set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
 	tween.parallel().tween_property(self, "time_passed", 0, 1)
@@ -94,6 +96,7 @@ func reset_game() -> void:
 func save_high_score() -> void:
 	var config = ConfigFile.new()
 	config.set_value("Player", "high_score", high_score)
+	config.set_value("Player", "longest_time", high_score)
 	config.save("user://high_score.cfg")
 
 func load_high_score() -> void:
@@ -101,7 +104,8 @@ func load_high_score() -> void:
 	var err = config.load("user://high_score.cfg")
 	if err != OK:
 		return
-	high_score = config.get_value("Player", "high_score")
+	high_score = config.get_value("Player", "high_score", 0)
+	longest_time = config.get_value("Player", "longest_time", 0)
 
 func update_enemy_i_frames(enemy: Node2D) -> void:
 	if enemy.time_alive >= enemy.time_until_enemy_hurts or not do_things_flicker:
