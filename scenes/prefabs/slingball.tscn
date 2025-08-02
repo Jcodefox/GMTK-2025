@@ -1,73 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://pg1yt1laqyvb"]
+[gd_scene load_steps=7 format=3 uid="uid://pg1yt1laqyvb"]
 
 [ext_resource type="Script" uid="uid://c5thodh448n5l" path="res://scripts/prefabs/slingball.gd" id="1_f5sfi"]
-[ext_resource type="Texture2D" uid="uid://3sd02fdj48wm" path="res://assets/art/slingball/slingball_large_1.png" id="2_37ifv"]
-[ext_resource type="Texture2D" uid="uid://dj2khqypmgpc8" path="res://assets/art/slingball/slingball_small_1.png" id="2_s7pec"]
-[ext_resource type="Texture2D" uid="uid://dj4v6nv1lkvki" path="res://assets/art/slingball/slingball_medium_1.png" id="3_6ia00"]
-[ext_resource type="Texture2D" uid="uid://dvhdvqrx3c6x1" path="res://assets/art/slingball/slingball_large_2.png" id="3_aprwp"]
-[ext_resource type="Texture2D" uid="uid://bf8f3qgfeat3k" path="res://assets/art/slingball/slingball_small_2.png" id="3_v1axe"]
-[ext_resource type="Texture2D" uid="uid://cqcl3pqm38arf" path="res://assets/art/slingball/slingball_medium_2.png" id="4_mc7ot"]
-[ext_resource type="Texture2D" uid="uid://clkbm8wdagis0" path="res://assets/art/slingball/slingball_large_3.png" id="4_tgu4s"]
-[ext_resource type="Texture2D" uid="uid://ykbfx41naaiv" path="res://assets/art/slingball/slingball_small_3.png" id="4_ywjc4"]
-[ext_resource type="Texture2D" uid="uid://icqwa07bovkg" path="res://assets/art/slingball/slingball_small_4.png" id="5_cwd4i"]
-[ext_resource type="Texture2D" uid="uid://ob16bamfge4l" path="res://assets/art/slingball/slingball_medium_3.png" id="5_m63s2"]
-[ext_resource type="Texture2D" uid="uid://dcdlj5tn37jey" path="res://assets/art/slingball/slingball_large_4.png" id="5_v4tjh"]
-[ext_resource type="Texture2D" uid="uid://ux8dclirkb3l" path="res://assets/art/slingball/slingball_medium_4.png" id="6_37ifv"]
-[ext_resource type="Texture2D" uid="uid://fukwg487er2" path="res://assets/art/slingball/slingball_small_still.png" id="6_v1axe"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_dfl16"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_37ifv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_aprwp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_tgu4s")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_v4tjh")
-}],
-"loop": true,
-"name": &"large",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_6ia00")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_mc7ot")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_m63s2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_37ifv")
-}],
-"loop": true,
-"name": &"medium",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_s7pec")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_v1axe")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_ywjc4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_cwd4i")
-}],
-"loop": true,
-"name": &"small",
-"speed": 8.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://bc3tnonhetua6" path="res://assets/art/slingball/slingball_sprite_frames.tres" id="2_s0lpe"]
+[ext_resource type="SpriteFrames" uid="uid://brgyskvr77ljf" path="res://assets/art/slingball/slingball_rope_sprite_frames.tres" id="3_6hikt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_usybt"]
 radius = 8.0
@@ -84,13 +19,14 @@ collision_mask = 2
 script = ExtResource("1_f5sfi")
 
 [node name="AnimatedSlingball" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_dfl16")
-animation = &"large"
+sprite_frames = ExtResource("2_s0lpe")
+animation = &"medium"
 autoplay = "small"
+frame_progress = 0.769155
 
-[node name="StillSlingball" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("6_v1axe")
+[node name="SlingballRope" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("3_6hikt")
+animation = &"medium"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_usybt")
