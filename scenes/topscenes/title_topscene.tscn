@@ -103,7 +103,37 @@ layout_mode = 0
 offset_right = 256.0
 offset_bottom = 171.0
 theme = ExtResource("1_yqnk8")
-text = "Copyright 2022-2024 The Tiny5 Project Authors (https://github.com/Gissio/font_tiny5)
+bbcode_enabled = true
+text = "[Team TBD: To Be Developed]:
+[table={3}]
+[cell]Art:[/cell][cell]Coral[/cell][cell]https://clumsyclix-commissions.carrd.co/[/cell]
+[cell]Programming:[/cell][cell]Jcodefox[/cell][cell]https://jcodefox.github.io/[/cell][cell]Programming:[/cell][cell]Stevemc32[/cell][cell]https://stevemc32.bandcamp.com/[/cell][cell]SFX:[/cell][cell]Lime[/cell][cell]https://limenator.itch.io/[/cell][cell]Design Feedback:[/cell][cell] Ninjason[/cell][cell][/cell][cell]Music/Writing:[/cell][cell]Phoe[/cell][cell]https://open.spotify.com/artist/4ieSVoAHj57z95vEq6qzOY[/cell][cell]Multiple Roles:[/cell][cell]Pixer H.P.[/cell][cell]https://pixerhp.carrd.co/[/cell][cell]Music:[/cell][cell]Silvie[/cell][cell][/cell]
+[/table]
+
+
+# Game Engine
+Godot
+
+# Text editors
+Neovim
+VSCode
+
+# Art and Graphics
+Aseprite
+IbisPaint X
+Krita
+
+# Music and SFX
+FL Studio
+LMMS
+mixcraft 10
+Audacity
+Ableton Live Lite 12
+
+# And for those of you who like legal jargon
+https://godotengine.org/license/
+
+Copyright 2022-2024 The Tiny5 Project Authors (https://github.com/Gissio/font_tiny5)
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:
