@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var max_bounces: int = -1
-@export var max_lifetime: float = 2
+@export var max_lifetime: float = 20
 @export var flashing_start_time: float = 1
 
 var sprite_ghosts: Array[Node2D] = []
@@ -19,11 +19,16 @@ var frames_alive: int = 0
 
 var player: Node2D = null
 var still_held: bool = true
+var old_collision_mask: int = 0
 
 func _ready() -> void:
+	old_collision_mask = collision_mask
+	collision_mask = 0
 	sprite_ghosts = Globals.make_loop_ghosts_of($SuspiciousPlaceholderSlingball)
 	collision_shape_ghosts = Globals.make_loop_ghosts_of($CollisionShape2D)
 	area_shape_ghosts = Globals.make_loop_ghosts_of($Area2D/CollisionShape2D)
+
+	Globals.make_loop_ghosts_of($WallCheck/CollisionShape2D)
 
 	$Area2D.body_entered.connect(hit_object)
 
@@ -46,6 +51,8 @@ func _physics_process(delta: float) -> void:
 		global_position = get_global_mouse_position()
 		global_position = Globals.apply_loop_teleport(global_position)
 		return
+	if $WallCheck.get_overlapping_bodies().size() == 0:
+		collision_mask = old_collision_mask
 	cumulative_delta += delta
 	#update_disappear_blink()
 	global_position = Globals.apply_loop_teleport(global_position)
