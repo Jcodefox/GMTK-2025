@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://g7vgngxiauf4"]
+
+[ext_resource type="Script" uid="uid://cnl7rw5i0lhvt" path="res://scripts/prefabs/enemy/express_bot.gd" id="1_rbgxc"]
+[ext_resource type="PackedScene" uid="uid://ctme53snp1vub" path="res://scenes/prefabs/enemies/spikeball.tscn" id="2_8ofcn"]
+[ext_resource type="SpriteFrames" uid="uid://ce08h05lnysry" path="res://assets/art/enemies/express_bot_sprite_frames.tres" id="2_rbgxc"]
+[ext_resource type="PackedScene" uid="uid://8u4a6kbsptoe" path="res://scenes/prefabs/jump_over_check.tscn" id="3_q8r1j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbgxc"]
+size = Vector2(22, 20)
+
+[node name="ExpressBot" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_rbgxc")
+spikeball_prefab = ExtResource("2_8ofcn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_rbgxc")
+animation = &"c"
+frame_progress = 0.60424
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rbgxc")
+
+[node name="JumpOverCheck" parent="." instance=ExtResource("3_q8r1j")]
+position = Vector2(0, -15)

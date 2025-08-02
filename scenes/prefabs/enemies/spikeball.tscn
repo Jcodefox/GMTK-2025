@@ -14,7 +14,7 @@ script = ExtResource("1_lj4q4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_lj4q4")
-frame_progress = 0.154278
+frame_progress = 0.382303
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemy"]]
 shape = SubResource("RectangleShape2D_lj4q4")

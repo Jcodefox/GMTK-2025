@@ -1,0 +1,68 @@
+[gd_resource type="SpriteFrames" load_steps=13 format=3 uid="uid://ce08h05lnysry"]
+
+[ext_resource type="Texture2D" uid="uid://dwfdv0bu41w08" path="res://assets/art/enemies/expressbot_a_1.png" id="1_w0ueq"]
+[ext_resource type="Texture2D" uid="uid://h32bf3tqgoqw" path="res://assets/art/enemies/expressbot_a_2.png" id="2_wae17"]
+[ext_resource type="Texture2D" uid="uid://buvl1ycepu0ff" path="res://assets/art/enemies/expressbot_a_3.png" id="3_wrier"]
+[ext_resource type="Texture2D" uid="uid://ou1kjwl0umfo" path="res://assets/art/enemies/expressbot_a_4.png" id="4_dwhc2"]
+[ext_resource type="Texture2D" uid="uid://6th45tqkvx5q" path="res://assets/art/enemies/expressbot_b_1.png" id="5_m8rvj"]
+[ext_resource type="Texture2D" uid="uid://dfmeiayp1ubhc" path="res://assets/art/enemies/expressbot_b_2.png" id="6_si0ma"]
+[ext_resource type="Texture2D" uid="uid://ciwmda5xh2wh0" path="res://assets/art/enemies/expressbot_b_3.png" id="7_ykb1m"]
+[ext_resource type="Texture2D" uid="uid://b2dsk011jamh" path="res://assets/art/enemies/expressbot_b_4.png" id="8_c0q2y"]
+[ext_resource type="Texture2D" uid="uid://b688saxrrhdrq" path="res://assets/art/enemies/expressbot_c_1.png" id="9_m8rvj"]
+[ext_resource type="Texture2D" uid="uid://b7uix1yvq5adm" path="res://assets/art/enemies/expressbot_c_2.png" id="10_si0ma"]
+[ext_resource type="Texture2D" uid="uid://bi61vrb2eec7s" path="res://assets/art/enemies/expressbot_c_3.png" id="11_ykb1m"]
+[ext_resource type="Texture2D" uid="uid://bdvxhy83io4x2" path="res://assets/art/enemies/expressbot_c_4.png" id="12_c0q2y"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_w0ueq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_wae17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wrier")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dwhc2")
+}],
+"loop": true,
+"name": &"a",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_m8rvj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_si0ma")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ykb1m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_c0q2y")
+}],
+"loop": true,
+"name": &"b",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_m8rvj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_si0ma")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ykb1m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_c0q2y")
+}],
+"loop": true,
+"name": &"c",
+"speed": 8.0
+}]
