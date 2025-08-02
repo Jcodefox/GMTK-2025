@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bwd23iblylkty"]
 
-[ext_resource type="Script" path="res://scripts/prefabs/title_topscene.gd" id="1_gbtve"]
+[ext_resource type="Script" uid="uid://2jgx211gio68" path="res://scripts/prefabs/title_topscene.gd" id="1_gbtve"]
 [ext_resource type="Theme" uid="uid://bk5ddumg2jusp" path="res://assets/style/text.tres" id="1_yqnk8"]
 [ext_resource type="Script" uid="uid://do14ocxpjhslc" path="res://scripts/credits.gd" id="3_68jhd"]
 
