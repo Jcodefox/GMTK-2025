@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwd23iblylkty"]
+[gd_scene load_steps=4 format=3 uid="uid://bwd23iblylkty"]
 
-[ext_resource type="Script" uid="uid://2jgx211gio68" path="res://scripts/prefabs/title_topscene.gd" id="1_gbtve"]
+[ext_resource type="Script" path="res://scripts/prefabs/title_topscene.gd" id="1_gbtve"]
 [ext_resource type="Theme" uid="uid://bk5ddumg2jusp" path="res://assets/style/text.tres" id="1_yqnk8"]
+[ext_resource type="Script" uid="uid://do14ocxpjhslc" path="res://scripts/credits.gd" id="3_68jhd"]
 
 [node name="TitleTopscene" type="Control"]
 layout_mode = 3
@@ -98,40 +99,47 @@ anchors_preset = 0
 offset_right = 256.0
 offset_bottom = 192.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Credits"]
+[node name="CreditsText" type="RichTextLabel" parent="Credits"]
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 171.0
 theme = ExtResource("1_yqnk8")
 bbcode_enabled = true
 text = "[Team TBD: To Be Developed]:
-[table={3}]
-[cell]Art:[/cell][cell]Coral[/cell][cell]https://clumsyclix-commissions.carrd.co/[/cell]
-[cell]Programming:[/cell][cell]Jcodefox[/cell][cell]https://jcodefox.github.io/[/cell][cell]Programming:[/cell][cell]Stevemc32[/cell][cell]https://stevemc32.bandcamp.com/[/cell][cell]SFX:[/cell][cell]Lime[/cell][cell]https://limenator.itch.io/[/cell][cell]Design Feedback:[/cell][cell] Ninjason[/cell][cell][/cell][cell]Music/Writing:[/cell][cell]Phoe[/cell][cell]https://open.spotify.com/artist/4ieSVoAHj57z95vEq6qzOY[/cell][cell]Multiple Roles:[/cell][cell]Pixer H.P.[/cell][cell]https://pixerhp.carrd.co/[/cell][cell]Music:[/cell][cell]Silvie[/cell][cell][/cell]
+
+[table={2}]
+[cell]Jcodefox (\"Fox\")
+[url]https://jcodefox.github.io/[/url][/cell][cell]Main Programmer[/cell]
+[cell]Pixer H. P. (\"Pixer\")
+[url]https://pixerhp.carrd.co/[/url][/cell][cell]Director, Artist (most art assets), Programmer[/cell]
+[cell]Stevemc32 (\"Steve\")
+[url]https://stevemc32.bandcamp.com/[/url][/cell][cell]Programmer[/cell]
+[cell]CoralQuail (\"Coral\") (aka ClumsyClix) [url]https://clumsyclix-commissions.carrd.co/[/url][/cell][cell]Artist (sandy tileset, initial player character design, ui icons, etc.)[/cell]
+[cell]Limenator (\"Lime\")
+[url]https://limenator.itch.io/[/url][/cell][cell]Sound Effects Composer[/cell]
+[cell]Silvie[/cell][cell]Music Composer[/cell]
+[cell]Phoe [url]https://open.spotify.com/artist/4ieSVoAHj57z95vEq6qzOY[/url][/cell][cell]Music Composer[/cell]
+[cell]Ninjason[/cell][cell]Light Development Feedback[/cell]
 [/table]
 
-
-# Game Engine
-Godot
+Godot  -  Game Engine
+[url]https://godotengine.org/license/[/url]
 
 # Text editors
 Neovim
 VSCode
 
 # Art and Graphics
-Aseprite
-IbisPaint X
-Krita
+Aseprite (used by Pixer)
+Krita (used by Coral)
 
 # Music and SFX
-FL Studio
 LMMS
 mixcraft 10
 Audacity
 Ableton Live Lite 12
 
 # And for those of you who like legal jargon
-https://godotengine.org/license/
 
 Copyright 2022-2024 The Tiny5 Project Authors (https://github.com/Gissio/font_tiny5)
 
@@ -228,6 +236,7 @@ FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE."
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("3_68jhd")
 
 [node name="Back" type="Button" parent="Credits"]
 layout_mode = 1
@@ -242,3 +251,5 @@ theme = ExtResource("1_yqnk8")
 text = "Back
 "
 metadata/_edit_use_anchors_ = true
+
+[connection signal="meta_clicked" from="Credits/CreditsText" to="Credits/CreditsText" method="_on_meta_clicked"]
