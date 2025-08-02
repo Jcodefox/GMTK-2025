@@ -1,8 +1,6 @@
 extends CharacterBody2D
 
 @export var max_bounces: int = -1
-@export var max_lifetime: float = 2
-@export var flashing_start_time: float = 1.5
 
 var animated_sprite_ghosts: Array[Node2D] = []
 var collision_shape_ghosts: Array[Node2D] = []
@@ -24,6 +22,8 @@ var slingball_held_pos: Vector2 = Vector2.ZERO
 
 var ball_size: int = 0
 
+var lifespan: float = 2
+
 func _ready() -> void:
 	slingball_held_pos = global_position
 	old_collision_mask = collision_mask
@@ -32,6 +32,7 @@ func _ready() -> void:
 	collision_shape_ghosts = Globals.make_loop_ghosts_of($CollisionShape2D)
 	area_shape_ghosts = Globals.make_loop_ghosts_of($Area2D/CollisionShape2D)
 
+	lifespan = [1.75, 2.25, 2.75][ball_size]
 	set_animation(["small", "medium", "large"][ball_size])
 	set_collision_radius([8, 12, 16][ball_size])
 	Globals.make_loop_ghosts_of($WallCheck/CollisionShape2D)
@@ -41,7 +42,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if still_held:
 		return
-	if cumulative_delta < flashing_start_time:
+	if cumulative_delta < lifespan - 0.5:
 		visible = true
 	elif Globals.do_things_flicker:
 		visible = frames_alive % 4 < 2
@@ -60,7 +61,6 @@ func _physics_process(delta: float) -> void:
 	if $WallCheck.get_overlapping_bodies().size() == 0:
 		collision_mask = old_collision_mask
 	cumulative_delta += delta
-	#update_disappear_blink()
 	global_position = Globals.apply_loop_teleport(global_position)
 
 	if is_on_wall():
@@ -72,7 +72,7 @@ func _physics_process(delta: float) -> void:
 	
 	if bounces > max_bounces and max_bounces > -1:
 		queue_free()
-	if cumulative_delta > max_lifetime and max_lifetime > -1:
+	if cumulative_delta > lifespan and lifespan > -1:
 		queue_free()
 	
 	velocity = intended_velocity
@@ -86,12 +86,6 @@ func hit_object(body: Node2D) -> void:
 		enemies_killed += 1
 		Globals.add_score(enemies_killed * 10, Globals.convert_to_visible_pos(global_position), get_tree().current_scene, enemies_in_ball)
 		body.queue_free()
-
-func update_disappear_blink() -> void:
-	if cumulative_delta < flashing_start_time or not Globals.do_things_flicker:
-		visible = true
-		return
-	visible = int(cumulative_delta * 8) % 2 < 1
 
 func set_animation(anim: String) -> void:
 	if $AnimatedSlingball.animation != anim:
