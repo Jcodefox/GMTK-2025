@@ -59,17 +59,17 @@ func _process(delta: float):
 	if cumulative_angle > 33:
 		cumulative_angle = 46 - (pow(2, -1 * ((cumulative_angle - 70) / 10.0)))
 	
-	
-	while cumulative_angle > max_mouse_angle_amount:
+	while mouse_angle_time.size() > 0:
+		if cumulative_angle <= max_mouse_angle_amount:
+			break
 		all_mouse_angles.remove_at(0)
 		mouse_angle_time.remove_at(0)
 	
-	for i in mouse_angle_time.size():
-		if (cumulative_delta - mouse_angle_time[i]) > max_mouse_angle_age:
-			all_mouse_angles.remove_at(0)
-			mouse_angle_time.remove_at(0)
-		else:
+	while mouse_angle_time.size() > 0:
+		if (cumulative_delta - mouse_angle_time[0]) <= max_mouse_angle_age:
 			break
+		all_mouse_angles.remove_at(0)
+		mouse_angle_time.remove_at(0)
 	
 	lasso_loop_size = cumulative_angle * 2.0
 	lasso_loop_size = max(lasso_loop_size, 0)
