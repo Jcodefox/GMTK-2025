@@ -23,7 +23,7 @@ animations = [{
 "texture": ExtResource("5_cwd4i")
 }],
 "loop": true,
-"name": &"default",
+"name": &"small",
 "speed": 8.0
 }]
 
@@ -36,8 +36,8 @@ script = ExtResource("1_f5sfi")
 
 [node name="AnimatedSlingball" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dfl16")
-autoplay = "default"
-frame_progress = 0.923549
+animation = &"small"
+autoplay = "small"
 
 [node name="StillSlingball" type="Sprite2D" parent="."]
 visible = false
