@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bwd23iblylkty"]
 
-[ext_resource type="Script" path="res://scripts/prefabs/title_topscene.gd" id="1_gbtve"]
+[ext_resource type="Script" uid="uid://2jgx211gio68" path="res://scripts/prefabs/title_topscene.gd" id="1_gbtve"]
 [ext_resource type="Theme" uid="uid://bk5ddumg2jusp" path="res://assets/style/text.tres" id="1_yqnk8"]
-[ext_resource type="Script" uid="uid://do14ocxpjhslc" path="res://scripts/credits.gd" id="3_68jhd"]
+[ext_resource type="Script" path="res://scripts/credits.gd" id="3_68jhd"]
 
 [node name="TitleTopscene" type="Control"]
 layout_mode = 3
@@ -39,13 +39,29 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="High_Score" type="RichTextLabel" parent="Buttons"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Buttons"]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.260417
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.411458
+anchor_bottom = 0.5
+offset_top = -51.0
+offset_bottom = -14.0
 grow_horizontal = 2
+grow_vertical = 2
+
+[node name="High_Score" type="RichTextLabel" parent="Buttons/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_yqnk8")
+bbcode_enabled = true
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="BestTime" type="RichTextLabel" parent="Buttons/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("1_yqnk8")
 bbcode_enabled = true
 horizontal_alignment = 1

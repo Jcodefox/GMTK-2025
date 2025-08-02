@@ -74,6 +74,7 @@ func game_over() -> void:
 		save_high_score()
 	if int(time_passed) > longest_time:
 		longest_time = int(time_passed)
+		save_high_score()
 
 	var time_passed_tmp: float = time_passed
 	tween = get_tree().create_tween()
@@ -98,7 +99,7 @@ func reset_game(reload_scene: bool = true) -> void:
 func save_high_score() -> void:
 	var config = ConfigFile.new()
 	config.set_value("Player", "high_score", high_score)
-	config.set_value("Player", "longest_time", high_score)
+	config.set_value("Player", "longest_time", longest_time)
 	config.save("user://high_score.cfg")
 
 func load_high_score() -> void:
