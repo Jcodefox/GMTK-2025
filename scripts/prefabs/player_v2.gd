@@ -175,7 +175,7 @@ func area_exited_area(area: Area2D) -> void:
 	if dead:
 		return
 	var parent: Node2D = area.get_parent()
-	if (area.name == "JumpOverCheck" and parent.time_alive > parent.time_until_enemy_hurts):
+	if (area.name == "JumpOverCheck" and parent.time_alive > parent.time_until_enemy_hurts and not is_on_floor()):
 		Globals.add_score(jump_over_combo * 2, Globals.convert_to_visible_pos(area.global_position), $"..")
 		jump_over_combo += 1
 
