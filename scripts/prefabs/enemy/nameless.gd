@@ -12,8 +12,7 @@ func _ready() -> void:
 	jump_check_shape_ghosts = Globals.make_loop_ghosts_of($JumpOverCheck/CollisionShape2D)
 
 func _physics_process(delta: float) -> void:
-	time_alive += delta
-	#Globals.update_enemy_i_frames(self)
+	super(delta)
 	global_position = Globals.apply_loop_teleport(global_position)
 
 	var desired_direction: Vector2 = Vector2.ZERO
