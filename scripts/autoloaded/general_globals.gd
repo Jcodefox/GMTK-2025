@@ -84,14 +84,16 @@ func game_over() -> void:
 	time_passed = time_passed_tmp
 	
 
-func reset_game() -> void:
-	tween.stop()
+func reset_game(reload_scene: bool = true) -> void:
+	if tween != null:
+		tween.stop()
 	lives = 3
 	time_passed = 0
 	score = 0
 	get_tree().paused = false
-	await get_tree().process_frame
-	get_tree().reload_current_scene()
+	if reload_scene:
+		await get_tree().process_frame
+		get_tree().reload_current_scene()
 
 func save_high_score() -> void:
 	var config = ConfigFile.new()

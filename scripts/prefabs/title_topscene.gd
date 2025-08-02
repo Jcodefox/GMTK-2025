@@ -10,6 +10,7 @@ func _ready() -> void:
 
 func _on_start_pressed() -> void:
 	get_tree().change_scene_to_packed(gameplay_topscene);
+	Globals.reset_game(false)
 
 func _on_credits_pressed() -> void:
 	$Buttons.hide();
