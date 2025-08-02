@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://8u4a6kbsptoe"]
+[gd_scene load_steps=3 format=3 uid="uid://8u4a6kbsptoe"]
+
+[ext_resource type="Script" uid="uid://6gqlusphru56" path="res://scripts/prefabs/jump_over_check.gd" id="1_jgow8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7f63s"]
 size = Vector2(6, 40)
@@ -6,6 +8,7 @@ size = Vector2(6, 40)
 [node name="JumpOverCheck" type="Area2D"]
 collision_layer = 4
 collision_mask = 2
+script = ExtResource("1_jgow8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)

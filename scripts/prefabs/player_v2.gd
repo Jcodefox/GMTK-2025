@@ -174,10 +174,14 @@ func area_hit_body(body: Node2D) -> void:
 func area_exited_area(area: Area2D) -> void:
 	if dead:
 		return
-	var parent: Node2D = area.get_parent()
-	if (area.name == "JumpOverCheck" and parent.time_alive > parent.time_until_enemy_hurts and not is_on_floor()):
-		Globals.add_score(jump_over_combo * 2, Globals.convert_to_visible_pos(area.global_position), $"..")
-		jump_over_combo += 1
+	var parent: Node2D = area.get_parent();
+	if (area.name == "JumpOverCheck"
+	and parent.time_alive > parent.time_until_enemy_hurts 
+	and area.cooldown_until < Globals.time_passed
+	and not is_on_floor()):
+		Globals.add_score(jump_over_combo * 2, Globals.convert_to_visible_pos(area.global_position), $"..");
+		jump_over_combo += 1;
+		area.cooldown_until = Globals.time_passed + 0.5;
 
 func set_animation(anim: String) -> void:
 	if $AnimatedSprite2D.animation != anim:
