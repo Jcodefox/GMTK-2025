@@ -1,6 +1,6 @@
 extends Enemy
 
-@export var speed: float = 15
+@export var speed: float = 20
 
 var animated_sprite_ghosts: Array[Node2D] = []
 var collision_shape_ghosts: Array[Node2D] = []
