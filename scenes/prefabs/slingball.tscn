@@ -1,12 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://pg1yt1laqyvb"]
+[gd_scene load_steps=16 format=3 uid="uid://pg1yt1laqyvb"]
 
 [ext_resource type="Script" uid="uid://c5thodh448n5l" path="res://scripts/prefabs/slingball.gd" id="1_f5sfi"]
 [ext_resource type="Texture2D" uid="uid://dj2khqypmgpc8" path="res://assets/art/player/slingball_small_1.png" id="2_s7pec"]
 [ext_resource type="Texture2D" uid="uid://cjow5nmji2t01" path="res://assets/art/player/slingball_large_still.png" id="2_ywjc4"]
-[ext_resource type="Texture2D" uid="uid://r2s6ir0qi0xu" path="res://assets/art/player/slingball_medium_still.png" id="3_cwd4i"]
+[ext_resource type="Texture2D" uid="uid://dj4v6nv1lkvki" path="res://assets/art/player/slingball_medium_1.png" id="3_6ia00"]
 [ext_resource type="Texture2D" uid="uid://bf8f3qgfeat3k" path="res://assets/art/player/slingball_small_2.png" id="3_v1axe"]
+[ext_resource type="Texture2D" uid="uid://cqcl3pqm38arf" path="res://assets/art/player/slingball_medium_2.png" id="4_mc7ot"]
 [ext_resource type="Texture2D" uid="uid://ykbfx41naaiv" path="res://assets/art/player/slingball_small_3.png" id="4_ywjc4"]
 [ext_resource type="Texture2D" uid="uid://icqwa07bovkg" path="res://assets/art/player/slingball_small_4.png" id="5_cwd4i"]
+[ext_resource type="Texture2D" uid="uid://ob16bamfge4l" path="res://assets/art/player/slingball_medium_3.png" id="5_m63s2"]
+[ext_resource type="Texture2D" uid="uid://ux8dclirkb3l" path="res://assets/art/player/slingball_medium_4.png" id="6_37ifv"]
 [ext_resource type="Texture2D" uid="uid://fukwg487er2" path="res://assets/art/player/slingball_small_still.png" id="6_v1axe"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dfl16"]
@@ -17,15 +20,24 @@ animations = [{
 }],
 "loop": true,
 "name": &"large",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_cwd4i")
+"texture": ExtResource("3_6ia00")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mc7ot")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_m63s2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_37ifv")
 }],
 "loop": true,
 "name": &"medium",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -61,7 +73,7 @@ script = ExtResource("1_f5sfi")
 
 [node name="AnimatedSlingball" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dfl16")
-animation = &"medium"
+animation = &"large"
 autoplay = "small"
 
 [node name="StillSlingball" type="Sprite2D" parent="."]
