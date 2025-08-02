@@ -40,12 +40,12 @@ func _process(delta: float):
 	cumulative_delta += delta
 	
 	lasso_current_pos += (get_global_mouse_position() - lasso_current_pos) / 12.0
-
+	
 	var previous_angle: float = lasso_current_pos.angle_to_point(last_mouse_pos)
 	var current_angle: float = lasso_current_pos.angle_to_point(get_global_mouse_position())
-
+	
 	var angle_multiplier: float = clamp((lasso_current_pos.distance_to(get_global_mouse_position()) - minimum_mouse_distance) / gradient_slope, 0.0, 1.0)
-
+	
 	var angle_diff: float = current_angle - previous_angle
 	if angle_diff > PI:
 		angle_diff = TAU - angle_diff
@@ -53,33 +53,32 @@ func _process(delta: float):
 		angle_diff = -TAU - angle_diff
 	all_mouse_angles.append(angle_diff * angle_multiplier)
 	mouse_angle_time.append(cumulative_delta)
-
+	
 	var cumulative_angle: float = abs(all_mouse_angles.reduce(func(acc, val): return acc + val, 0))
 	cumulative_angle = sqrt(cumulative_angle) * 6.75
 	if cumulative_angle > 33:
 		cumulative_angle = 46 - (pow(2, -1 * ((cumulative_angle - 70) / 10.0)))
-	print(cumulative_angle)
-
-
+	
+	
 	while cumulative_angle > max_mouse_angle_amount:
 		all_mouse_angles.remove_at(0)
 		mouse_angle_time.remove_at(0)
-
+	
 	for i in mouse_angle_time.size():
 		if (cumulative_delta - mouse_angle_time[i]) > max_mouse_angle_age:
 			all_mouse_angles.remove_at(0)
 			mouse_angle_time.remove_at(0)
 		else:
 			break
-
+	
 	lasso_loop_size = cumulative_angle * 2.0
 	lasso_loop_size = max(lasso_loop_size, 0)
-
+	
 	# Adding a minimum size here prevents issues of collider being too small
 	# Which Godot doesn't like (I think)
 	$Area2D/CollisionShape2D.shape.radius = max(lasso_loop_size / 2, 0.1)
 	$Area2D.position = lasso_current_pos - global_position
-
+	
 	if Input.is_action_just_pressed("pull_lasso"):
 		pull_lasso()
 	if Input.is_action_pressed("pull_lasso"):
@@ -87,7 +86,7 @@ func _process(delta: float):
 		mouse_angle_time.clear()
 	
 	var pos: Vector2 = player_pos - global_position
-
+	
 	var new_points: Array[Vector2] = []
 	new_points.append(pos)
 	var p: int = 20
@@ -113,7 +112,7 @@ func _process(delta: float):
 func get_average_line_point() -> Vector2:
 	if line_vertex_positions.size() == 0:
 		return Vector2.ZERO
-
+	
 	var sum: Vector2 = Vector2.ZERO
 	for point in line_vertex_positions:
 		sum += point
@@ -143,12 +142,12 @@ func draw_lines():
 func pull_lasso() -> void:
 	if lasso_loop_size < min_lasso_capture_size:
 		return
-
+	
 	var killed_enemies: int = 0
-
+	
 	all_mouse_angles.clear()
 	mouse_angle_time.clear()
-
+	
 	var sum_pos: Vector2 = Vector2.ZERO
 	for body in $Area2D.get_overlapping_bodies():
 		if body.is_in_group("can_be_lassod") and body.time_alive > body.time_until_enemy_hurts:
