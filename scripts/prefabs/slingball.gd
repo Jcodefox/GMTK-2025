@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var max_bounces: int = -1
 
+var rope_sprite_ghosts: Array[Node2D] = []
 var animated_sprite_ghosts: Array[Node2D] = []
 var collision_shape_ghosts: Array[Node2D] = []
 var area_shape_ghosts: Array[Node2D] = []
@@ -30,6 +31,7 @@ func _ready() -> void:
 	old_collision_mask = collision_mask
 	collision_mask = 0
 	animated_sprite_ghosts = Globals.make_loop_ghosts_of($AnimatedSlingball)
+	rope_sprite_ghosts = Globals.make_loop_ghosts_of($SlingballRope)
 	collision_shape_ghosts = Globals.make_loop_ghosts_of($CollisionShape2D)
 	area_shape_ghosts = Globals.make_loop_ghosts_of($Area2D/CollisionShape2D)
 
@@ -55,6 +57,7 @@ func _physics_process(delta: float) -> void:
 		if player != null:
 			var pull_direction: Vector2 = Globals.convert_to_visible_pos(global_position).direction_to(Globals.convert_to_visible_pos(player.global_position))
 			intended_velocity = pull_direction * ((Globals.convert_to_visible_pos(global_position).distance_to(Globals.convert_to_visible_pos(player.global_position)) / 2.0) + 60)
+	$SlingballRope.visible = still_held
 	if still_held:
 		$Area2D.collision_mask = 0
 		if lasso != null:
@@ -86,15 +89,22 @@ func hit_object(body: Node2D) -> void:
 	if still_held:
 		return
 	if body.is_in_group("enemy") and body.time_alive > body.time_until_enemy_hurts:
-		enemies_killed += 1
-		Globals.add_score(enemies_killed * 10, Globals.convert_to_visible_pos(global_position), get_tree().current_scene, enemies_in_ball)
-		body.slingballed(self)
+		var score: int = body.slingballed(self)
+		if score > 0:
+			enemies_killed += 1
+			Globals.add_score(enemies_killed * score, Globals.convert_to_visible_pos(global_position), get_tree().current_scene, enemies_in_ball)
 
 func set_animation(anim: String) -> void:
 	if $AnimatedSlingball.animation != anim:
 		$AnimatedSlingball.play(anim)
+		
+	if $SlingballRope.animation != anim:
+		$SlingballRope.play(anim)
 	
 	for sprite in animated_sprite_ghosts:
+		if sprite.animation != anim:
+			sprite.play(anim)
+	for sprite in rope_sprite_ghosts:
 		if sprite.animation != anim:
 			sprite.play(anim)
 
