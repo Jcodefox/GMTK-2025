@@ -17,6 +17,9 @@ var enemies_in_ball: int = 0
 var enemies_killed: int = 0
 var frames_alive: int = 0
 
+var player: Node2D = null
+var still_held: bool = true
+
 func _ready() -> void:
 	sprite_ghosts = Globals.make_loop_ghosts_of($SuspiciousPlaceholderSlingball)
 	collision_shape_ghosts = Globals.make_loop_ghosts_of($CollisionShape2D)
@@ -25,6 +28,8 @@ func _ready() -> void:
 	$Area2D.body_entered.connect(hit_object)
 
 func _process(_delta: float) -> void:
+	if still_held:
+		return
 	if cumulative_delta < flashing_start_time:
 		visible = true
 	elif Globals.do_things_flicker:
@@ -32,6 +37,15 @@ func _process(_delta: float) -> void:
 		frames_alive += 1
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_released("pull_lasso"):
+		still_held = false
+		if player != null:
+			var pull_direction: Vector2 = Globals.convert_to_visible_pos(global_position).direction_to(Globals.convert_to_visible_pos(player.global_position))
+			intended_velocity = pull_direction * 100
+	if still_held:
+		global_position = get_global_mouse_position()
+		global_position = Globals.apply_loop_teleport(global_position)
+		return
 	cumulative_delta += delta
 	#update_disappear_blink()
 	global_position = Globals.apply_loop_teleport(global_position)
@@ -53,7 +67,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func hit_object(body: Node2D) -> void:
-	if body.is_in_group("enemy"):
+	if still_held:
+		return
+	if body.is_in_group("enemy") and body.time_alive > body.time_until_enemy_hurts:
 		enemies_killed += 1
 		Globals.add_score(enemies_killed * 10, Globals.convert_to_visible_pos(global_position), get_tree().current_scene, enemies_in_ball)
 		body.queue_free()
