@@ -7,10 +7,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cfwy6"]
 size = Vector2(10, 14)
 
-[node name="Sproing" type="CharacterBody2D" groups=["enemy"]]
+[node name="Sproing" type="CharacterBody2D" groups=["can_be_lassod", "enemy"]]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_l4pwe")
+metadata/_custom_type_script = "uid://73xsoj8bfe8b"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_l4pwe")

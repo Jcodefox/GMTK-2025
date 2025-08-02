@@ -1,13 +1,8 @@
-extends CharacterBody2D
+extends Enemy
 
-@export var time_until_enemy_hurts: float = 1.0
-
-@export var default_gravity: float = 625
 @export var move_speed: float = 50
 
 var move_direction: int = 0
-
-var time_alive: float = 0
 
 @onready var corners: Array[Area2D] = [$BottomRight, $BottomLeft, $TopLeft, $TopRight]
 
@@ -16,8 +11,6 @@ var collision_shape_ghosts: Array[Node2D] = []
 var jump_check_shape_ghosts: Array[Node2D] = []
 
 var direction: int = 1
-
-var frames_alive: int = 0
 
 func _ready() -> void:
 	animated_sprite_ghosts = Globals.make_loop_ghosts_of($AnimatedSprite2D)
@@ -30,16 +23,8 @@ func _ready() -> void:
 		for child in corners[i].get_children():
 			Globals.make_loop_ghosts_of(child)
 
-func _process(_delta: float) -> void:
-	if time_alive > time_until_enemy_hurts:
-		visible = true
-	elif Globals.do_things_flicker:
-		visible = frames_alive % 4 < 2
-		frames_alive += 1
-
 func _physics_process(delta: float) -> void:
 	time_alive += delta
-	#Globals.update_enemy_i_frames(self)
 	global_position = Globals.apply_loop_teleport(global_position)
 
 	var angle: float = float(move_direction)/4 * TAU

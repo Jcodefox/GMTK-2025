@@ -30,6 +30,7 @@ window/stretch/mode="viewport"
 [global_group]
 
 enemy="All enemies should have this tag"
+can_be_lassod=""
 
 [input]
 

@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ghjc1"]
 size = Vector2(10, 10)
 
-[node name="Mothick" type="CharacterBody2D" groups=["enemy"]]
+[node name="Mothick" type="CharacterBody2D" groups=["can_be_lassod", "enemy"]]
 z_index = -1
 collision_layer = 4
 collision_mask = 2

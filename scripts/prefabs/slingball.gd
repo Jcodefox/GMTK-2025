@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var max_lifetime: float = 2
 @export var flashing_start_time: float = 1.5
 
-var sprite_ghosts: Array[Node2D] = []
+var animated_sprite_ghosts: Array[Node2D] = []
 var collision_shape_ghosts: Array[Node2D] = []
 var area_shape_ghosts: Array[Node2D] = []
 
@@ -20,14 +20,20 @@ var frames_alive: int = 0
 var player: Node2D = null
 var still_held: bool = true
 var old_collision_mask: int = 0
+var slingball_held_pos: Vector2 = Vector2.ZERO
+
+var ball_size: int = 0
 
 func _ready() -> void:
+	slingball_held_pos = global_position
 	old_collision_mask = collision_mask
 	collision_mask = 0
-	sprite_ghosts = Globals.make_loop_ghosts_of($AnimatedSlingball)
+	animated_sprite_ghosts = Globals.make_loop_ghosts_of($AnimatedSlingball)
 	collision_shape_ghosts = Globals.make_loop_ghosts_of($CollisionShape2D)
 	area_shape_ghosts = Globals.make_loop_ghosts_of($Area2D/CollisionShape2D)
 
+	set_animation(["small", "medium", "large"][ball_size])
+	set_collision_radius([10, 15, 20][ball_size])
 	Globals.make_loop_ghosts_of($WallCheck/CollisionShape2D)
 
 	$Area2D.body_entered.connect(hit_object)
@@ -48,8 +54,8 @@ func _physics_process(delta: float) -> void:
 			var pull_direction: Vector2 = Globals.convert_to_visible_pos(global_position).direction_to(Globals.convert_to_visible_pos(player.global_position))
 			intended_velocity = pull_direction * ((Globals.convert_to_visible_pos(global_position).distance_to(Globals.convert_to_visible_pos(player.global_position)) / 2.0) + 60)
 	if still_held:
-		global_position = get_global_mouse_position()
-		global_position = Globals.apply_loop_teleport(global_position)
+		slingball_held_pos += (get_global_mouse_position() - slingball_held_pos) / 12.0
+		global_position = Globals.apply_loop_teleport(slingball_held_pos)
 		return
 	if $WallCheck.get_overlapping_bodies().size() == 0:
 		collision_mask = old_collision_mask
@@ -86,3 +92,16 @@ func update_disappear_blink() -> void:
 		visible = true
 		return
 	visible = int(cumulative_delta * 8) % 2 < 1
+
+func set_animation(anim: String) -> void:
+	if $AnimatedSlingball.animation != anim:
+		$AnimatedSlingball.play(anim)
+	
+	for sprite in animated_sprite_ghosts:
+		if sprite.animation != anim:
+			sprite.play(anim)
+
+func set_collision_radius(val: float) -> void:
+	$CollisionShape2D.shape.radius = val
+	$Area2D/CollisionShape2D.shape.radius = val
+	$WallCheck/CollisionShape2D.shape.radius = val

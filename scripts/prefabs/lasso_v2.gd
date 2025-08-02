@@ -24,7 +24,6 @@ var cumulative_delta: float = 0
 var player_pos: Vector2 = Vector2.ZERO
 
 var lasso_loop_size: float = 1
-var lasso_target_pos: Vector2 = Vector2.ZERO
 var lasso_current_pos: Vector2 = Vector2.ZERO
 var last_mouse_pos: Vector2 = Vector2.ZERO
 
@@ -40,7 +39,6 @@ func _ready():
 func _process(delta: float):
 	cumulative_delta += delta
 	
-	lasso_target_pos = get_average_line_point()
 	lasso_current_pos += (get_global_mouse_position() - lasso_current_pos) / 12.0
 
 	var previous_angle: float = lasso_current_pos.angle_to_point(last_mouse_pos)
@@ -80,7 +78,9 @@ func _process(delta: float):
 
 	if Input.is_action_just_pressed("pull_lasso"):
 		pull_lasso()
-
+	if Input.is_action_pressed("pull_lasso"):
+		all_mouse_angles.clear()
+		mouse_angle_time.clear()
 	
 	var pos: Vector2 = player_pos - global_position
 
@@ -147,7 +147,7 @@ func pull_lasso() -> void:
 
 	var sum_pos: Vector2 = Vector2.ZERO
 	for body in $Area2D.get_overlapping_bodies():
-		if body.is_in_group("enemy") and body.time_alive > body.time_until_enemy_hurts:
+		if body.is_in_group("can_be_lassod") and body.time_alive > body.time_until_enemy_hurts:
 			sum_pos += Globals.convert_to_visible_pos(body.global_position)
 			killed_enemies += 1
 			body.queue_free()
@@ -156,6 +156,12 @@ func pull_lasso() -> void:
 		var avg_pos: Vector2 = sum_pos / killed_enemies
 		Globals.add_score(killed_enemies * 10, Globals.convert_to_visible_pos(avg_pos), get_tree().current_scene)
 		var new_slingball: Node2D = slingball_prefab.instantiate()
+		if killed_enemies >= 5:
+			new_slingball.ball_size = 2
+		elif killed_enemies >= 3:
+			new_slingball.ball_size = 1
+		else:
+			new_slingball.ball_size = 0
 		new_slingball.enemies_in_ball = killed_enemies
 		new_slingball.global_position = Globals.convert_to_visible_pos(avg_pos)
 		new_slingball.player = get_parent()
