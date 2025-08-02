@@ -153,7 +153,7 @@ func pull_lasso() -> void:
 		if body.is_in_group("can_be_lassod") and body.time_alive > body.time_until_enemy_hurts:
 			sum_pos += Globals.convert_to_visible_pos(body.global_position)
 			killed_enemies += 1
-			body.queue_free()
+			body.lassod()
 	
 	if killed_enemies > 0:
 		var avg_pos: Vector2 = sum_pos / killed_enemies
