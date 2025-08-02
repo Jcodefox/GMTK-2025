@@ -8,6 +8,7 @@ var time_passed: float = 0
 var score: int = 0
 
 var high_score: int = 0
+var longest_time: int = 0
 
 @onready var world_dimensions: Vector2 = (world_top_left - world_bottom_right).abs()
 @onready var float_score_num: PackedScene = preload("res://scenes/prefabs/float_score_num.tscn")

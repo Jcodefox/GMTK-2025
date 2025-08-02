@@ -113,15 +113,16 @@ func set_animation(anim: String) -> void:
 	if $AnimatedSlingball.animation != anim:
 		$AnimatedSlingball.play(anim)
 		
-	if $SlingballRope.animation != anim:
-		$SlingballRope.play(anim)
-	
 	for sprite in animated_sprite_ghosts:
 		if sprite.animation != anim:
 			sprite.play(anim)
-	for sprite in rope_sprite_ghosts:
-		if sprite.animation != anim:
-			sprite.play(anim)
+			
+	if still_held:
+		if $SlingballRope.animation != anim:
+			$SlingballRope.play(anim)
+		for sprite in rope_sprite_ghosts:
+			if sprite.animation != anim:
+				sprite.play(anim)
 
 func set_collision_radius(val: float) -> void:
 	$CollisionShape2D.shape.radius = val * 0.75
