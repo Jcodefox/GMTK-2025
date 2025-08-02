@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtm6qe4ggk2sf"
-path="res://.godot/imported/lives_hat_icon.png-dd5604dd8c790fa8ffa7ef2b429d6479.ctex"
+uid="uid://xnccibcjwepn"
+path="res://.godot/imported/ui_boot.png-0d9ec953d6c016e94df0e9f81fdbbe74.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/ui_hud/lives_hat_icon.png"
-dest_files=["res://.godot/imported/lives_hat_icon.png-dd5604dd8c790fa8ffa7ef2b429d6479.ctex"]
+source_file="res://assets/art/ui_hud/ui_boot.png"
+dest_files=["res://.godot/imported/ui_boot.png-0d9ec953d6c016e94df0e9f81fdbbe74.ctex"]
 
 [params]
 
