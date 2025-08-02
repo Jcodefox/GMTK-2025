@@ -154,7 +154,8 @@ func area_hit_body(body: Node2D) -> void:
 		
 		# Make character bounce upward
 		velocity = Vector2(0, -100)
-
+		
+		process_mode = Node.PROCESS_MODE_ALWAYS;
 		get_tree().paused = true
 		if Globals.lives > 0:
 			get_tree().create_timer(2).timeout.connect(
@@ -162,6 +163,7 @@ func area_hit_body(body: Node2D) -> void:
 					get_tree().paused = false
 					await get_tree().process_frame
 					get_tree().reload_current_scene()
+					process_mode = Node.PROCESS_MODE_PAUSABLE;
 			)
 		else:
 			get_tree().create_timer(2).timeout.connect(
@@ -170,6 +172,7 @@ func area_hit_body(body: Node2D) -> void:
 						game_over_screen.visible = true
 					Globals.game_over()
 			)
+		
 		
 func area_exited_area(area: Area2D) -> void:
 	if dead:

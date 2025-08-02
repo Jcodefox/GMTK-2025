@@ -11,6 +11,7 @@ var high_score: int = 0
 
 @onready var world_dimensions: Vector2 = (world_top_left - world_bottom_right).abs()
 @onready var float_score_num: PackedScene = preload("res://scenes/prefabs/float_score_num.tscn")
+@onready var title_topscene : PackedScene = preload("res://scenes/topscenes/title_topscene.tscn");
 
 var player: Node2D = null
 
