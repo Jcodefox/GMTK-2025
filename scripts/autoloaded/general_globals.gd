@@ -14,6 +14,8 @@ var high_score: int = 0
 
 var player: Node2D = null
 
+var do_things_flicker: bool = true
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	load_high_score()
@@ -97,7 +99,7 @@ func load_high_score() -> void:
 	high_score = config.get_value("Player", "high_score")
 
 func update_enemy_i_frames(enemy: Node2D) -> void:
-	if enemy.time_alive >= enemy.time_until_enemy_hurts:
+	if enemy.time_alive >= enemy.time_until_enemy_hurts or not do_things_flicker:
 		enemy.visible = true
 		return
-	enemy.visible = int(enemy.time_alive * 16) % 2 < 1
+	enemy.visible = int(enemy.time_alive * 10) % 2 < 1

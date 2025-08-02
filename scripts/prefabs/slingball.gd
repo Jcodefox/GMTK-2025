@@ -15,6 +15,7 @@ var cumulative_delta: float = 0
 
 var enemies_in_ball: int = 0
 var enemies_killed: int = 0
+var frames_alive: int = 0
 
 func _ready() -> void:
 	sprite_ghosts = Globals.make_loop_ghosts_of($SuspiciousPlaceholderSlingball)
@@ -22,6 +23,13 @@ func _ready() -> void:
 	area_shape_ghosts = Globals.make_loop_ghosts_of($Area2D/CollisionShape2D)
 
 	$Area2D.body_entered.connect(hit_object)
+
+func _process(_delta: float) -> void:
+	if cumulative_delta < flashing_start_time:
+		visible = true
+	elif Globals.do_things_flicker:
+		visible = frames_alive % 4 < 2
+		frames_alive += 1
 
 func _physics_process(delta: float) -> void:
 	cumulative_delta += delta
@@ -51,7 +59,7 @@ func hit_object(body: Node2D) -> void:
 		body.queue_free()
 
 func update_disappear_blink() -> void:
-	if cumulative_delta < flashing_start_time:
+	if cumulative_delta < flashing_start_time or not Globals.do_things_flicker:
 		visible = true
 		return
 	visible = int(cumulative_delta * 8) % 2 < 1

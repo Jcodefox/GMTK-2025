@@ -13,10 +13,10 @@ func _ready() -> void:
 	collision_shape_ghosts = Globals.make_loop_ghosts_of($CollisionShape2D)
 	jump_check_shape_ghosts = Globals.make_loop_ghosts_of($JumpOverCheck/CollisionShape2D)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if time_alive > time_until_enemy_hurts:
 		visible = true
-	else:
+	elif Globals.do_things_flicker:
 		visible = frames_alive % 4 < 2
 		frames_alive += 1
 
