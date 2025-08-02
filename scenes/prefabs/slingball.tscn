@@ -1,14 +1,17 @@
-[gd_scene load_steps=16 format=3 uid="uid://pg1yt1laqyvb"]
+[gd_scene load_steps=19 format=3 uid="uid://pg1yt1laqyvb"]
 
 [ext_resource type="Script" uid="uid://c5thodh448n5l" path="res://scripts/prefabs/slingball.gd" id="1_f5sfi"]
+[ext_resource type="Texture2D" uid="uid://3sd02fdj48wm" path="res://assets/art/slingball/slingball_large_1.png" id="2_37ifv"]
 [ext_resource type="Texture2D" uid="uid://dj2khqypmgpc8" path="res://assets/art/slingball/slingball_small_1.png" id="2_s7pec"]
-[ext_resource type="Texture2D" uid="uid://cjow5nmji2t01" path="res://assets/art/slingball/slingball_large_still.png" id="2_ywjc4"]
 [ext_resource type="Texture2D" uid="uid://dj4v6nv1lkvki" path="res://assets/art/slingball/slingball_medium_1.png" id="3_6ia00"]
+[ext_resource type="Texture2D" uid="uid://dvhdvqrx3c6x1" path="res://assets/art/slingball/slingball_large_2.png" id="3_aprwp"]
 [ext_resource type="Texture2D" uid="uid://bf8f3qgfeat3k" path="res://assets/art/slingball/slingball_small_2.png" id="3_v1axe"]
 [ext_resource type="Texture2D" uid="uid://cqcl3pqm38arf" path="res://assets/art/slingball/slingball_medium_2.png" id="4_mc7ot"]
+[ext_resource type="Texture2D" uid="uid://clkbm8wdagis0" path="res://assets/art/slingball/slingball_large_3.png" id="4_tgu4s"]
 [ext_resource type="Texture2D" uid="uid://ykbfx41naaiv" path="res://assets/art/slingball/slingball_small_3.png" id="4_ywjc4"]
 [ext_resource type="Texture2D" uid="uid://icqwa07bovkg" path="res://assets/art/slingball/slingball_small_4.png" id="5_cwd4i"]
 [ext_resource type="Texture2D" uid="uid://ob16bamfge4l" path="res://assets/art/slingball/slingball_medium_3.png" id="5_m63s2"]
+[ext_resource type="Texture2D" uid="uid://dcdlj5tn37jey" path="res://assets/art/slingball/slingball_large_4.png" id="5_v4tjh"]
 [ext_resource type="Texture2D" uid="uid://ux8dclirkb3l" path="res://assets/art/slingball/slingball_medium_4.png" id="6_37ifv"]
 [ext_resource type="Texture2D" uid="uid://fukwg487er2" path="res://assets/art/slingball/slingball_small_still.png" id="6_v1axe"]
 
@@ -16,7 +19,16 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ywjc4")
+"texture": ExtResource("2_37ifv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_aprwp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tgu4s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_v4tjh")
 }],
 "loop": true,
 "name": &"large",
