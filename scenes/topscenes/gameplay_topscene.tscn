@@ -6,7 +6,7 @@
 [ext_resource type="TileSet" uid="uid://cl63qdxuqflth" path="res://assets/art/terrain/main_tile_set.tres" id="3_u55sw"]
 [ext_resource type="Texture2D" uid="uid://bwx4duhuh37jy" path="res://assets/art/terrain/cloud 1.png" id="5_emnkm"]
 [ext_resource type="Texture2D" uid="uid://cwak838kpjbeg" path="res://assets/art/terrain/cloud 2.png" id="6_ed28v"]
-[ext_resource type="Script" path="res://scripts/prefabs/cloud.gd" id="6_rfs2g"]
+[ext_resource type="Script" uid="uid://cbsnpfn5tcbcj" path="res://scripts/prefabs/cloud.gd" id="6_rfs2g"]
 [ext_resource type="PackedScene" uid="uid://c7sqyqehhxymg" path="res://scenes/prefabs/game_over_screen.tscn" id="7_d18oc"]
 [ext_resource type="PackedScene" uid="uid://ni48dlph7c7c" path="res://scenes/prefabs/enemy_spawner.tscn" id="9_d18oc"]
 
