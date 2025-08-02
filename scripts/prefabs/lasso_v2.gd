@@ -156,6 +156,12 @@ func pull_lasso() -> void:
 		var avg_pos: Vector2 = sum_pos / killed_enemies
 		Globals.add_score(killed_enemies * 10, Globals.convert_to_visible_pos(avg_pos), get_tree().current_scene)
 		var new_slingball: Node2D = slingball_prefab.instantiate()
+		if killed_enemies >= 5:
+			new_slingball.ball_size = 2
+		elif killed_enemies >= 3:
+			new_slingball.ball_size = 1
+		else:
+			new_slingball.ball_size = 0
 		new_slingball.enemies_in_ball = killed_enemies
 		new_slingball.global_position = Globals.convert_to_visible_pos(avg_pos)
 		new_slingball.player = get_parent()

@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var max_lifetime: float = 2
 @export var flashing_start_time: float = 1.5
 
-var sprite_ghosts: Array[Node2D] = []
+var animated_sprite_ghosts: Array[Node2D] = []
 var collision_shape_ghosts: Array[Node2D] = []
 var area_shape_ghosts: Array[Node2D] = []
 
@@ -22,14 +22,17 @@ var still_held: bool = true
 var old_collision_mask: int = 0
 var slingball_held_pos: Vector2 = Vector2.ZERO
 
+var ball_size: int = 0
+
 func _ready() -> void:
 	slingball_held_pos = global_position
 	old_collision_mask = collision_mask
 	collision_mask = 0
-	sprite_ghosts = Globals.make_loop_ghosts_of($AnimatedSlingball)
+	animated_sprite_ghosts = Globals.make_loop_ghosts_of($AnimatedSlingball)
 	collision_shape_ghosts = Globals.make_loop_ghosts_of($CollisionShape2D)
 	area_shape_ghosts = Globals.make_loop_ghosts_of($Area2D/CollisionShape2D)
 
+	set_animation(["small", "medium", "large"][ball_size])
 	Globals.make_loop_ghosts_of($WallCheck/CollisionShape2D)
 
 	$Area2D.body_entered.connect(hit_object)
@@ -88,3 +91,11 @@ func update_disappear_blink() -> void:
 		visible = true
 		return
 	visible = int(cumulative_delta * 8) % 2 < 1
+
+func set_animation(anim: String) -> void:
+	if $AnimatedSlingball.animation != anim:
+		$AnimatedSlingball.play(anim)
+	
+	for sprite in animated_sprite_ghosts:
+		if sprite.animation != anim:
+			sprite.play(anim)

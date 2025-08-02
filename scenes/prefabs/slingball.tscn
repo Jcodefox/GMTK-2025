@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://pg1yt1laqyvb"]
+[gd_scene load_steps=11 format=3 uid="uid://pg1yt1laqyvb"]
 
 [ext_resource type="Script" uid="uid://c5thodh448n5l" path="res://scripts/prefabs/slingball.gd" id="1_f5sfi"]
+[ext_resource type="Texture2D" uid="uid://b6lrq1ddql3nj" path="res://assets/art/player/placeholder_slingball_large.png" id="2_cwd4i"]
 [ext_resource type="Texture2D" uid="uid://dj2khqypmgpc8" path="res://assets/art/player/slingball_small_1.png" id="2_s7pec"]
+[ext_resource type="Texture2D" uid="uid://d2ra8qcc0ahk4" path="res://assets/art/player/placeholder_slingball_medium.png" id="3_dfl16"]
 [ext_resource type="Texture2D" uid="uid://bf8f3qgfeat3k" path="res://assets/art/player/slingball_small_2.png" id="3_v1axe"]
 [ext_resource type="Texture2D" uid="uid://ykbfx41naaiv" path="res://assets/art/player/slingball_small_3.png" id="4_ywjc4"]
 [ext_resource type="Texture2D" uid="uid://icqwa07bovkg" path="res://assets/art/player/slingball_small_4.png" id="5_cwd4i"]
@@ -9,6 +11,22 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dfl16"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cwd4i")
+}],
+"loop": true,
+"name": &"large",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_dfl16")
+}],
+"loop": true,
+"name": &"medium",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_s7pec")
