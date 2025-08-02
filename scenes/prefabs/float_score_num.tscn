@@ -1,13 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://djipk38xu5jef"]
+[gd_scene load_steps=3 format=3 uid="uid://djipk38xu5jef"]
 
-[ext_resource type="FontFile" uid="uid://bd76c45vwyqcg" path="res://assets/font/Tiny5-Regular.ttf" id="1_j2hny"]
+[ext_resource type="Theme" uid="uid://bk5ddumg2jusp" path="res://assets/style/text.tres" id="1_j2hny"]
 [ext_resource type="Script" uid="uid://pbex6vqkgjii" path="res://scripts/prefabs/float_score_num.gd" id="2_oji2u"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_2fkuj"]
-font = ExtResource("1_j2hny")
-font_size = 8
-
 [node name="FloatScoreNum" type="Label"]
+theme = ExtResource("1_j2hny")
 text = "[unset]"
-label_settings = SubResource("LabelSettings_2fkuj")
 script = ExtResource("2_oji2u")
