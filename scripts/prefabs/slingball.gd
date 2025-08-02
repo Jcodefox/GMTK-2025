@@ -25,6 +25,7 @@ var ball_size: int = 0
 
 var lifespan: float = 2
 var lasso: Node2D = null
+var dead_ball: bool = false
 
 func _ready() -> void:
 	slingball_held_pos = global_position
@@ -52,6 +53,8 @@ func _process(_delta: float) -> void:
 		frames_alive += 1
 
 func _physics_process(delta: float) -> void:
+	if dead_ball:
+		return
 	if Input.is_action_just_released("pull_lasso"):
 		still_held = false
 		if player != null:
@@ -81,13 +84,21 @@ func _physics_process(delta: float) -> void:
 		bounces += 1
 	
 	if bounces > max_bounces and max_bounces > -1:
-		queue_free()
+		pop()
 	if cumulative_delta > lifespan and lifespan > -1:
-		queue_free()
+		pop()
 	
 	velocity = intended_velocity
 
 	move_and_slide()
+
+func pop() -> void:
+	set_animation("pop_" + ["small", "medium", "large"][ball_size])
+	dead_ball = true
+	collision_mask = 0
+	collision_layer = 0
+	await get_tree().create_timer(0.375).timeout
+	queue_free()
 
 func hit_object(body: Node2D) -> void:
 	if still_held:

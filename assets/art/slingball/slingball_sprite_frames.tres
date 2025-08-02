@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=13 format=3 uid="uid://bc3tnonhetua6"]
+[gd_resource type="SpriteFrames" load_steps=19 format=3 uid="uid://bc3tnonhetua6"]
 
 [ext_resource type="Texture2D" uid="uid://3sd02fdj48wm" path="res://assets/art/slingball/slingball_large_1.png" id="1_4865t"]
 [ext_resource type="Texture2D" uid="uid://dvhdvqrx3c6x1" path="res://assets/art/slingball/slingball_large_2.png" id="2_3sfsq"]
@@ -8,10 +8,16 @@
 [ext_resource type="Texture2D" uid="uid://cqcl3pqm38arf" path="res://assets/art/slingball/slingball_medium_2.png" id="6_s7ekd"]
 [ext_resource type="Texture2D" uid="uid://ob16bamfge4l" path="res://assets/art/slingball/slingball_medium_3.png" id="7_d35gf"]
 [ext_resource type="Texture2D" uid="uid://ux8dclirkb3l" path="res://assets/art/slingball/slingball_medium_4.png" id="8_mwruy"]
+[ext_resource type="Texture2D" uid="uid://cx7xngsuuwcnr" path="res://assets/art/slingball/slingball_large_pop_1.png" id="9_7nwcn"]
 [ext_resource type="Texture2D" uid="uid://dj2khqypmgpc8" path="res://assets/art/slingball/slingball_small_1.png" id="9_lxeut"]
 [ext_resource type="Texture2D" uid="uid://bf8f3qgfeat3k" path="res://assets/art/slingball/slingball_small_2.png" id="10_hicag"]
+[ext_resource type="Texture2D" uid="uid://bxyunshpk3uyx" path="res://assets/art/slingball/slingball_large_pop_2.png" id="10_sxwxh"]
 [ext_resource type="Texture2D" uid="uid://ykbfx41naaiv" path="res://assets/art/slingball/slingball_small_3.png" id="11_4v0cq"]
+[ext_resource type="Texture2D" uid="uid://byh85gtytonfm" path="res://assets/art/slingball/slingball_medium_pop_1.png" id="11_i1nes"]
 [ext_resource type="Texture2D" uid="uid://icqwa07bovkg" path="res://assets/art/slingball/slingball_small_4.png" id="12_1oh2i"]
+[ext_resource type="Texture2D" uid="uid://cdg2jmdllyjok" path="res://assets/art/slingball/slingball_medium_pop_2.png" id="12_s7ekd"]
+[ext_resource type="Texture2D" uid="uid://dxuhy1moq141p" path="res://assets/art/slingball/slingball_small_pop_1.png" id="13_d35gf"]
+[ext_resource type="Texture2D" uid="uid://b81rrxoycuwfw" path="res://assets/art/slingball/slingball_small_pop_2.png" id="14_mwruy"]
 
 [resource]
 animations = [{
@@ -47,6 +53,39 @@ animations = [{
 }],
 "loop": true,
 "name": &"medium",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_7nwcn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_sxwxh")
+}],
+"loop": false,
+"name": &"pop_large",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_i1nes")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_s7ekd")
+}],
+"loop": false,
+"name": &"pop_medium",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_d35gf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_mwruy")
+}],
+"loop": false,
+"name": &"pop_small",
 "speed": 8.0
 }, {
 "frames": [{
