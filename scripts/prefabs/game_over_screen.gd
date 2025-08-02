@@ -1,7 +1,5 @@
 extends Control
 
-@onready var title_topscene : PackedScene = preload("res://scenes/topscenes/title_topscene.tscn");
-
 func _process(delta: float) -> void:
 	$VBoxContainer/Score.text = "Score:\n%012d0" % Globals.score
 	$VBoxContainer/HighScore.text = "High Score:\n%012d0" % Globals.high_score
@@ -14,4 +12,4 @@ func _on_button_pressed() -> void:
 
 func _on_button_2_pressed() -> void:
 	get_tree().paused = false;
-	get_tree().change_scene_to_packed(title_topscene)
+	get_tree().change_scene_to_packed(Globals.title_topscene)

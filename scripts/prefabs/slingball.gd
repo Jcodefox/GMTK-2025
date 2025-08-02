@@ -33,7 +33,7 @@ func _ready() -> void:
 	collision_shape_ghosts = Globals.make_loop_ghosts_of($CollisionShape2D)
 	area_shape_ghosts = Globals.make_loop_ghosts_of($Area2D/CollisionShape2D)
 
-	lifespan = [1.75, 2.25, 2.75][ball_size]
+	lifespan = [1.5, 2.25, 3.0][ball_size]
 	set_animation(["small", "medium", "large"][ball_size])
 	set_collision_radius([8, 12, 16][ball_size])
 	Globals.make_loop_ghosts_of($WallCheck/CollisionShape2D)
