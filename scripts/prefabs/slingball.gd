@@ -24,7 +24,7 @@ var old_collision_mask: int = 0
 func _ready() -> void:
 	old_collision_mask = collision_mask
 	collision_mask = 0
-	sprite_ghosts = Globals.make_loop_ghosts_of($SuspiciousPlaceholderSlingball)
+	sprite_ghosts = Globals.make_loop_ghosts_of($AnimatedSlingball)
 	collision_shape_ghosts = Globals.make_loop_ghosts_of($CollisionShape2D)
 	area_shape_ghosts = Globals.make_loop_ghosts_of($Area2D/CollisionShape2D)
 
