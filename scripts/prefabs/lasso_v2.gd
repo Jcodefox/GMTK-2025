@@ -79,7 +79,7 @@ func _process(delta: float):
 	$Area2D/CollisionShape2D.shape.radius = max(lasso_loop_size / 2, 0.1)
 	$Area2D.position = lasso_current_pos - global_position
 	
-	if Input.is_action_just_pressed("pull_lasso"):
+	if Input.is_action_just_pressed("pull_lasso") and not get_tree().paused:
 		pull_lasso()
 	if Input.is_action_pressed("pull_lasso"):
 		all_mouse_angles.clear()
