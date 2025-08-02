@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var max_bounces: int = -1
-@export var max_lifetime: float = 20
+@export var max_lifetime: float = 2
 @export var flashing_start_time: float = 1
 
 var sprite_ghosts: Array[Node2D] = []
