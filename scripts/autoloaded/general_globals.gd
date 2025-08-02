@@ -72,11 +72,14 @@ func game_over() -> void:
 		high_score = new_score
 		save_high_score()
 
+	var time_passed_tmp: int = time_passed
 	tween = get_tree().create_tween()
 	tween.set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
 	tween.parallel().tween_property(self, "time_passed", 0, 1)
 	tween.parallel().tween_property(self, "score", new_score, 1)
 	await tween.finished
+	time_passed = time_passed_tmp
+	
 
 func reset_game() -> void:
 	tween.stop()
