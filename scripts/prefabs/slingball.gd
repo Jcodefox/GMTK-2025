@@ -33,7 +33,7 @@ func _process(_delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	cumulative_delta += delta
-	update_disappear_blink()
+	#update_disappear_blink()
 	global_position = Globals.apply_loop_teleport(global_position)
 
 	if is_on_wall():
