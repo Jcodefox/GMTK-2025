@@ -18,3 +18,11 @@ func _physics_process(delta: float) -> void:
 	time_alive += delta
 	collision_layer = 4 if time_alive > time_until_enemy_hurts else 0
 
+func lassod() -> void:
+	queue_free()
+
+func slingballed(ball: Node2D) -> void:
+	die()
+
+func die() -> void:
+	queue_free()

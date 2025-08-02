@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://ca585cxlglnus"]
+
+[ext_resource type="Script" uid="uid://dexve2bhbeyob" path="res://scripts/prefabs/enemy/drone.gd" id="1_66nol"]
+[ext_resource type="SpriteFrames" uid="uid://3smv5kx276ei" path="res://assets/art/enemies/drone_sprite_frames.tres" id="2_66nol"]
+[ext_resource type="PackedScene" uid="uid://8u4a6kbsptoe" path="res://scenes/prefabs/jump_over_check.tscn" id="3_vv46m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ps8f2"]
+size = Vector2(10, 10)
+
+[node name="Drone" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_66nol")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_66nol")
+autoplay = "default"
+frame_progress = 0.792037
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ps8f2")
+
+[node name="JumpOverCheck" parent="." instance=ExtResource("3_vv46m")]
+position = Vector2(0, -15)

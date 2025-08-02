@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://d38s724kfuo3v"]
+
+[ext_resource type="Texture2D" uid="uid://400iu480qk5d" path="res://assets/art/enemies/spikeball_1.png" id="1_6ibh7"]
+[ext_resource type="Texture2D" uid="uid://cuu81nfrooake" path="res://assets/art/enemies/spikeball_2.png" id="2_vafj5"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6ibh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_vafj5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
