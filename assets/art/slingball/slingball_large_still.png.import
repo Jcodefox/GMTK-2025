@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dj2khqypmgpc8"
-path="res://.godot/imported/slingball_small_1.png-63df3c172c50d2256d7cf98062f8096e.ctex"
+uid="uid://cjow5nmji2t01"
+path="res://.godot/imported/slingball_large_still.png-3ddd54140693ccaaf4cb49814f6a96d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/player/slingball_small_1.png"
-dest_files=["res://.godot/imported/slingball_small_1.png-63df3c172c50d2256d7cf98062f8096e.ctex"]
+source_file="res://assets/art/slingball/slingball_large_still.png"
+dest_files=["res://.godot/imported/slingball_large_still.png-3ddd54140693ccaaf4cb49814f6a96d9.ctex"]
 
 [params]
 

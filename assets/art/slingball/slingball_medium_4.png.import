@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ux8dclirkb3l"
-path="res://.godot/imported/slingball_medium_4.png-e2aefdc20944dc54fec314121dc32d93.ctex"
+path="res://.godot/imported/slingball_medium_4.png-5954fef2d3bcb4a8fa9bd38a00d4bff5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/player/slingball_medium_4.png"
-dest_files=["res://.godot/imported/slingball_medium_4.png-e2aefdc20944dc54fec314121dc32d93.ctex"]
+source_file="res://assets/art/slingball/slingball_medium_4.png"
+dest_files=["res://.godot/imported/slingball_medium_4.png-5954fef2d3bcb4a8fa9bd38a00d4bff5.ctex"]
 
 [params]
 
