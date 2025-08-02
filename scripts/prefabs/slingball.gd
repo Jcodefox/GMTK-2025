@@ -33,7 +33,7 @@ func _ready() -> void:
 	area_shape_ghosts = Globals.make_loop_ghosts_of($Area2D/CollisionShape2D)
 
 	set_animation(["small", "medium", "large"][ball_size])
-	set_collision_radius([10, 15, 20][ball_size])
+	set_collision_radius([8, 12, 16][ball_size])
 	Globals.make_loop_ghosts_of($WallCheck/CollisionShape2D)
 
 	$Area2D.body_entered.connect(hit_object)
@@ -102,6 +102,6 @@ func set_animation(anim: String) -> void:
 			sprite.play(anim)
 
 func set_collision_radius(val: float) -> void:
-	$CollisionShape2D.shape.radius = val
-	$Area2D/CollisionShape2D.shape.radius = val
-	$WallCheck/CollisionShape2D.shape.radius = val
+	$CollisionShape2D.shape.radius = val * 0.75
+	$Area2D/CollisionShape2D.shape.radius = val * 1.25
+	$WallCheck/CollisionShape2D.shape.radius = val * 0.75
