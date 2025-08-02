@@ -7,6 +7,7 @@
 radius = 0.01
 
 [node name="Lasso" type="Line2D"]
+process_mode = 1
 width = 2.0
 default_color = Color(0.81, 0.56295, 0.3159, 1)
 script = ExtResource("1_vaqmv")

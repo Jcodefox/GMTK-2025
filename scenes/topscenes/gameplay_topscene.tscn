@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://dwe36qbpqlr3w"]
+[gd_scene load_steps=11 format=4 uid="uid://dwe36qbpqlr3w"]
 
 [ext_resource type="PackedScene" uid="uid://crq0ubo4sdfwt" path="res://scenes/prefabs/player.tscn" id="1_rncwu"]
 [ext_resource type="PackedScene" uid="uid://des4eilq7pml8" path="res://scenes/prefabs/hud.tscn" id="3_ks65t"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cwak838kpjbeg" path="res://assets/art/terrain/cloud 2.png" id="6_ed28v"]
 [ext_resource type="Script" uid="uid://cbsnpfn5tcbcj" path="res://scripts/prefabs/cloud.gd" id="6_rfs2g"]
 [ext_resource type="PackedScene" uid="uid://c7sqyqehhxymg" path="res://scenes/prefabs/game_over_screen.tscn" id="7_d18oc"]
+[ext_resource type="PackedScene" uid="uid://dlwhc0n2uevq8" path="res://scenes/prefabs/pause_menu.tscn" id="8_d18oc"]
 [ext_resource type="PackedScene" uid="uid://ni48dlph7c7c" path="res://scenes/prefabs/enemy_spawner.tscn" id="9_d18oc"]
 
 [node name="GameplayTopscene" type="Node2D"]
@@ -55,6 +56,9 @@ texture = ExtResource("3_pyq0w")
 [node name="HUD" parent="HudCanvasLayer" instance=ExtResource("3_ks65t")]
 
 [node name="GameOverScreen" parent="HudCanvasLayer" instance=ExtResource("7_d18oc")]
+visible = false
+
+[node name="PauseMenu" parent="HudCanvasLayer" instance=ExtResource("8_d18oc")]
 visible = false
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
