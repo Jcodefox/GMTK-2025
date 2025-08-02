@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://dwe36qbpqlr3w"]
+[gd_scene load_steps=11 format=4 uid="uid://dwe36qbpqlr3w"]
 
 [ext_resource type="PackedScene" uid="uid://crq0ubo4sdfwt" path="res://scenes/prefabs/player.tscn" id="1_rncwu"]
 [ext_resource type="PackedScene" uid="uid://des4eilq7pml8" path="res://scenes/prefabs/hud.tscn" id="3_ks65t"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/prefabs/cloud.gd" id="6_rfs2g"]
 [ext_resource type="PackedScene" uid="uid://c7sqyqehhxymg" path="res://scenes/prefabs/game_over_screen.tscn" id="7_d18oc"]
 [ext_resource type="PackedScene" uid="uid://ni48dlph7c7c" path="res://scenes/prefabs/enemy_spawner.tscn" id="9_d18oc"]
+[ext_resource type="PackedScene" uid="uid://dtvjbmxdirq5p" path="res://scenes/prefabs/enemies/sproing.tscn" id="10_d18oc"]
 
 [node name="GameplayTopscene" type="Node2D"]
 
@@ -70,3 +71,27 @@ enemy_holder_node = NodePath("../Enemies")
 [node name="EnemySpawner2" parent="." node_paths=PackedStringArray("enemy_holder_node") instance=ExtResource("9_d18oc")]
 position = Vector2(144, 48)
 enemy_holder_node = NodePath("../Enemies")
+
+[node name="Sproing" parent="." instance=ExtResource("10_d18oc")]
+position = Vector2(82, 151)
+
+[node name="Sproing2" parent="." instance=ExtResource("10_d18oc")]
+position = Vector2(82, 151)
+
+[node name="Sproing3" parent="." instance=ExtResource("10_d18oc")]
+position = Vector2(82, 151)
+
+[node name="Sproing4" parent="." instance=ExtResource("10_d18oc")]
+position = Vector2(82, 151)
+
+[node name="Sproing5" parent="." instance=ExtResource("10_d18oc")]
+position = Vector2(82, 151)
+
+[node name="Sproing6" parent="." instance=ExtResource("10_d18oc")]
+position = Vector2(82, 151)
+
+[node name="Sproing7" parent="." instance=ExtResource("10_d18oc")]
+position = Vector2(82, 151)
+
+[node name="Sproing8" parent="." instance=ExtResource("10_d18oc")]
+position = Vector2(82, 151)
