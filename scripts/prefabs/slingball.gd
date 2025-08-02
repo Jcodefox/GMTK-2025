@@ -57,7 +57,11 @@ func _physics_process(delta: float) -> void:
 		if player != null:
 			var pull_direction: Vector2 = Globals.convert_to_visible_pos(global_position).direction_to(Globals.convert_to_visible_pos(player.global_position))
 			intended_velocity = pull_direction * ((Globals.convert_to_visible_pos(global_position).distance_to(Globals.convert_to_visible_pos(player.global_position)) / 2.0) + 60)
+			
 	$SlingballRope.visible = still_held
+	for sprite in rope_sprite_ghosts:
+		sprite.visible = still_held
+			
 	if still_held:
 		$Area2D.collision_mask = 0
 		if lasso != null:

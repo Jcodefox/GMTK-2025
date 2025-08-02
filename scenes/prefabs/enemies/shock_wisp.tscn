@@ -27,8 +27,8 @@ metadata/_custom_type_script = "uid://73xsoj8bfe8b"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_oaxne")
+animation = &"death"
 autoplay = "default"
-frame_progress = 0.313293
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_oaxne")

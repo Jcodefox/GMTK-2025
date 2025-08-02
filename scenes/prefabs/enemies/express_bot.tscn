@@ -16,8 +16,8 @@ spikeball_prefab = ExtResource("2_8ofcn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_rbgxc")
-animation = &"c"
-frame_progress = 0.60424
+animation = &"a"
+autoplay = "a"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_rbgxc")

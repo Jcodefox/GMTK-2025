@@ -1,12 +1,29 @@
-[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://ckf4smp680jph"]
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://ckf4smp680jph"]
 
 [ext_resource type="Texture2D" uid="uid://cnl501wayh67t" path="res://assets/art/enemies/nameless_1.png" id="1_a7l37"]
 [ext_resource type="Texture2D" uid="uid://bxanmh8lm3tlt" path="res://assets/art/enemies/nameless_2.png" id="2_u0wx7"]
 [ext_resource type="Texture2D" uid="uid://cw8w71teh2xv2" path="res://assets/art/enemies/nameless_3.png" id="3_1i3uh"]
 [ext_resource type="Texture2D" uid="uid://sbmslmy38h1s" path="res://assets/art/enemies/nameless_4.png" id="4_3v2gb"]
+[ext_resource type="Texture2D" uid="uid://dacypvtq88ekl" path="res://assets/art/enemies/standard_enemy_explosion_1.png" id="4_r1m58"]
+[ext_resource type="Texture2D" uid="uid://bwmle6macc26" path="res://assets/art/enemies/standard_enemy_explosion_2.png" id="5_niqmy"]
+[ext_resource type="Texture2D" uid="uid://by5juikn7ogwb" path="res://assets/art/enemies/standard_enemy_explosion_3.png" id="6_fvn2r"]
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_r1m58")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_niqmy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_fvn2r")
+}],
+"loop": false,
+"name": &"death",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_u0wx7")

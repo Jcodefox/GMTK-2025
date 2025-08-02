@@ -6,7 +6,6 @@ var move_direction: int = 0
 
 @onready var corners: Array[Area2D] = [$BottomRight, $BottomLeft, $TopLeft, $TopRight]
 
-var animated_sprite_ghosts: Array[Node2D] = []
 var collision_shape_ghosts: Array[Node2D] = []
 var jump_check_shape_ghosts: Array[Node2D] = []
 
@@ -24,6 +23,8 @@ func _ready() -> void:
 			Globals.make_loop_ghosts_of(child)
 
 func _physics_process(delta: float) -> void:
+	if dead:
+		return
 	super(delta)
 	global_position = Globals.apply_loop_teleport(global_position)
 

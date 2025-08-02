@@ -6,7 +6,6 @@ extends Enemy
 @export var speed: float = 20
 @export var hurt_i_frame_time: float = 0.5
 
-var animated_sprite_ghosts: Array[Node2D] = []
 var collision_shape_ghosts: Array[Node2D] = []
 var jump_check_shape_ghosts: Array[Node2D] = []
 
@@ -29,6 +28,8 @@ func _process(_delta: float) -> void:
 		frames_alive += 1
 
 func _physics_process(delta: float) -> void:
+	if dead:
+		return
 	super(delta)
 	global_position = Globals.apply_loop_teleport(global_position)
 	
@@ -49,14 +50,6 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity.normalized() * speed
 	
 	move_and_slide()
-
-func set_animation(anim: String) -> void:
-	if $AnimatedSprite2D.animation != anim:
-		$AnimatedSprite2D.play(anim)
-	
-	for sprite in animated_sprite_ghosts:
-		if sprite.animation != anim:
-			sprite.play(anim)
 
 func slingballed(_ball: Node2D) -> int:
 	if time_since_hurt < hurt_i_frame_time:

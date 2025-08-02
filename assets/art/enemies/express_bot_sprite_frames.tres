@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=13 format=3 uid="uid://ce08h05lnysry"]
+[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://ce08h05lnysry"]
 
 [ext_resource type="Texture2D" uid="uid://dwfdv0bu41w08" path="res://assets/art/enemies/expressbot_a_1.png" id="1_w0ueq"]
 [ext_resource type="Texture2D" uid="uid://h32bf3tqgoqw" path="res://assets/art/enemies/expressbot_a_2.png" id="2_wae17"]
@@ -12,6 +12,11 @@
 [ext_resource type="Texture2D" uid="uid://b7uix1yvq5adm" path="res://assets/art/enemies/expressbot_c_2.png" id="10_si0ma"]
 [ext_resource type="Texture2D" uid="uid://bi61vrb2eec7s" path="res://assets/art/enemies/expressbot_c_3.png" id="11_ykb1m"]
 [ext_resource type="Texture2D" uid="uid://bdvxhy83io4x2" path="res://assets/art/enemies/expressbot_c_4.png" id="12_c0q2y"]
+[ext_resource type="Texture2D" uid="uid://bjf3q5x4ol7k8" path="res://assets/art/enemies/fiery_enemy_explosion_1.png" id="13_8high"]
+[ext_resource type="Texture2D" uid="uid://ckscs06xcfbpb" path="res://assets/art/enemies/fiery_enemy_explosion_2.png" id="14_oouh5"]
+[ext_resource type="Texture2D" uid="uid://cy1lwvatfq58c" path="res://assets/art/enemies/fiery_enemy_explosion_3.png" id="15_nm75f"]
+[ext_resource type="Texture2D" uid="uid://ci3gp20jj46vj" path="res://assets/art/enemies/fiery_enemy_explosion_4.png" id="16_efgl3"]
+[ext_resource type="Texture2D" uid="uid://bbfdvic6oqxw8" path="res://assets/art/enemies/fiery_enemy_explosion_5.png" id="17_8u5t0"]
 
 [resource]
 animations = [{
@@ -65,4 +70,24 @@ animations = [{
 "loop": true,
 "name": &"c",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_8high")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_oouh5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_nm75f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_efgl3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_8u5t0")
+}],
+"loop": false,
+"name": &"death",
+"speed": 13.0
 }]

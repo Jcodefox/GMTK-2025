@@ -1,6 +1,5 @@
 extends Enemy
 
-var animated_sprite_ghosts: Array[Node2D] = []
 var collision_shape_ghosts: Array[Node2D] = []
 var jump_check_shape_ghosts: Array[Node2D] = []
 
@@ -12,6 +11,8 @@ func _ready() -> void:
 	jump_check_shape_ghosts = Globals.make_loop_ghosts_of($JumpOverCheck/CollisionShape2D)
 
 func _physics_process(delta: float) -> void:
+	if dead:
+		return
 	super(delta)
 	global_position = Globals.apply_loop_teleport(global_position)
 	$AnimatedSprite2D.flip_h = intended_direction > 0

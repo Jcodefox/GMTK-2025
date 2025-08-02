@@ -1,10 +1,27 @@
-[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://cint4xupsaukt"]
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://cint4xupsaukt"]
 
 [ext_resource type="Texture2D" uid="uid://iispe6ppba0b" path="res://assets/art/enemies/shockwisp_1.png" id="1_2kynq"]
+[ext_resource type="Texture2D" uid="uid://dacypvtq88ekl" path="res://assets/art/enemies/standard_enemy_explosion_1.png" id="1_qpv7a"]
+[ext_resource type="Texture2D" uid="uid://bwmle6macc26" path="res://assets/art/enemies/standard_enemy_explosion_2.png" id="2_3mfdl"]
 [ext_resource type="Texture2D" uid="uid://dmhnwtus81dta" path="res://assets/art/enemies/shockwisp_2.png" id="2_a4m8b"]
+[ext_resource type="Texture2D" uid="uid://by5juikn7ogwb" path="res://assets/art/enemies/standard_enemy_explosion_3.png" id="3_6n56e"]
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qpv7a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_3mfdl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6n56e")
+}],
+"loop": false,
+"name": &"death",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_2kynq")

@@ -1,6 +1,5 @@
 extends Enemy
 
-var animated_sprite_ghosts: Array[Node2D] = []
 var collision_shape_ghosts: Array[Node2D] = []
 var jump_check_shape_ghosts: Array[Node2D] = []
 
@@ -18,22 +17,14 @@ func _ready() -> void:
 		all_shape_ghosts_original_poses.append(shape.position)
 
 func _physics_process(delta: float) -> void:
+	if dead:
+		return
 	super(delta)
 	global_position = Globals.apply_loop_teleport(global_position)
 
 	velocity.y += default_gravity * delta
 	
 	move_and_slide()
-
-func set_animation(anim: String, speed: float = 1.0) -> void:
-	if $AnimatedSprite2D.animation != anim:
-		$AnimatedSprite2D.play(anim)
-	$AnimatedSprite2D.speed_scale = speed
-	
-	for sprite in animated_sprite_ghosts:
-		if sprite.animation != anim:
-			sprite.play(anim)
-		sprite.speed_scale = speed
 
 func set_collision_height(amount: float, offset: float) -> void:
 	if $CollisionShape2D.shape.size.y == amount and hitbox_original_pos.y + offset == $CollisionShape2D.position.y:

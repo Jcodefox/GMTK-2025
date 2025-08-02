@@ -19,7 +19,6 @@ shape = SubResource("RectangleShape2D_ghjc1")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_q3fok")
 autoplay = "default"
-frame_progress = 0.0844424
 
 [node name="JumpOverCheck" parent="." instance=ExtResource("3_uxnbl")]
 position = Vector2(0, -15)
