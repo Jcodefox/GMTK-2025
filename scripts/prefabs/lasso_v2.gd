@@ -40,7 +40,6 @@ func _process(delta: float):
 	cumulative_delta += delta
 	
 	lasso_current_pos += (get_global_mouse_position() - lasso_current_pos) / 12.0
-	print("a: " + str(lasso_current_pos))
 
 	var previous_angle: float = lasso_current_pos.angle_to_point(last_mouse_pos)
 	var current_angle: float = lasso_current_pos.angle_to_point(get_global_mouse_position())
@@ -157,6 +156,7 @@ func pull_lasso() -> void:
 		var avg_pos: Vector2 = sum_pos / killed_enemies
 		Globals.add_score(killed_enemies * 10, Globals.convert_to_visible_pos(avg_pos), get_tree().current_scene)
 		var new_slingball: Node2D = slingball_prefab.instantiate()
+		new_slingball.lasso = self
 		if killed_enemies >= 5:
 			new_slingball.ball_size = 2
 		elif killed_enemies >= 3:
