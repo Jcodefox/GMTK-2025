@@ -97,17 +97,27 @@ func _process(delta: float) -> void:
 		time_to_next_spawn = 0
 		if Globals.time_passed < 0:
 			change_out_mode_to(OUTMODES.PAUSE)
+		elif Globals.time_passed < 5:
+			match randi_range(0,4):
+				0:
+					change_out_mode_to(OUTMODES.SPIKROS)
+				1, 2:
+					change_out_mode_to(OUTMODES.MIXED_SPIKROS_MOTHS)
+				3:
+					change_out_mode_to(OUTMODES.MOTHICKS)
+				4:
+					change_out_mode_to(OUTMODES.MOTH_BOMB)
 		elif Globals.time_passed < 20:
-			match randi_range(0,6):
+			match randi_range(0,5):
 				0:
 					change_out_mode_to(OUTMODES.PAUSE)
-				2:
+				1:
 					change_out_mode_to(OUTMODES.SPIKROS)
-				3, 4:
+				2, 3:
 					change_out_mode_to(OUTMODES.MIXED_SPIKROS_MOTHS)
-				5:
+				4:
 					change_out_mode_to(OUTMODES.MOTHICKS)
-				6:
+				5:
 					change_out_mode_to(OUTMODES.MOTH_BOMB)
 		elif Globals.time_passed < 50:
 			match randi_range(0,9):
