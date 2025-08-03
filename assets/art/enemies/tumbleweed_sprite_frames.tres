@@ -1,0 +1,31 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://lbsbgalvrg13"]
+
+[ext_resource type="Texture2D" uid="uid://cemnktsuxbn3j" path="res://assets/art/enemies/tumbleweed_1.png" id="1_s2phg"]
+[ext_resource type="Texture2D" uid="uid://cpct12jgjwy54" path="res://assets/art/enemies/tumbleweed_2.png" id="2_6xbuf"]
+[ext_resource type="Texture2D" uid="uid://ctrtebkb2vqaw" path="res://assets/art/enemies/tumbleweed_3.png" id="3_wb7tx"]
+[ext_resource type="Texture2D" uid="uid://ckdp46gpbc46p" path="res://assets/art/enemies/tumbleweed_4.png" id="4_iodln"]
+
+[resource]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s2phg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6xbuf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wb7tx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_iodln")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

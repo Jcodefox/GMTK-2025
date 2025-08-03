@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dwe36qbpqlr3w"]
+[gd_scene load_steps=15 format=4 uid="uid://dwe36qbpqlr3w"]
 
 [ext_resource type="PackedScene" uid="uid://crq0ubo4sdfwt" path="res://scenes/prefabs/player.tscn" id="1_rncwu"]
 [ext_resource type="AudioStream" uid="uid://dmg2hnkdqkxfx" path="res://assets/sounds/walk_1.wav" id="2_vgafc"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://ni48dlph7c7c" path="res://scenes/prefabs/enemy_spawner.tscn" id="9_d18oc"]
 [ext_resource type="PackedScene" uid="uid://dp7poqfx4r2a5" path="res://scenes/prefabs/enemies/bubble.tscn" id="11_df8f4"]
 [ext_resource type="Texture2D" uid="uid://uyedc1kk76dd" path="res://assets/art/terrain/background_all_together.png" id="12_iube2"]
+[ext_resource type="PackedScene" uid="uid://djbc7o2rxjwwu" path="res://scenes/prefabs/enemies/tumbleweed.tscn" id="14_81lo5"]
 
 [node name="GameplayTopscene" type="Node2D"]
 
@@ -84,3 +85,8 @@ enemy_holder_node = NodePath("../Enemies")
 position = Vector2(-20, 147)
 spawn_points = Array[Vector2]([Vector2(0, 128), Vector2(0, 56), Vector2(256, 56), Vector2(256, 128)])
 spawn_move_left = Array[bool]([false, false, true, true])
+
+[node name="Tumbleweed" parent="." instance=ExtResource("14_81lo5")]
+position = Vector2(-38, 147)
+spawn_points = Array[Vector2]([Vector2(2, 128), Vector2(254, 128)])
+spawn_move_left = Array[bool]([false, true])
