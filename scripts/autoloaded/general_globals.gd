@@ -11,6 +11,10 @@ var next: int = 2500
 var next_increase_multiplier: int = 2
 var next_base_increase: float = 2500
 
+@onready var original_next: int = next
+@onready var original_next_increase_multiplier: int = next_increase_multiplier
+@onready var original_next_base_increase: float = next_base_increase
+
 var high_score: int = 0
 var longest_time: int = 0
 
@@ -100,6 +104,11 @@ func game_over() -> void:
 func reset_game(reload_scene: bool = true) -> void:
 	if tween != null:
 		tween.stop()
+	
+	next = original_next
+	next_increase_multiplier = original_next_increase_multiplier
+	next_base_increase = original_next_base_increase
+
 	lives = 3
 	time_passed = 0
 	score = 0
