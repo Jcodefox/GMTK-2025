@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dexve2bhbeyob" path="res://scripts/prefabs/enemy/drone.gd" id="1_66nol"]
 [ext_resource type="SpriteFrames" uid="uid://3smv5kx276ei" path="res://assets/art/enemies/drone_sprite_frames.tres" id="2_66nol"]
-[ext_resource type="AudioStream" uid="uid://bqdmapj5bopqp" path="res://assets/sounds/bang.wav" id="2_ps8f2"]
+[ext_resource type="AudioStream" uid="uid://bgdarqbiqj2hj" path="res://assets/sounds/bass_boom.wav" id="2_ps8f2"]
 [ext_resource type="PackedScene" uid="uid://8u4a6kbsptoe" path="res://scenes/prefabs/jump_over_check.tscn" id="3_vv46m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ps8f2"]
