@@ -79,11 +79,7 @@ tile_set = ExtResource("3_u55sw")
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("enemy_holder_node") instance=ExtResource("9_d18oc")]
-position = Vector2(112, 48)
-enemy_holder_node = NodePath("../Enemies")
-
-[node name="EnemySpawner2" parent="." node_paths=PackedStringArray("enemy_holder_node") instance=ExtResource("9_d18oc")]
-position = Vector2(144, 48)
+position = Vector2(128, 48)
 enemy_holder_node = NodePath("../Enemies")
 
 [node name="Bubble" parent="." instance=ExtResource("11_df8f4")]
