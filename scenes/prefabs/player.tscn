@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://crq0ubo4sdfwt"]
+[gd_scene load_steps=8 format=3 uid="uid://crq0ubo4sdfwt"]
 
 [ext_resource type="Script" uid="uid://dgc1ud1pmx2lv" path="res://scripts/prefabs/player_v2.gd" id="1_tou0u"]
 [ext_resource type="SpriteFrames" uid="uid://bf6o51up71rto" path="res://assets/art/player/player_sprite_frames.tres" id="2_tou0u"]
 [ext_resource type="PackedScene" uid="uid://byjfep6lctpr3" path="res://scenes/prefabs/lasso.tscn" id="3_n0leu"]
 [ext_resource type="Texture2D" uid="uid://bd16750dl1tv5" path="res://assets/art/player/hat.png" id="4_8cdkg"]
+[ext_resource type="AudioStream" uid="uid://bdvrcfhnaorrr" path="res://assets/sounds/ow.wav" id="5_56dyf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tou0u"]
 size = Vector2(8, 14)
@@ -14,6 +15,7 @@ size = Vector2(8, 14)
 [node name="Player" type="CharacterBody2D"]
 process_mode = 1
 script = ExtResource("1_tou0u")
+hurt_audio = ExtResource("5_56dyf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -43,3 +45,5 @@ position = Vector2(0, -8)
 texture = ExtResource("4_8cdkg")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+bus = &"SFX"

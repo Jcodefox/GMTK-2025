@@ -1,5 +1,7 @@
 extends Enemy
 
+@export var hurt_audio: AudioStream
+
 @export var spikeball_prefab: PackedScene
 @export var min_time_between_spikeballs: float = 1.0
 @export var max_time_between_spikeballs: float = 5.0
@@ -62,4 +64,5 @@ func slingballed(_ball: Node2D) -> int:
 	if health == 0:
 		die()
 		return 80
+	playsound(hurt_audio)
 	return 0

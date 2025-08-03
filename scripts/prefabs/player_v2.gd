@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+@export var walk_audio: AudioStream
+@export var jump_audio: AudioStream
+@export var hurt_audio: AudioStream
+
 @export var game_over_screen: Node
 
 @export var default_gravity: float = 625
@@ -122,6 +126,8 @@ func _physics_process(delta: float) -> void:
 		else:
 			if horizontal_input_axis != 0:
 				set_animation("run_left" if visual_facing_left else "run_right")
+				playsound(walk_audio)
+				$AudioStreamPlayer.volume_linear = 0.3
 			else:
 				set_animation("idle")
 	
@@ -129,6 +135,7 @@ func _physics_process(delta: float) -> void:
 	if (time_since_on_floor < coyote_time) and (time_since_jump_attempt < jump_buffer_time): # ground jump
 		velocity.y = jump_init_y_velocity
 		time_since_jump_attempt = INF
+		playsound(jump_audio, true)
 	elif (extra_jumps_left > 0) and (time_since_jump_attempt < jump_buffer_time): # air jump
 		var direction: float = horizontal_input_axis
 		if direction < 0:
@@ -150,6 +157,7 @@ func area_hit_body(body: Node2D) -> void:
 	if dead or i_frame_time > 0:
 		return
 	if body.is_in_group("enemy") and body.time_alive > body.time_until_enemy_hurts:
+		playsound(hurt_audio, true)
 		if extra_health > 0:
 			extra_health -= 1
 			i_frame_time = 0.5
@@ -197,6 +205,12 @@ func area_hit_body(body: Node2D) -> void:
 					Globals.game_over()
 			)
 		
+func playsound(audio: AudioStream, force: bool = false) -> void:
+	if $AudioStreamPlayer.playing and $AudioStreamPlayer.stream == audio and not force:
+		return
+	$AudioStreamPlayer.volume_linear = 1.0
+	$AudioStreamPlayer.stream = audio
+	$AudioStreamPlayer.play()
 		
 func area_exited_area(area: Area2D) -> void:
 	if dead:
@@ -206,9 +220,9 @@ func area_exited_area(area: Area2D) -> void:
 	and parent.time_alive > parent.time_until_enemy_hurts 
 	and area.cooldown_until < Globals.time_passed
 	and not is_on_floor()):
-		Globals.add_score(jump_over_combo * 2, Globals.convert_to_visible_pos(area.global_position), $"..");
-		jump_over_combo += 1;
-		area.cooldown_until = Globals.time_passed + 0.5;
+		Globals.add_score(jump_over_combo * 2, Globals.convert_to_visible_pos(area.global_position), $"..")
+		jump_over_combo += 1
+		area.cooldown_until = Globals.time_passed + 0.5
 
 func set_animation(anim: String) -> void:
 	if $AnimatedSprite2D.animation != anim:

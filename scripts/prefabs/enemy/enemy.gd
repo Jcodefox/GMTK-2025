@@ -4,6 +4,7 @@ class_name Enemy
 
 var animated_sprite_ghosts: Array[Node2D] = []
 
+@export var death_audio: AudioStream = null
 @export var default_gravity: float = 625
 @export var time_until_enemy_hurts: float = 1.0
 var frames_alive: int = 0
@@ -43,6 +44,9 @@ func die() -> void:
 	if jump_over_check:
 		jump_over_check.collision_layer = 0
 		jump_over_check.collision_mask = 0
+	if death_audio != null:
+		playsound(death_audio, true)
+		$AudioStreamPlayer.volume_linear = 0.4
 	set_animation("death")
 	await get_tree().create_timer(0.5).timeout
 	queue_free()
@@ -56,3 +60,10 @@ func set_animation(anim: String, speed: float = 1.0) -> void:
 		if sprite.animation != anim:
 			sprite.play(anim)
 		sprite.speed_scale = speed
+		
+func playsound(audio: AudioStream, force: bool = false) -> void:
+	if $AudioStreamPlayer.playing and $AudioStreamPlayer.stream == audio and not force:
+		return
+	$AudioStreamPlayer.volume_linear = 1.0
+	$AudioStreamPlayer.stream = audio
+	$AudioStreamPlayer.play()

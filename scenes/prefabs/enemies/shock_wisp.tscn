@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cfouaodbpe5ht"]
+[gd_scene load_steps=10 format=3 uid="uid://cfouaodbpe5ht"]
 
 [ext_resource type="Script" uid="uid://c10oqykevo565" path="res://scripts/prefabs/enemy/shock_wisp.gd" id="1_70n4a"]
 [ext_resource type="SpriteFrames" uid="uid://cint4xupsaukt" path="res://assets/art/enemies/shockwisp_sprite_frames.tres" id="1_oaxne"]
+[ext_resource type="AudioStream" uid="uid://bdvrcfhnaorrr" path="res://assets/sounds/ow.wav" id="2_6ybbm"]
 [ext_resource type="PackedScene" uid="uid://8u4a6kbsptoe" path="res://scenes/prefabs/jump_over_check.tscn" id="3_5top1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oaxne"]
@@ -23,6 +24,7 @@ size = Vector2(12, 2)
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_70n4a")
+death_audio = ExtResource("2_6ybbm")
 metadata/_custom_type_script = "uid://73xsoj8bfe8b"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -71,3 +73,7 @@ shape = SubResource("RectangleShape2D_cuf6y")
 
 [node name="JumpOverCheck" parent="." instance=ExtResource("3_5top1")]
 position = Vector2(0, -18)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+pitch_scale = 1.5
+bus = &"SFX"

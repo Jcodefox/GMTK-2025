@@ -1,5 +1,8 @@
 extends Line2D
 
+@export var whip_audio: AudioStream
+@export var whoosh_audio: AudioStream
+
 @export var slingball_prefab: PackedScene
 
 @export var min_lasso_capture_size: float = 20.0
@@ -29,6 +32,8 @@ var last_mouse_pos: Vector2 = Vector2.ZERO
 
 var all_mouse_angles: Array[float] = []
 var mouse_angle_time: PackedFloat32Array = []
+
+var grabbed_enemy_since_release: bool = false
 
 func _ready():
 	lines_mesh_instance.mesh = lines_immediate_mesh
@@ -90,6 +95,9 @@ func _process(delta: float):
 	if Input.is_action_pressed("pull_lasso"):
 		all_mouse_angles.clear()
 		mouse_angle_time.clear()
+	if Input.is_action_just_released("pull_lasso") and grabbed_enemy_since_release:
+		playsound(whoosh_audio, true)
+		grabbed_enemy_since_release = false
 	
 	var pos: Vector2 = player_pos - global_position
 	
@@ -177,3 +185,12 @@ func pull_lasso() -> void:
 		new_slingball.global_position = Globals.convert_to_visible_pos(avg_pos)
 		new_slingball.player = get_parent()
 		get_tree().current_scene.add_child(new_slingball)
+		playsound(whip_audio, true)
+		grabbed_enemy_since_release = true
+		
+func playsound(audio: AudioStream, force: bool = false) -> void:
+	if $AudioStreamPlayer.playing and $AudioStreamPlayer.stream == audio and not force:
+		return
+	$AudioStreamPlayer.volume_linear = 1.0
+	$AudioStreamPlayer.stream = audio
+	$AudioStreamPlayer.play()

@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtvjbmxdirq5p"]
+[gd_scene load_steps=7 format=3 uid="uid://dtvjbmxdirq5p"]
 
 [ext_resource type="Script" uid="uid://pj8hbb33oxt2" path="res://scripts/prefabs/enemy/sproing.gd" id="1_l4pwe"]
+[ext_resource type="AudioStream" uid="uid://dmg2hnkdqkxfx" path="res://assets/sounds/walk_1.wav" id="2_0ti0u"]
 [ext_resource type="SpriteFrames" uid="uid://c6qloqv7c2epr" path="res://assets/art/enemies/sproing_sprite_frames.tres" id="2_l4pwe"]
 [ext_resource type="PackedScene" uid="uid://8u4a6kbsptoe" path="res://scenes/prefabs/jump_over_check.tscn" id="3_0ti0u"]
+[ext_resource type="AudioStream" uid="uid://bdvrcfhnaorrr" path="res://assets/sounds/ow.wav" id="4_e2pgh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cfwy6"]
 size = Vector2(10, 14)
@@ -11,6 +13,8 @@ size = Vector2(10, 14)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_l4pwe")
+jump_sound = ExtResource("2_0ti0u")
+death_audio = ExtResource("4_e2pgh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_l4pwe")
@@ -23,3 +27,7 @@ shape = SubResource("RectangleShape2D_cfwy6")
 
 [node name="JumpOverCheck" parent="." instance=ExtResource("3_0ti0u")]
 position = Vector2(0, -14)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+pitch_scale = 1.5
+bus = &"SFX"

@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var pop_audio: AudioStream
 @export var max_bounces: int = -1
 
 var rope_sprite_ghosts: Array[Node2D] = []
@@ -96,6 +97,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func pop() -> void:
+	playsound(pop_audio, true)
+	$AudioStreamPlayer.volume_linear = 0.3
 	set_animation("pop_" + ["small", "medium", "large"][ball_size])
 	dead_ball = true
 	collision_mask = 0
@@ -131,3 +134,10 @@ func set_collision_radius(val: float) -> void:
 	$CollisionShape2D.shape.radius = val * 0.75
 	$Area2D/CollisionShape2D.shape.radius = val * 1.25
 	$WallCheck/CollisionShape2D.shape.radius = val * 0.75
+	
+func playsound(audio: AudioStream, force: bool = false) -> void:
+	if $AudioStreamPlayer.playing and $AudioStreamPlayer.stream == audio and not force:
+		return
+	$AudioStreamPlayer.volume_linear = 1.0
+	$AudioStreamPlayer.stream = audio
+	$AudioStreamPlayer.play()

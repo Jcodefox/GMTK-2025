@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctme53snp1vub"]
+[gd_scene load_steps=6 format=3 uid="uid://ctme53snp1vub"]
 
 [ext_resource type="Script" uid="uid://cmpiude6s7tf4" path="res://scripts/prefabs/enemy/spikeball.gd" id="1_lj4q4"]
+[ext_resource type="AudioStream" uid="uid://bdvrcfhnaorrr" path="res://assets/sounds/ow.wav" id="2_djqcs"]
 [ext_resource type="SpriteFrames" uid="uid://d38s724kfuo3v" path="res://assets/art/enemies/spikeball_sprite_frames.tres" id="2_lj4q4"]
 [ext_resource type="PackedScene" uid="uid://8u4a6kbsptoe" path="res://scenes/prefabs/jump_over_check.tscn" id="3_4ycbe"]
 
@@ -11,6 +12,7 @@ size = Vector2(5, 5)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_lj4q4")
+death_audio = ExtResource("2_djqcs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_lj4q4")
@@ -21,3 +23,7 @@ shape = SubResource("RectangleShape2D_lj4q4")
 
 [node name="JumpOverCheck" parent="." instance=ExtResource("3_4ycbe")]
 position = Vector2(0, -14)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+pitch_scale = 1.5
+bus = &"SFX"

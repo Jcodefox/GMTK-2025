@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://pg1yt1laqyvb"]
+[gd_scene load_steps=8 format=3 uid="uid://pg1yt1laqyvb"]
 
 [ext_resource type="Script" uid="uid://c5thodh448n5l" path="res://scripts/prefabs/slingball.gd" id="1_f5sfi"]
+[ext_resource type="AudioStream" uid="uid://d1fu86yxfpor5" path="res://assets/sounds/pop.wav" id="2_6hikt"]
 [ext_resource type="SpriteFrames" uid="uid://bc3tnonhetua6" path="res://assets/art/slingball/slingball_sprite_frames.tres" id="2_s0lpe"]
 [ext_resource type="SpriteFrames" uid="uid://brgyskvr77ljf" path="res://assets/art/slingball/slingball_rope_sprite_frames.tres" id="3_6hikt"]
 
@@ -17,6 +18,7 @@ radius = 8.0
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_f5sfi")
+pop_audio = ExtResource("2_6hikt")
 
 [node name="AnimatedSlingball" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_s0lpe")
@@ -43,3 +45,6 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallCheck"]
 shape = SubResource("CircleShape2D_dfl16")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"

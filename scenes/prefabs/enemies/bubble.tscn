@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dp7poqfx4r2a5"]
+[gd_scene load_steps=5 format=3 uid="uid://dp7poqfx4r2a5"]
 
 [ext_resource type="Script" uid="uid://ckovktt87ov8h" path="res://scripts/prefabs/enemy/bubble.gd" id="1_ftmly"]
 [ext_resource type="SpriteFrames" uid="uid://bb130kjpvk5ev" path="res://assets/art/enemies/bubble_sprite_frames.tres" id="2_j53f6"]
+[ext_resource type="AudioStream" uid="uid://d1fu86yxfpor5" path="res://assets/sounds/pop.wav" id="3_j53f6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ftmly"]
 radius = 7.0
@@ -19,3 +20,7 @@ frame_progress = 0.0344697
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ftmly")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_j53f6")
+bus = &"SFX"

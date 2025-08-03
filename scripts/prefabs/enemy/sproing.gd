@@ -1,5 +1,7 @@
 extends Enemy
 
+@export var jump_sound: AudioStream
+
 @export var min_start_crouch_time: float = 0.25
 @export var max_start_crouch_time: float = 1.5
 @export var crouch_time_length: float = 1.0
@@ -49,6 +51,8 @@ func _physics_process(delta: float) -> void:
 	if time_on_ground >= chosen_crouch_time + crouch_time_length:
 		set_collision_height(14, 0)
 		set_animation("jump")
+		playsound(jump_sound, true)
+		$AudioStreamPlayer.volume_linear = 0.3
 		velocity.y = -jump_force * randf_range(0.667, 1.5)
 		velocity.x = [jump_x_component, -jump_x_component].pick_random()
 

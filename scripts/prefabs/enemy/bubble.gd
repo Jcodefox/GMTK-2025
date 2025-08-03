@@ -1,5 +1,6 @@
 extends Enemy
 
+@export var pop_audio: AudioStream
 @export var min_time_to_appear: float = 30
 @export var max_time_to_appear: float = 90
 @export var bubble_lifespan: float = 10
@@ -43,6 +44,8 @@ func die(animate: bool = true) -> void:
 	collision_mask = 0
 	collision_layer = 0
 	if animate:
+		playsound(pop_audio, true)
+		$AudioStreamPlayer.volume_linear = 0.3
 		set_animation("death")
 		await get_tree().create_timer(0.5).timeout
 	visible = false
@@ -81,3 +84,10 @@ func appear() -> void:
 		options = [2]
 	ball_type = options.pick_random()
 	set_animation(["boot", "hat", "points"][ball_type])
+	
+func playsound(audio: AudioStream, force: bool = false) -> void:
+	if $AudioStreamPlayer.playing and $AudioStreamPlayer.stream == audio and not force:
+		return
+	$AudioStreamPlayer.volume_linear = 1.0
+	$AudioStreamPlayer.stream = audio
+	$AudioStreamPlayer.play()

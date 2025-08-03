@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://duckh0hi5syg7"]
+[gd_scene load_steps=6 format=3 uid="uid://duckh0hi5syg7"]
 
 [ext_resource type="Script" uid="uid://bguxqq0ikvf02" path="res://scripts/prefabs/enemy/mothick.gd" id="1_ghjc1"]
 [ext_resource type="SpriteFrames" uid="uid://bp40dhuy614b0" path="res://assets/art/enemies/mothic_sprite_frames.tres" id="1_q3fok"]
+[ext_resource type="AudioStream" uid="uid://bdvrcfhnaorrr" path="res://assets/sounds/ow.wav" id="2_uxnbl"]
 [ext_resource type="PackedScene" uid="uid://8u4a6kbsptoe" path="res://scenes/prefabs/jump_over_check.tscn" id="3_uxnbl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ghjc1"]
@@ -12,6 +13,7 @@ z_index = -1
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_ghjc1")
+death_audio = ExtResource("2_uxnbl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ghjc1")
@@ -22,3 +24,7 @@ autoplay = "default"
 
 [node name="JumpOverCheck" parent="." instance=ExtResource("3_uxnbl")]
 position = Vector2(0, -15)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+pitch_scale = 1.5
+bus = &"SFX"

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpu8ngb4kep74"]
+[gd_scene load_steps=6 format=3 uid="uid://bpu8ngb4kep74"]
 
 [ext_resource type="Script" uid="uid://cvwp75aqqrdru" path="res://scripts/prefabs/enemy/nameless.gd" id="1_ikum1"]
 [ext_resource type="SpriteFrames" uid="uid://ckf4smp680jph" path="res://assets/art/enemies/nameless_sprite_frames.tres" id="2_ikum1"]
+[ext_resource type="AudioStream" uid="uid://bdvrcfhnaorrr" path="res://assets/sounds/ow.wav" id="2_owoq1"]
 [ext_resource type="PackedScene" uid="uid://8u4a6kbsptoe" path="res://scenes/prefabs/jump_over_check.tscn" id="3_npmwq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ikum1"]
@@ -11,6 +12,7 @@ size = Vector2(10, 12)
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_ikum1")
+death_audio = ExtResource("2_owoq1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_ikum1")
@@ -23,3 +25,7 @@ shape = SubResource("RectangleShape2D_ikum1")
 
 [node name="JumpOverCheck" parent="." instance=ExtResource("3_npmwq")]
 position = Vector2(0, -15)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+pitch_scale = 1.5
+bus = &"SFX"

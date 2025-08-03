@@ -122,8 +122,8 @@ func save_high_score() -> void:
 	apply_settings()
 	
 func apply_settings() -> void:
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"), sfx)
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), music)
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"), not sfx)
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), not music)
 
 func load_high_score() -> void:
 	var config: ConfigFile = ConfigFile.new()
