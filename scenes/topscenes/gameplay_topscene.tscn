@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://dwe36qbpqlr3w"]
+[gd_scene load_steps=12 format=4 uid="uid://dwe36qbpqlr3w"]
 
 [ext_resource type="PackedScene" uid="uid://crq0ubo4sdfwt" path="res://scenes/prefabs/player.tscn" id="1_rncwu"]
 [ext_resource type="PackedScene" uid="uid://des4eilq7pml8" path="res://scenes/prefabs/hud.tscn" id="3_ks65t"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c7sqyqehhxymg" path="res://scenes/prefabs/game_over_screen.tscn" id="7_d18oc"]
 [ext_resource type="PackedScene" path="res://scenes/prefabs/pause_menu.tscn" id="8_d18oc"]
 [ext_resource type="PackedScene" uid="uid://ni48dlph7c7c" path="res://scenes/prefabs/enemy_spawner.tscn" id="9_d18oc"]
+[ext_resource type="PackedScene" uid="uid://dp7poqfx4r2a5" path="res://scenes/prefabs/enemies/bubble.tscn" id="11_df8f4"]
 
 [node name="GameplayTopscene" type="Node2D"]
 
@@ -38,6 +39,7 @@ texture = ExtResource("5_emnkm")
 script = ExtResource("6_rfs2g")
 
 [node name="CloudB1" type="Sprite2D" parent="BackCanvasLayer"]
+visible = false
 texture = ExtResource("6_ed28v")
 script = ExtResource("6_rfs2g")
 
@@ -74,3 +76,8 @@ enemy_holder_node = NodePath("../Enemies")
 [node name="EnemySpawner2" parent="." node_paths=PackedStringArray("enemy_holder_node") instance=ExtResource("9_d18oc")]
 position = Vector2(144, 48)
 enemy_holder_node = NodePath("../Enemies")
+
+[node name="Bubble" parent="." instance=ExtResource("11_df8f4")]
+position = Vector2(256, 128)
+spawn_points = Array[Vector2]([Vector2(0, 128), Vector2(0, 56), Vector2(256, 56), Vector2(256, 128)])
+spawn_move_left = Array[bool]([false, false, true, true])

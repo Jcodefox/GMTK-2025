@@ -31,6 +31,7 @@ window/stretch/mode="viewport"
 
 enemy="All enemies should have this tag"
 can_be_lassod=""
+bubble=""
 
 [input]
 

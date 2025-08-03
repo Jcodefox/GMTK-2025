@@ -103,7 +103,7 @@ func pop() -> void:
 func hit_object(body: Node2D) -> void:
 	if still_held:
 		return
-	if body.is_in_group("enemy") and body.time_alive > body.time_until_enemy_hurts:
+	if (body.is_in_group("enemy") or body.is_in_group("bubble")) and body.time_alive > body.time_until_enemy_hurts:
 		var score: int = body.slingballed(self)
 		if score > 0:
 			enemies_killed += 1

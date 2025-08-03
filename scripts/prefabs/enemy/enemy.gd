@@ -12,6 +12,8 @@ var time_alive: float = 0
 var dead: bool = false
 
 func _process(_delta: float) -> void:
+	if dead:
+		return
 	if time_alive > time_until_enemy_hurts:
 		visible = true
 	elif Globals.do_things_flicker:

@@ -20,7 +20,9 @@ extends CharacterBody2D
 @export var air_jump_init_x_velocity: float = 60
 @export var terminal_fall_velocity: float = 275
 
-var max_extra_jumps: int = 1
+var extra_health: int = 0
+
+var max_extra_jumps: int = 0
 var extra_jumps_left: int = 0
 var time_since_on_floor: float = INF
 var time_since_jump_attempt: float = INF
