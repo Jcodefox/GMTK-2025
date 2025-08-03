@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c5qnmwph52ww0"
-path="res://.godot/imported/bush_and_cacti_tileset.png-d5776be7e66a5280649817491c611d87.ctex"
+path="res://.godot/imported/bush_and_cacti_tileset.png-854bba4175c88f68866c8725cb796587.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/player/bush_and_cacti_tileset.png"
-dest_files=["res://.godot/imported/bush_and_cacti_tileset.png-d5776be7e66a5280649817491c611d87.ctex"]
+source_file="res://assets/art/terrain/bush_and_cacti_tileset.png"
+dest_files=["res://.godot/imported/bush_and_cacti_tileset.png-854bba4175c88f68866c8725cb796587.ctex"]
 
 [params]
 
