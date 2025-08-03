@@ -36,11 +36,11 @@ func _on_settings_pressed() -> void:
 	click_sound()
 	
 func click_sound() -> void:
-	if timeout <= 0.0:
+	if is_inside_tree():
 		$AudioStreamPlayer.stream = click_sound_fx
 		$AudioStreamPlayer.play()
 
 func hover_sound() -> void:
-	if timeout <= 0.0:
+	if is_inside_tree():
 		$AudioStreamPlayer.stream = hover_sound_fx
 		$AudioStreamPlayer.play()
