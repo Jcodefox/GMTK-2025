@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://bwd23iblylkty"]
+[gd_scene load_steps=13 format=3 uid="uid://bwd23iblylkty"]
 
 [ext_resource type="Script" uid="uid://2jgx211gio68" path="res://scripts/prefabs/title_topscene.gd" id="1_gbtve"]
 [ext_resource type="Theme" uid="uid://bk5ddumg2jusp" path="res://assets/style/text.tres" id="1_yqnk8"]
+[ext_resource type="AudioStream" uid="uid://blveh5u5oiwbk" path="res://assets/sounds/menuclick.wav" id="2_6b4kk"]
 [ext_resource type="Texture2D" uid="uid://uyedc1kk76dd" path="res://assets/art/terrain/background_all_together.png" id="2_ldj3o"]
 [ext_resource type="Texture2D" uid="uid://bwx4duhuh37jy" path="res://assets/art/terrain/cloud 1.png" id="2_w03pc"]
-[ext_resource type="Script" uid="uid://do14ocxpjhslc" path="res://scripts/credits.gd" id="3_68jhd"]
+[ext_resource type="AudioStream" uid="uid://2emp23rwwo52" path="res://assets/sounds/menuhover.wav" id="3_5v4bm"]
+[ext_resource type="Script" path="res://scripts/credits.gd" id="3_68jhd"]
 [ext_resource type="Script" uid="uid://cbsnpfn5tcbcj" path="res://scripts/prefabs/cloud.gd" id="3_ldj3o"]
 [ext_resource type="Texture2D" uid="uid://cwak838kpjbeg" path="res://assets/art/terrain/cloud 2.png" id="4_24bie"]
 [ext_resource type="SpriteFrames" uid="uid://bf6o51up71rto" path="res://assets/art/player/player_sprite_frames.tres" id="4_org65"]
@@ -19,6 +21,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gbtve")
+click_sound_fx = ExtResource("2_6b4kk")
+hover_sound_fx = ExtResource("3_5v4bm")
 
 [node name="Buttons" type="Control" parent="."]
 anchors_preset = 0
@@ -334,4 +338,13 @@ text = "Back
 "
 metadata/_edit_use_anchors_ = true
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -8.0
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="Buttons/Start" to="." method="hover_sound"]
+[connection signal="mouse_entered" from="Buttons/Settings" to="." method="hover_sound"]
+[connection signal="mouse_entered" from="Buttons/Credits" to="." method="hover_sound"]
+[connection signal="mouse_entered" from="Buttons/Quit" to="." method="hover_sound"]
 [connection signal="meta_clicked" from="Credits/CreditsText" to="Credits/CreditsText" method="_on_meta_clicked"]
+[connection signal="mouse_entered" from="Credits/Back" to="." method="hover_sound"]

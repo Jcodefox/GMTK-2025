@@ -97,9 +97,9 @@ func activate_particles() -> void:
 	particle_velocities[0] = Vector2.from_angle(randf_range(0, TAU)) * particle_explosion_force
 	particle_velocities[1] = Vector2.from_angle(randf_range(0, TAU)) * particle_explosion_force
 	particle_velocities[2] = Vector2.from_angle(randf_range(0, TAU)) * particle_explosion_force
-	particle_velocities[0].y -= 50
-	particle_velocities[1].y -= 50
-	particle_velocities[2].y -= 50
+	particle_velocities[0].y -= 200
+	particle_velocities[1].y -= 200
+	particle_velocities[2].y -= 200
 	$ExpressbotFragments1.position = Vector2.ZERO
 	$ExpressbotFragments2.position = Vector2.ZERO
 	$ExpressbotFragments3.position = Vector2.ZERO

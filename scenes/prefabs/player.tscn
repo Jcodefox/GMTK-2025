@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://crq0ubo4sdfwt"]
+[gd_scene load_steps=12 format=3 uid="uid://crq0ubo4sdfwt"]
 
 [ext_resource type="Script" uid="uid://dgc1ud1pmx2lv" path="res://scripts/prefabs/player_v2.gd" id="1_tou0u"]
 [ext_resource type="AudioStream" uid="uid://dmg2hnkdqkxfx" path="res://assets/sounds/walk_1.wav" id="2_6o77n"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bd16750dl1tv5" path="res://assets/art/player/hat.png" id="4_8cdkg"]
 [ext_resource type="AudioStream" uid="uid://b8cklr5bmjbjp" path="res://assets/sounds/jump.wav" id="4_r053x"]
 [ext_resource type="AudioStream" uid="uid://bdvrcfhnaorrr" path="res://assets/sounds/ow.wav" id="5_56dyf"]
+[ext_resource type="AudioStream" uid="uid://dr0i61nqovqd" path="res://assets/sounds/deathjingle2.wav" id="6_jybep"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tou0u"]
 size = Vector2(8, 14)
@@ -22,6 +23,7 @@ walk_audio = Array[AudioStream]([ExtResource("2_6o77n"), ExtResource("3_6v0jn")]
 crouch_walk_audio = Array[AudioStream]([ExtResource("2_6o77n"), ExtResource("3_6v0jn")])
 jump_audio = ExtResource("4_r053x")
 hurt_audio = ExtResource("5_56dyf")
+death_audio = ExtResource("6_jybep")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

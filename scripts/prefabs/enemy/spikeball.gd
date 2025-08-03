@@ -37,6 +37,7 @@ func _physics_process(delta: float) -> void:
 		die()
 
 	velocity.y += default_gravity * delta
+	velocity.x *= pow(0.0002, delta)
 	
 	move_and_slide()
 

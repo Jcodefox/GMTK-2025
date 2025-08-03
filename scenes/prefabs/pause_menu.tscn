@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://sc0fuu7hh41j"]
+[gd_scene load_steps=6 format=3 uid="uid://sc0fuu7hh41j"]
 
 [ext_resource type="Script" uid="uid://c80ilhfngah3s" path="res://scripts/prefabs/pause_menu.gd" id="1_eg4qb"]
 [ext_resource type="Theme" uid="uid://bk5ddumg2jusp" path="res://assets/style/text.tres" id="1_fwcej"]
+[ext_resource type="AudioStream" uid="uid://blveh5u5oiwbk" path="res://assets/sounds/menuclick.wav" id="2_tnw7q"]
+[ext_resource type="AudioStream" uid="uid://2emp23rwwo52" path="res://assets/sounds/menuhover.wav" id="3_0w8p4"]
 [ext_resource type="PackedScene" uid="uid://bfpuy0l00qc7x" path="res://scenes/prefabs/settings.tscn" id="3_03xv0"]
 
 [node name="PauseMenu" type="Control"]
@@ -11,6 +13,8 @@ anchors_preset = 0
 offset_right = 256.0
 offset_bottom = 192.0
 script = ExtResource("1_eg4qb")
+click_sound_fx = ExtResource("2_tnw7q")
+hover_sound_fx = ExtResource("3_0w8p4")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -88,6 +92,13 @@ text = "Return to Title"
 layout_mode = 1
 other_to_make_visible = NodePath("../Buttons")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -8.0
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="Buttons/Unpause" to="." method="hover_sound"]
 [connection signal="pressed" from="Buttons/Unpause" to="." method="_on_unpause_pressed"]
+[connection signal="mouse_entered" from="Buttons/Settings" to="." method="hover_sound"]
 [connection signal="pressed" from="Buttons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="mouse_entered" from="Buttons/Title" to="." method="hover_sound"]
 [connection signal="pressed" from="Buttons/Title" to="." method="_on_title_pressed"]
