@@ -154,16 +154,17 @@ func pull_lasso() -> void:
 	all_mouse_angles.clear()
 	mouse_angle_time.clear()
 	
+	var sum_points: int = 0
 	var sum_pos: Vector2 = Vector2.ZERO
 	for body in $Area2D.get_overlapping_bodies():
 		if body.is_in_group("can_be_lassod") and body.time_alive > body.time_until_enemy_hurts:
 			sum_pos += Globals.convert_to_visible_pos(body.global_position)
 			killed_enemies += 1
-			body.lassod()
+			sum_points += body.lassod()
 	
 	if killed_enemies > 0:
 		var avg_pos: Vector2 = sum_pos / killed_enemies
-		Globals.add_score(killed_enemies * 10, Globals.convert_to_visible_pos(avg_pos), get_tree().current_scene)
+		Globals.add_score(sum_points, Globals.convert_to_visible_pos(avg_pos), get_tree().current_scene)
 		var new_slingball: Node2D = slingball_prefab.instantiate()
 		new_slingball.lasso = self
 		if killed_enemies >= 5:

@@ -48,3 +48,11 @@ func set_collision_height(amount: float, offset: float) -> void:
 
 	for i in range(all_shape_ghosts_original_poses.size()):
 		collision_shape_ghosts[i].position.y = all_shape_ghosts_original_poses[i].y + offset
+		
+func lassod() -> int:
+	queue_free()
+	return 1
+
+func slingballed(_ball: Node2D) -> int:
+	die()
+	return 1
