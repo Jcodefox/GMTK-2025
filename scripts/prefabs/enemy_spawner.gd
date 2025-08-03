@@ -10,6 +10,7 @@ enum ENEMY {
 	NAMELESS = 4,
 	DRONE = 5,
 	EXPRESS_BOT = 6,
+	SPIKEBALL = 7,
 }
 
 var time_until_new_out_mode: float = 2.0
@@ -22,6 +23,9 @@ enum OUTMODES {
 	MOTHICKS,
 	MOTH_BOMB,
 	
+	
+	SPIKEBALL_COUGH,
+	
 	FULL_RANDOM,
 }
 
@@ -29,12 +33,15 @@ var spawn_rate_min_wait: float = 1.0
 var spawn_rate_max_wait: float = 2.0
 var time_to_next_spawn: float = 0.0
 
-func spawn_enemy(enemy_type: int, direction: int = 0) -> void:
+func spawn_enemy(enemy_type: int, direction: int = 0, velocity: Vector2 = Vector2(0,0)) -> void:
+	if direction == 0:
+		direction = [-1, 1].pick_random()
 	var new_enemy: Node2D = enemy_scenes[enemy_type].instantiate()
 	new_enemy.global_position = global_position
-	new_enemy.position.x += (20 * [-1, 1].pick_random()) if direction == 0 else (20 * direction)
+	new_enemy.position.x += 20 * direction
 	new_enemy.z_index = 32
 	enemy_holder_node.add_child(new_enemy)
+	new_enemy.velocity = velocity * direction
 
 func change_out_mode_to(out_mode_input: int) -> void:
 	out_mode = out_mode_input
@@ -51,29 +58,40 @@ func change_out_mode_to(out_mode_input: int) -> void:
 		OUTMODES.MOTH_BOMB:
 			time_until_new_out_mode = randf_range(0.5, 1.0)
 			spawn_rate_min_wait = 0.1; spawn_rate_max_wait = 0.2
+		OUTMODES.SPIKEBALL_COUGH:
+			time_until_new_out_mode = randf_range(0.2, 0.35)
+			spawn_rate_min_wait = 0.05; spawn_rate_max_wait = 0.15
+
 
 func _process(delta: float) -> void:
 	time_until_new_out_mode -= delta
 	time_to_next_spawn -= delta
 	
+	
+	
 	if time_until_new_out_mode <= 0.0:
 		time_to_next_spawn = 0
 		if Globals.time_passed < 0:
 			change_out_mode_to(OUTMODES.PAUSE)
-		elif Globals.time_passed < 30:
-			match randi_range(0,5):
-				0, 1:
-					change_out_mode_to(OUTMODES.PAUSE)
-				2:
-					change_out_mode_to(OUTMODES.SPIKROS)
-				3, 4:
-					change_out_mode_to(OUTMODES.MIXED_SPIKROS_MOTHS)
-				5:
-					change_out_mode_to(OUTMODES.MOTHICKS)
-				6:
-					change_out_mode_to(OUTMODES.MOTH_BOMB)
-		elif Globals.time_passed < 60:
-			change_out_mode_to(OUTMODES.FULL_RANDOM)
+		#elif Globals.time_passed < 30:
+			#match randi_range(0,5):
+				#0, 1:
+					#change_out_mode_to(OUTMODES.PAUSE)
+				#2:
+					#change_out_mode_to(OUTMODES.SPIKROS)
+				#3, 4:
+					#change_out_mode_to(OUTMODES.MIXED_SPIKROS_MOTHS)
+				#5:
+					#change_out_mode_to(OUTMODES.MOTHICKS)
+				#6:
+					#change_out_mode_to(OUTMODES.MOTH_BOMB)
+		#elif Globals.time_passed < 60:
+			#change_out_mode_to(OUTMODES.FULL_RANDOM)
+		
+		if out_mode == OUTMODES.PAUSE:
+			change_out_mode_to(OUTMODES.SPIKEBALL_COUGH)
+		else:
+			change_out_mode_to(OUTMODES.PAUSE)
 	
 	if time_to_next_spawn < 0:
 		time_to_next_spawn = randf_range(spawn_rate_min_wait, spawn_rate_max_wait)
@@ -90,6 +108,8 @@ func _process(delta: float) -> void:
 							spawn_enemy(ENEMY.MOTHICK)
 			OUTMODES.MOTH_BOMB:
 				spawn_enemy(ENEMY.MOTHICK)
+			OUTMODES.SPIKEBALL_COUGH:
+				spawn_enemy(ENEMY.SPIKEBALL, 0, Vector2(randf_range(0, 120), randf_range(0, -45)))
 			OUTMODES.FULL_RANDOM:
 				match randi_range(0, 6):
 					0:
