@@ -97,6 +97,7 @@ func _process(delta: float):
 		mouse_angle_time.clear()
 	if Input.is_action_just_released("pull_lasso") and grabbed_enemy_since_release:
 		playsound(whoosh_audio, true)
+		$AudioStreamPlayer.volume_db = -8
 		grabbed_enemy_since_release = false
 	
 	var pos: Vector2 = player_pos - global_position
@@ -186,6 +187,7 @@ func pull_lasso() -> void:
 		new_slingball.player = get_parent()
 		get_tree().current_scene.add_child(new_slingball)
 		playsound(whip_audio, true)
+		$AudioStreamPlayer.volume_db = -10
 		grabbed_enemy_since_release = true
 		
 func playsound(audio: AudioStream, force: bool = false) -> void:

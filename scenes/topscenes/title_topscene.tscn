@@ -345,6 +345,7 @@ bus = &"SFX"
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_sdt5a")
+volume_db = 4.0
 autoplay = true
 bus = &"Music"
 
