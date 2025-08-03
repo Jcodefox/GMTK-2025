@@ -4,6 +4,10 @@ extends Control
 @export var hover_sound_fx: AudioStream
 
 var held_down = false
+var timeout: float = 0.1
+
+func _process(delta: float) -> void:
+	timeout -= delta
 
 func _input(event: InputEvent) -> void:
 	if Globals.player and Globals.player.dead:
@@ -32,9 +36,11 @@ func _on_settings_pressed() -> void:
 	click_sound()
 	
 func click_sound() -> void:
-	$AudioStreamPlayer.stream = click_sound_fx
-	$AudioStreamPlayer.play()
+	if timeout <= 0.0:
+		$AudioStreamPlayer.stream = click_sound_fx
+		$AudioStreamPlayer.play()
 
 func hover_sound() -> void:
-	$AudioStreamPlayer.stream = hover_sound_fx
-	$AudioStreamPlayer.play()
+	if timeout <= 0.0:
+		$AudioStreamPlayer.stream = hover_sound_fx
+		$AudioStreamPlayer.play()

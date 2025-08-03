@@ -5,6 +5,8 @@ extends Control
 
 @onready var gameplay_topscene : PackedScene = load("res://scenes/topscenes/gameplay_topscene.tscn");
 
+var timeout: float = 0.1
+
 func _ready() -> void:
 	$Buttons/HBoxContainer/High_Score.text = "High Score:\n%012d0" % Globals.high_score;
 	$Buttons/HBoxContainer/BestTime.text = "Best Time:\n%02d:%02d" % [int(Globals.longest_time/60),int(Globals.longest_time)%60]
@@ -13,6 +15,9 @@ func _ready() -> void:
 	$Buttons/Credits.pressed.connect(_on_credits_pressed);
 	$Buttons/Quit.pressed.connect(_on_quit_pressed);
 	$Credits/Back.pressed.connect(_on_back_pressed);
+
+func _process(delta: float) -> void:
+	timeout -= delta
 
 func _on_start_pressed() -> void:
 	get_tree().change_scene_to_packed(gameplay_topscene);
@@ -41,11 +46,13 @@ func _on_quit_pressed() -> void:
 func click_sound() -> void:
 	if not is_inside_tree():
 		return
-	$AudioStreamPlayer.stream = click_sound_fx
-	$AudioStreamPlayer.play()
+	if timeout <= 0.0:
+		$AudioStreamPlayer.stream = click_sound_fx
+		$AudioStreamPlayer.play()
 
 func hover_sound() -> void:
 	if not is_inside_tree():
 		return
-	$AudioStreamPlayer.stream = hover_sound_fx
-	$AudioStreamPlayer.play()
+	if timeout <= 0.0:
+		$AudioStreamPlayer.stream = hover_sound_fx
+		$AudioStreamPlayer.play()

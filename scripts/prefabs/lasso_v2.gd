@@ -107,7 +107,7 @@ func _process(delta: float):
 	for i in range(p + 1):
 		var x: float = cos(float(i)/p * TAU + current_angle)
 		var y: float = sin(float(i)/p * TAU + current_angle)
-		new_points.append(Vector2(x, y) * lasso_loop_size / 2 + lasso_current_pos - global_position)
+		new_points.append(Vector2(x, y) * lasso_loop_size / 2 + Globals.convert_to_visible_pos(lasso_current_pos) - global_position)
 	points = PackedVector2Array(new_points)
 	
 	line_vertex_positions.push_back(get_global_mouse_position())
