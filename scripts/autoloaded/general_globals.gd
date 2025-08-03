@@ -8,8 +8,8 @@ var time_passed: float = 0
 var score: int = 0
 
 var next: int = 2500
-var next_increase_multiplier: int = 1
-var next_base_increase: float = 5000
+var next_increase_multiplier: int = 2
+var next_base_increase: float = 2500
 
 var high_score: int = 0
 var longest_time: int = 0
