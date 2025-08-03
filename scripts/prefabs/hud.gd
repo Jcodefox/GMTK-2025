@@ -1,6 +1,7 @@
 extends Control
 
 func _process(_delta: float) -> void:
-	$HBoxContainer/Lives.text = "\n         x%d" % Globals.lives
-	$HBoxContainer/Score.text = "Score:\n%012d0" % Globals.score
-	$HBoxContainer/Time.text = "Time:\n%02d:%02d" % [int(Globals.time_passed/60),int(Globals.time_passed)%60]
+	$Lives.text = "\n         x%d" % Globals.lives
+	$Score.text = "SCORE\n%011d0" % Globals.score
+	$Next.text = "NEXT\n%011d0" % Globals.next
+	$Time.text = "TIME\n%02d:%02d" % [int(Globals.time_passed/60),int(Globals.time_passed)%60]
