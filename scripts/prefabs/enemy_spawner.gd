@@ -60,7 +60,7 @@ func change_out_mode_to(out_mode_input: int) -> void:
 			spawn_rate_min_wait = 0.0; spawn_rate_max_wait = 1.0
 		OUTMODES.SPIKROS, OUTMODES.MIXED_SPIKROS_MOTHS, OUTMODES.MOTHICKS:
 			time_until_new_out_mode = randf_range(4.0, 6.0)
-			spawn_rate_min_wait = 1.5; spawn_rate_max_wait = 2.5
+			spawn_rate_min_wait = 1.25; spawn_rate_max_wait = 2.0
 		OUTMODES.MOTH_BOMB, OUTMODES.MIXED_7_BURST:
 			time_until_new_out_mode = randf_range(0.5, 1.0)
 			spawn_rate_min_wait = 0.1; spawn_rate_max_wait = 0.2
@@ -95,9 +95,7 @@ func _process(delta: float) -> void:
 	
 	if time_until_new_out_mode <= 0.0:
 		time_to_next_spawn = 0
-		if Globals.time_passed < -0.1:
-			change_out_mode_to(OUTMODES.PAUSE)
-		elif Globals.time_passed < 5:
+		if Globals.time_passed < 4:
 			match randi_range(0,4):
 				0:
 					change_out_mode_to(OUTMODES.SPIKROS)
@@ -238,6 +236,8 @@ func _process(delta: float) -> void:
 				pass
 			OUTMODES.SPIKROS:
 				spawn_enemy(ENEMY.SPIKRO)
+			OUTMODES.SPIKROS:
+				spawn_enemy(ENEMY.MOTHICK)
 			OUTMODES.MIXED_SPIKROS_MOTHS:
 				match randi_range(0, 1):
 					0:
