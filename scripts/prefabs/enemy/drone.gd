@@ -25,6 +25,6 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 			
-func slingballed(_ball: Node2D) -> int:
-	die()
+func slingballed(_ball: Node2D, ith_enemy: int = 0) -> int:
+	die(ith_enemy)
 	return 30

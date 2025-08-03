@@ -13,7 +13,7 @@ var ball_type: int = 0
 
 func _ready() -> void:
 	time_until_enemy_hurts = 0
-	die(false)
+	die(0, false)
 
 func _physics_process(delta: float) -> void:
 	if dead:
@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 			
-func slingballed(_ball: Node2D) -> int:
+func slingballed(_ball: Node2D, ith_enemy: int = 0) -> int:
 	die()
 	if Globals.player:
 		if ball_type == 1:
@@ -39,7 +39,7 @@ func slingballed(_ball: Node2D) -> int:
 			Globals.player.max_extra_jumps = 1
 	return [50, 50, 500][ball_type]
 
-func die(animate: bool = true) -> void:
+func die(enemy_multiplier: int = 0, animate: bool = true) -> void:
 	dead = true
 	collision_mask = 0
 	collision_layer = 0
@@ -53,13 +53,13 @@ func die(animate: bool = true) -> void:
 
 func die_outside_world() -> void:
 	if global_position.x < Globals.world_top_left.x - 9:
-		die(false)
+		die(0, false)
 	if global_position.y < Globals.world_top_left.y - 9:
-		die(false)
+		die(0, false)
 	if global_position.x > Globals.world_bottom_right.x + 9:
-		die(false)
+		die(0, false)
 	if global_position.y > Globals.world_bottom_right.y + 9:
-		die(false)
+		die(0, false)
 
 func appear() -> void:
 	visible = true

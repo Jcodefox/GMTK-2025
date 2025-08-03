@@ -110,7 +110,7 @@ func hit_object(body: Node2D) -> void:
 	if still_held:
 		return
 	if (body.is_in_group("enemy") or body.is_in_group("bubble")) and body.time_alive > body.time_until_enemy_hurts:
-		var score: int = body.slingballed(self)
+		var score: int = body.slingballed(self, enemies_killed)
 		if score > 0:
 			enemies_killed += 1
 			Globals.add_score(enemies_killed * score, Globals.convert_to_visible_pos(global_position), get_tree().current_scene, enemies_in_ball)

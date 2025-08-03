@@ -32,11 +32,11 @@ func lassod() -> int:
 	queue_free()
 	return 10
 
-func slingballed(_ball: Node2D) -> int:
-	die()
+func slingballed(_ball: Node2D, ith_enemy: int = 0) -> int:
+	die(ith_enemy)
 	return 10
 
-func die() -> void:
+func die(enemy_multiplier: int = 0) -> void:
 	dead = true
 	collision_mask = 0
 	collision_layer = 0
@@ -45,6 +45,7 @@ func die() -> void:
 		jump_over_check.collision_layer = 0
 		jump_over_check.collision_mask = 0
 	if death_audio != null:
+		$AudioStreamPlayer.pitch_scale = pow(2, float(enemy_multiplier)/12)
 		playsound(death_audio, true)
 		$AudioStreamPlayer.volume_linear = 0.4
 	set_animation("death")

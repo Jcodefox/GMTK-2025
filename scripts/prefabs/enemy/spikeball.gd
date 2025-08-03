@@ -53,6 +53,6 @@ func lassod() -> int:
 	queue_free()
 	return 1
 
-func slingballed(_ball: Node2D) -> int:
-	die()
+func slingballed(_ball: Node2D, ith_enemy: int = 0) -> int:
+	die(ith_enemy)
 	return 1
