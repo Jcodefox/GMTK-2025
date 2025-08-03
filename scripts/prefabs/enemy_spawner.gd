@@ -236,7 +236,7 @@ func _process(delta: float) -> void:
 				pass
 			OUTMODES.SPIKROS:
 				spawn_enemy(ENEMY.SPIKRO)
-			OUTMODES.SPIKROS:
+			OUTMODES.MOTHICKS:
 				spawn_enemy(ENEMY.MOTHICK)
 			OUTMODES.MIXED_SPIKROS_MOTHS:
 				match randi_range(0, 1):
