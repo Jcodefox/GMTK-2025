@@ -30,7 +30,7 @@ var crouch_walk_audio_index: int = 0
 
 var i_frame_time: float = 0
 
-var extra_health: int = 1
+var extra_health: int = 0
 
 var max_extra_jumps: int = 0
 var extra_jumps_left: int = 0
