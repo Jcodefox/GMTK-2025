@@ -7,6 +7,7 @@ func _ready() -> void:
 	$Buttons/HBoxContainer/BestTime.text = "Best Time:\n%02d:%02d" % [int(Globals.longest_time/60),int(Globals.longest_time)%60]
 	$Buttons/Start.pressed.connect(_on_start_pressed);
 	$Buttons/Credits.pressed.connect(_on_credits_pressed);
+	$Buttons/Quit.pressed.connect(_on_quit_pressed);
 	$Credits/Back.pressed.connect(_on_back_pressed);
 
 func _on_start_pressed() -> void:
@@ -20,3 +21,6 @@ func _on_credits_pressed() -> void:
 func _on_back_pressed() -> void:
 	$Buttons.show();
 	$Credits.hide();
+
+func _on_quit_pressed() -> void:
+	get_tree().quit()
