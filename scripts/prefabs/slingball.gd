@@ -56,10 +56,10 @@ func _physics_process(delta: float) -> void:
 	if dead_ball:
 		return
 	if Input.is_action_just_released("pull_lasso"):
-		still_held = false
-		if player != null:
+		if player != null and still_held:
 			var pull_direction: Vector2 = Globals.convert_to_visible_pos(global_position).direction_to(Globals.convert_to_visible_pos(player.global_position))
 			intended_velocity = pull_direction * ((Globals.convert_to_visible_pos(global_position).distance_to(Globals.convert_to_visible_pos(player.global_position)) * 1.0) + 60)
+		still_held = false
 			
 	$SlingballRope.visible = still_held
 	for sprite in rope_sprite_ghosts:
