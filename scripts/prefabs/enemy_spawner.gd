@@ -58,7 +58,9 @@ func _process(delta: float) -> void:
 	
 	if time_until_new_out_mode <= 0.0:
 		time_to_next_spawn = 0
-		if (Globals.time_passed > 0) and (Globals.time_passed < 20):
+		if Globals.time_passed < 0:
+			change_out_mode_to(OUTMODES.PAUSE)
+		elif Globals.time_passed < 30:
 			match randi_range(0,5):
 				0, 1:
 					change_out_mode_to(OUTMODES.PAUSE)
@@ -70,7 +72,7 @@ func _process(delta: float) -> void:
 					change_out_mode_to(OUTMODES.MOTHICKS)
 				6:
 					change_out_mode_to(OUTMODES.MOTH_BOMB)
-		else:
+		elif Globals.time_passed < 60:
 			change_out_mode_to(OUTMODES.FULL_RANDOM)
 	
 	if time_to_next_spawn < 0:
