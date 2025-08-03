@@ -49,7 +49,7 @@ func change_out_mode_to(out_mode_input: int) -> void:
 			time_until_new_out_mode = randf_range(4.0, 6.0)
 			spawn_rate_min_wait = 1.5; spawn_rate_max_wait = 2.5
 		OUTMODES.MOTH_BOMB:
-			time_until_new_out_mode = randf_range(0.5, 0.75)
+			time_until_new_out_mode = randf_range(0.5, 1.0)
 			spawn_rate_min_wait = 0.1; spawn_rate_max_wait = 0.2
 
 func _process(delta: float) -> void:
@@ -58,7 +58,7 @@ func _process(delta: float) -> void:
 	
 	if time_until_new_out_mode <= 0.0:
 		time_to_next_spawn = 0
-		if (Globals.time_passed > 0) and (Globals.time_passed < 999):
+		if (Globals.time_passed > 0) and (Globals.time_passed < 20):
 			match randi_range(0,5):
 				0, 1:
 					change_out_mode_to(OUTMODES.PAUSE)

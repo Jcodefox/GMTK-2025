@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://ni48dlph7c7c" path="res://scenes/prefabs/enemy_spawner.tscn" id="9_d18oc"]
 [ext_resource type="PackedScene" uid="uid://dp7poqfx4r2a5" path="res://scenes/prefabs/enemies/bubble.tscn" id="11_df8f4"]
 [ext_resource type="Texture2D" uid="uid://uyedc1kk76dd" path="res://assets/art/terrain/background_all_together.png" id="12_iube2"]
-[ext_resource type="PackedScene" uid="uid://djbc7o2rxjwwu" path="res://scenes/prefabs/enemies/tumbleweed.tscn" id="14_81lo5"]
+[ext_resource type="PackedScene" path="res://scenes/prefabs/enemies/tumbleweed.tscn" id="14_81lo5"]
 
 [node name="GameplayTopscene" type="Node2D"]
 
@@ -78,7 +78,6 @@ tile_set = ExtResource("3_u55sw")
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("enemy_holder_node") instance=ExtResource("9_d18oc")]
-z_index = 32
 position = Vector2(128, 48)
 enemy_holder_node = NodePath("../Enemies")
 
