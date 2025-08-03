@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://uyedc1kk76dd" path="res://assets/art/terrain/background_all_together.png" id="2_ldj3o"]
 [ext_resource type="Texture2D" uid="uid://bwx4duhuh37jy" path="res://assets/art/terrain/cloud 1.png" id="2_w03pc"]
 [ext_resource type="AudioStream" uid="uid://2emp23rwwo52" path="res://assets/sounds/menuhover.wav" id="3_5v4bm"]
-[ext_resource type="Script" path="res://scripts/credits.gd" id="3_68jhd"]
+[ext_resource type="Script" uid="uid://do14ocxpjhslc" path="res://scripts/credits.gd" id="3_68jhd"]
 [ext_resource type="Script" uid="uid://cbsnpfn5tcbcj" path="res://scripts/prefabs/cloud.gd" id="3_ldj3o"]
 [ext_resource type="Texture2D" uid="uid://cwak838kpjbeg" path="res://assets/art/terrain/cloud 2.png" id="4_24bie"]
 [ext_resource type="SpriteFrames" uid="uid://bf6o51up71rto" path="res://assets/art/player/player_sprite_frames.tres" id="4_org65"]
@@ -201,11 +201,11 @@ text = "[Team TBD: To Be Developed]:
 [url]https://pixerhp.carrd.co/[/url][/cell][cell]Director, Artist (most art assets), Programmer[/cell]
 [cell]Stevemc32 (\"Steve\")
 [url]https://stevemc32.bandcamp.com/[/url][/cell][cell]Programmer[/cell]
-[cell]CoralQuail (\"Coral\") (aka ClumsyClix) [url]https://clumsyclix-commissions.carrd.co/[/url][/cell][cell]Artist (tileset, background, ui icons, initial player design, etc.)[/cell]
+[cell]CoralQuail (\"Coral\") (aka ClumsyClix) [url]https://clumsyclix-commissions.carrd.co/[/url][/cell][cell]Artist (tileset, background, ui icons, initial player design, etc.), Music Composer (titlescreen song)[/cell]
 [cell]Limenator (\"Lime\")
 [url]https://limenator.itch.io/[/url][/cell][cell]Sound Effects Composer[/cell]
-[cell]Silvie[/cell][cell]Music Composer[/cell]
-[cell]Ninjason[/cell][cell]Light Development Feedback[/cell]
+[cell]Silvie[/cell][cell]Music Composer (unused music)[/cell]
+[cell]Ninjason[/cell][cell]Development Feedback[/cell]
 [cell]Phoe [url]https://open.spotify.com/artist/4ieSVoAHj57z95vEq6qzOY[/url][/cell][cell]Team Member[/cell]
 [/table]
 
