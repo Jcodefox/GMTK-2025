@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://bk5ddumg2jusp" path="res://assets/style/text.tres" id="1_yqnk8"]
 [ext_resource type="Texture2D" uid="uid://uyedc1kk76dd" path="res://assets/art/terrain/background_all_together.png" id="2_ldj3o"]
 [ext_resource type="Texture2D" uid="uid://bwx4duhuh37jy" path="res://assets/art/terrain/cloud 1.png" id="2_w03pc"]
-[ext_resource type="Script" path="res://scripts/credits.gd" id="3_68jhd"]
+[ext_resource type="Script" uid="uid://do14ocxpjhslc" path="res://scripts/credits.gd" id="3_68jhd"]
 [ext_resource type="Script" uid="uid://cbsnpfn5tcbcj" path="res://scripts/prefabs/cloud.gd" id="3_ldj3o"]
 [ext_resource type="Texture2D" uid="uid://cwak838kpjbeg" path="res://assets/art/terrain/cloud 2.png" id="4_24bie"]
 [ext_resource type="SpriteFrames" uid="uid://bf6o51up71rto" path="res://assets/art/player/player_sprite_frames.tres" id="4_org65"]
@@ -67,8 +67,7 @@ offset_bottom = -7.00006
 grow_horizontal = 2
 theme = ExtResource("1_yqnk8")
 bbcode_enabled = true
-text = "[Insert title of game]
-(seriously, we haven't got a name yet?)"
+text = "[font_size=24]SLINGWEST[/font_size]"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
