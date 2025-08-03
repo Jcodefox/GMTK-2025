@@ -1,8 +1,12 @@
 extends CharacterBody2D
 
-@export var walk_audio: AudioStream
+@export var walk_audio: Array[AudioStream]
+@export var crouch_walk_audio: Array[AudioStream]
 @export var jump_audio: AudioStream
 @export var hurt_audio: AudioStream
+
+var walk_audio_index: int = 0
+var crouch_walk_audio_index: int = 0
 
 @export var game_over_screen: Node
 
@@ -45,9 +49,13 @@ var visual_facing_left: bool = false
 # Used to prevent player input when playing death animation
 var dead: bool = false
 var dead_hat_velocity: Vector2 = Vector2.ZERO
+var hat_two_velocity: Vector2 = Vector2.ZERO
+var hat_two_position: Vector2 = Vector2.ZERO
+var hat_two_offset: Vector2 = Vector2.ZERO
 var frames_alive: int = 0
 
 func _ready() -> void:
+	hat_two_offset = $Hat2.position
 	Globals.player = self
 	animated_sprite_ghosts = Globals.make_loop_ghosts_of($AnimatedSprite2D)
 	collision_shape_ghosts = Globals.make_loop_ghosts_of($CollisionShape2D)
@@ -59,7 +67,16 @@ func _ready() -> void:
 	$HurtBox.body_entered.connect(area_hit_body)
 	$HurtBox.area_exited.connect(area_exited_area)
 	
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	if $Hat2.visible and extra_health == 0:
+		hat_two_position += hat_two_velocity * delta
+		hat_two_velocity.y += default_gravity * delta
+		$Hat2.global_position = hat_two_position
+		if $Hat2.global_position.y > 300:
+			$Hat2.visible = false
+			hat_two_velocity = Vector2.ZERO
+	else:
+		$Hat2.global_position = Globals.convert_to_visible_pos(global_position) + hat_two_offset
 	if dead:
 		return
 	if i_frame_time == 0:
@@ -77,6 +94,8 @@ func _physics_process(delta: float) -> void:
 		$Hat.position += dead_hat_velocity * delta
 		move_and_slide()
 		return 
+	
+	$Hat2.visible = $Hat2.visible or extra_health > 0
 	
 	i_frame_time -= delta
 	i_frame_time = max(i_frame_time, 0)
@@ -116,6 +135,12 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("move_down"):
 		if horizontal_input_axis != 0:
 			set_animation("duckwalk")
+			if not $AudioStreamPlayer.playing:
+				playsound(crouch_walk_audio[crouch_walk_audio_index])
+				crouch_walk_audio_index += 1
+				crouch_walk_audio_index = crouch_walk_audio_index % crouch_walk_audio.size()
+				$AudioStreamPlayer.volume_linear = 0.3
+				$AudioStreamPlayer.pitch_scale = 0.75
 		else:
 			set_animation("duckhide")
 	else:
@@ -126,8 +151,11 @@ func _physics_process(delta: float) -> void:
 		else:
 			if horizontal_input_axis != 0:
 				set_animation("run_left" if visual_facing_left else "run_right")
-				playsound(walk_audio)
-				$AudioStreamPlayer.volume_linear = 0.3
+				if not $AudioStreamPlayer.playing:
+					playsound(walk_audio[walk_audio_index])
+					walk_audio_index += 1
+					walk_audio_index = walk_audio_index % walk_audio.size()
+					$AudioStreamPlayer.volume_linear = 0.3
 			else:
 				set_animation("idle")
 	
@@ -161,6 +189,8 @@ func area_hit_body(body: Node2D) -> void:
 		if extra_health > 0:
 			extra_health -= 1
 			i_frame_time = 0.5
+			hat_two_position = Globals.convert_to_visible_pos(global_position) + hat_two_offset
+			hat_two_velocity = Vector2(randf_range(-15.0, 15.0), -5)
 			return
 		dead = true
 		Globals.lives -= 1
@@ -209,6 +239,7 @@ func playsound(audio: AudioStream, force: bool = false) -> void:
 	if $AudioStreamPlayer.playing and $AudioStreamPlayer.stream == audio and not force:
 		return
 	$AudioStreamPlayer.volume_linear = 1.0
+	$AudioStreamPlayer.pitch_scale = 1.0
 	$AudioStreamPlayer.stream = audio
 	$AudioStreamPlayer.play()
 		
