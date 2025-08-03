@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://g7vgngxiauf4"]
+[gd_scene load_steps=11 format=3 uid="uid://g7vgngxiauf4"]
 
 [ext_resource type="Script" uid="uid://cnl7rw5i0lhvt" path="res://scripts/prefabs/enemy/express_bot.gd" id="1_rbgxc"]
 [ext_resource type="PackedScene" uid="uid://ctme53snp1vub" path="res://scenes/prefabs/enemies/spikeball.tscn" id="2_8ofcn"]
@@ -6,6 +6,9 @@
 [ext_resource type="SpriteFrames" uid="uid://ce08h05lnysry" path="res://assets/art/enemies/express_bot_sprite_frames.tres" id="2_rbgxc"]
 [ext_resource type="AudioStream" uid="uid://bgdarqbiqj2hj" path="res://assets/sounds/bass_boom.wav" id="3_hogwp"]
 [ext_resource type="PackedScene" uid="uid://8u4a6kbsptoe" path="res://scenes/prefabs/jump_over_check.tscn" id="3_q8r1j"]
+[ext_resource type="Texture2D" uid="uid://b1vdlkp55x6j6" path="res://assets/art/enemies/expressbot_fragments_1.png" id="7_x7k2t"]
+[ext_resource type="Texture2D" uid="uid://brnvtodn7wvmt" path="res://assets/art/enemies/expressbot_fragments_2.png" id="8_buxi3"]
+[ext_resource type="Texture2D" uid="uid://dw37gp70cryht" path="res://assets/art/enemies/expressbot_fragments_3.png" id="9_hbn0g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbgxc"]
 size = Vector2(22, 20)
@@ -31,3 +34,12 @@ position = Vector2(0, -15)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"SFX"
+
+[node name="ExpressbotFragments1" type="Sprite2D" parent="."]
+texture = ExtResource("7_x7k2t")
+
+[node name="ExpressbotFragments2" type="Sprite2D" parent="."]
+texture = ExtResource("8_buxi3")
+
+[node name="ExpressbotFragments3" type="Sprite2D" parent="."]
+texture = ExtResource("9_hbn0g")
