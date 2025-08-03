@@ -26,7 +26,7 @@ extends CharacterBody2D
 
 var i_frame_time: float = 0
 
-var extra_health: int = 1
+var extra_health: int = 0
 
 var max_extra_jumps: int = 0
 var extra_jumps_left: int = 0
@@ -68,6 +68,9 @@ func _process(delta: float) -> void:
 		hat_two_position += hat_two_velocity * delta
 		hat_two_velocity.y += default_gravity * delta
 		$Hat2.global_position = hat_two_position
+		if $Hat2.global_position.y > 300:
+			$Hat2.visible = false
+			hat_two_velocity = Vector2.ZERO
 	else:
 		$Hat2.global_position = Globals.convert_to_visible_pos(global_position) + hat_two_offset
 	if dead:
