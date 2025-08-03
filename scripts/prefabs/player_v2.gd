@@ -30,7 +30,7 @@ var crouch_walk_audio_index: int = 0
 
 var i_frame_time: float = 0
 
-var extra_health: int = 0
+var extra_health: int = 1
 
 var max_extra_jumps: int = 0
 var extra_jumps_left: int = 0
@@ -76,7 +76,10 @@ func _process(delta: float) -> void:
 			$Hat2.visible = false
 			hat_two_velocity = Vector2.ZERO
 	else:
-		$Hat2.global_position = Globals.convert_to_visible_pos(global_position) + hat_two_offset
+		if Input.is_action_pressed("move_down"):
+			$Hat2.global_position = Globals.convert_to_visible_pos(global_position) + hat_two_offset + Vector2(0, 5)
+		else:
+			$Hat2.global_position = Globals.convert_to_visible_pos(global_position) + hat_two_offset
 	if dead:
 		return
 	if i_frame_time == 0:
