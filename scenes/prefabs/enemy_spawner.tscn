@@ -10,5 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://g7vgngxiauf4" path="res://scenes/prefabs/enemies/express_bot.tscn" id="8_or6xq"]
 
 [node name="EnemySpawner" type="Node2D"]
+z_index = 32
 script = ExtResource("1_2fv7t")
 enemy_scenes = Array[PackedScene]([ExtResource("3_pg5fs"), ExtResource("2_pg5fs"), ExtResource("4_vxkwm"), ExtResource("6_4m3yh"), ExtResource("5_khqpp"), ExtResource("8_7esv8"), ExtResource("8_or6xq")])
