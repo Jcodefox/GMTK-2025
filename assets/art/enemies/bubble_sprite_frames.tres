@@ -1,13 +1,13 @@
 [gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://bb130kjpvk5ev"]
 
 [ext_resource type="Texture2D" uid="uid://cm011jcutatiw" path="res://assets/art/enemies/bubble_boot_1.png" id="1_61ap6"]
-[ext_resource type="Texture2D" uid="uid://dhm8irt3v75fh" path="res://assets/art/player/cowboy_idle_1.png" id="1_exdcx"]
 [ext_resource type="Texture2D" uid="uid://bl0i7xyrud50r" path="res://assets/art/enemies/bubble_hat_1.png" id="1_i0jf0"]
 [ext_resource type="Texture2D" uid="uid://c1dfa6nxsthdf" path="res://assets/art/enemies/bubble_boot_2.png" id="2_5i5y0"]
 [ext_resource type="Texture2D" uid="uid://dyxk52wi3u242" path="res://assets/art/enemies/bubble_hat_2.png" id="2_60db2"]
-[ext_resource type="Texture2D" uid="uid://dca3iao3t7vju" path="res://assets/art/player/cowboy_idle_2.png" id="2_qtvm3"]
 [ext_resource type="Texture2D" uid="uid://dxuhy1moq141p" path="res://assets/art/slingball/slingball_small_pop_1.png" id="3_4n7w6"]
 [ext_resource type="Texture2D" uid="uid://b81rrxoycuwfw" path="res://assets/art/slingball/slingball_small_pop_2.png" id="4_1ljjm"]
+[ext_resource type="Texture2D" uid="uid://cgo27bybc3ng1" path="res://assets/art/enemies/bubble_points_1.png" id="7_4n7w6"]
+[ext_resource type="Texture2D" uid="uid://rciiqpxmimux" path="res://assets/art/enemies/bubble_points_2.png" id="8_1ljjm"]
 
 [resource]
 animations = [{
@@ -46,10 +46,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_exdcx")
+"texture": ExtResource("7_4n7w6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_qtvm3")
+"texture": ExtResource("8_1ljjm")
 }],
 "loop": true,
 "name": &"points",
