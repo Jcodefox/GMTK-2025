@@ -13,7 +13,7 @@ enum ENEMY {
 	SPIKEBALL = 7,
 }
 
-var time_until_new_out_mode: float = 2.0
+var time_until_new_out_mode: float = 1.0
 var out_mode: int = OUTMODES.PAUSE
 enum OUTMODES {
 	PAUSE,
@@ -95,7 +95,7 @@ func _process(delta: float) -> void:
 	
 	if time_until_new_out_mode <= 0.0:
 		time_to_next_spawn = 0
-		if Globals.time_passed < 0:
+		if Globals.time_passed < -0.1:
 			change_out_mode_to(OUTMODES.PAUSE)
 		elif Globals.time_passed < 5:
 			match randi_range(0,4):
