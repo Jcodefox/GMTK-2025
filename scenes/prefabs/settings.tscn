@@ -53,8 +53,16 @@ theme = ExtResource("1_4npkp")
 text = "Back"
 metadata/_edit_use_anchors_ = true
 
+[node name="Reset" type="Button" parent="VBoxContainer"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+theme = ExtResource("1_4npkp")
+text = "Reset High Scores and Best Times"
+metadata/_edit_use_anchors_ = true
+
 [connection signal="mouse_entered" from="VBoxContainer/Music" to="." method="hover_sound"]
 [connection signal="mouse_entered" from="VBoxContainer/SFX" to="." method="hover_sound"]
 [connection signal="mouse_entered" from="VBoxContainer/FlickeringDisable" to="." method="hover_sound"]
 [connection signal="mouse_entered" from="VBoxContainer/KeybindGrowLasso" to="." method="hover_sound"]
 [connection signal="mouse_entered" from="VBoxContainer/Back" to="." method="hover_sound"]
+[connection signal="mouse_entered" from="VBoxContainer/Reset" to="." method="hover_sound"]

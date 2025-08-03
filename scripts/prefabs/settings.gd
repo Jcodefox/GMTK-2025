@@ -8,6 +8,7 @@ var timeout: float = 0.4
 
 func _ready() -> void:
 	$VBoxContainer/Back.pressed.connect(_back)
+	$VBoxContainer/Reset.pressed.connect(_reset)
 	
 	$VBoxContainer/SFX.toggled.connect(_toggle_sfx)
 	$VBoxContainer/Music.toggled.connect(_toggle_music)
@@ -26,6 +27,13 @@ func _back() -> void:
 	self.visible = false
 	if other_to_make_visible != null:
 		other_to_make_visible.visible = true
+	if parent_control:
+		parent_control.click_sound()
+		
+func _reset() -> void:
+	Globals.high_score = 0
+	Globals.longest_time = 0
+	Globals.save_high_score()
 	if parent_control:
 		parent_control.click_sound()
 		
