@@ -28,6 +28,8 @@ var lifespan: float = 2
 var lasso: Node2D = null
 var dead_ball: bool = false
 
+var last_pos: Vector2 = Vector2.ZERO
+
 func _ready() -> void:
 	slingball_held_pos = global_position
 	old_collision_mask = collision_mask
@@ -36,6 +38,7 @@ func _ready() -> void:
 	rope_sprite_ghosts = Globals.make_loop_ghosts_of($SlingballRope)
 	collision_shape_ghosts = Globals.make_loop_ghosts_of($CollisionShape2D)
 	area_shape_ghosts = Globals.make_loop_ghosts_of($Area2D/CollisionShape2D)
+	last_pos = global_position
 
 	lifespan = [1.5, 2.25, 3.0][ball_size]
 	set_animation(["small", "medium", "large"][ball_size])
@@ -62,13 +65,18 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_released("pull_lasso"):
 		if player != null and still_held:
 			var pull_direction: Vector2 = Globals.convert_to_visible_pos(global_position).direction_to(Globals.convert_to_visible_pos(player.global_position))
-			intended_velocity = pull_direction * ((Globals.convert_to_visible_pos(global_position).distance_to(Globals.convert_to_visible_pos(player.global_position)) * 1.0) + 60)
+			if delta > 0:
+				intended_velocity = (global_position - last_pos) / delta
+				var speed: float = min(intended_velocity.length(), 50)
+				intended_velocity = intended_velocity.normalized() * speed
+			intended_velocity += pull_direction * ((Globals.convert_to_visible_pos(global_position).distance_to(Globals.convert_to_visible_pos(player.global_position)) * 1.0) + 60)
 		still_held = false
 			
 	$SlingballRope.visible = still_held
 	for sprite in rope_sprite_ghosts:
 		sprite.visible = still_held
 			
+	last_pos = global_position
 	if still_held:
 		$Area2D.collision_mask = 0
 		if lasso != null:
