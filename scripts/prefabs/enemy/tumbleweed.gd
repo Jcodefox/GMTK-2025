@@ -1,8 +1,8 @@
 extends Enemy
 
 @export var pop_audio: AudioStream
-@export var min_time_to_appear: float = 90
-@export var max_time_to_appear: float = 270
+@export var min_time_to_appear: float = 60
+@export var max_time_to_appear: float = 120
 @export var bounce_force_min: float = 200
 @export var bounce_force_max: float = 250
 @export var speed: float = 32
