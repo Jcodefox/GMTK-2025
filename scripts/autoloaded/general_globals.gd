@@ -7,6 +7,10 @@ var lives: int = 3
 var time_passed: float = 0
 var score: int = 0
 
+var next: int = 1000
+var next_count: int = 2
+var next_base_increase: float = 500
+
 var high_score: int = 0
 var longest_time: int = 0
 
@@ -23,6 +27,11 @@ func _ready() -> void:
 	load_high_score()
 
 func _process(delta):
+	if score >= next:
+		lives += 1
+		next_count += 1
+		next = next + (next_count * next_base_increase)
+	
 	if not get_tree().paused:
 		time_passed += delta
 	if Input.is_action_just_pressed("fullscreen_toggle"):
