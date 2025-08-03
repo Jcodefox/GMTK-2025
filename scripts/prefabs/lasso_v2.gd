@@ -187,7 +187,7 @@ func pull_lasso() -> void:
 		new_slingball.player = get_parent()
 		get_tree().current_scene.add_child(new_slingball)
 		playsound(whip_audio, true)
-		$AudioStreamPlayer.volume_db = -10
+		$AudioStreamPlayer.volume_db = -6
 		grabbed_enemy_since_release = true
 		
 func playsound(audio: AudioStream, force: bool = false) -> void:
