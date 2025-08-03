@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlwhc0n2uevq8"]
+[gd_scene load_steps=4 format=3 uid="uid://sc0fuu7hh41j"]
 
 [ext_resource type="Script" uid="uid://c80ilhfngah3s" path="res://scripts/prefabs/pause_menu.gd" id="1_eg4qb"]
 [ext_resource type="Theme" uid="uid://bk5ddumg2jusp" path="res://assets/style/text.tres" id="1_fwcej"]
+[ext_resource type="PackedScene" uid="uid://bfpuy0l00qc7x" path="res://scenes/prefabs/settings.tscn" id="3_03xv0"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -20,7 +21,12 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.235294, 0.235294, 0.235294, 0.501961)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="Buttons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Buttons"]
 layout_mode = 0
 offset_top = 47.0
 offset_right = 256.0
@@ -30,44 +36,58 @@ text = "Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Unpause" type="Button" parent="."]
+[node name="Unpause" type="Button" parent="Buttons"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.427734
 anchor_top = 0.354167
 anchor_right = 0.572266
 anchor_bottom = 0.442708
+offset_left = 92.3905
+offset_top = 53.8333
+offset_right = 123.609
+offset_bottom = 67.2917
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_fwcej")
 text = "Unpause"
-metadata/_edit_use_anchors_ = true
 
-[node name="Settings" type="Button" parent="."]
+[node name="Settings" type="Button" parent="Buttons"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.427734
 anchor_top = 0.455729
 anchor_right = 0.572266
 anchor_bottom = 0.544271
+offset_left = 92.3905
+offset_top = 69.2708
+offset_right = 123.609
+offset_bottom = 82.7292
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_fwcej")
 text = "Settings"
-metadata/_edit_use_anchors_ = true
 
-[node name="Title" type="Button" parent="."]
+[node name="Title" type="Button" parent="Buttons"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.390625
 anchor_top = 0.557292
 anchor_right = 0.613281
 anchor_bottom = 0.645833
+offset_left = 84.375
+offset_top = 84.7083
+offset_right = 132.469
+offset_bottom = 98.1667
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_fwcej")
 text = "Return to Title"
-metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="Unpause" to="." method="_on_unpause_pressed"]
-[connection signal="pressed" from="Title" to="." method="_on_title_pressed"]
+[node name="Settings" parent="." node_paths=PackedStringArray("other_to_make_visible") instance=ExtResource("3_03xv0")]
+layout_mode = 1
+other_to_make_visible = NodePath("../Buttons")
+
+[connection signal="pressed" from="Buttons/Unpause" to="." method="_on_unpause_pressed"]
+[connection signal="pressed" from="Buttons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Buttons/Title" to="." method="_on_title_pressed"]

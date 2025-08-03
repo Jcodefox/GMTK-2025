@@ -18,3 +18,7 @@ func _on_unpause_pressed() -> void:
 func _on_title_pressed() -> void:
 	get_tree().paused = false;
 	get_tree().change_scene_to_packed(Globals.title_topscene);
+
+func _on_settings_pressed() -> void:
+	$Settings.show()
+	$Buttons.hide()

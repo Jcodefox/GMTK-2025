@@ -20,7 +20,10 @@ var longest_time: int = 0
 
 var player: Node2D = null
 
+var music: bool = true
+var sfx: bool = true
 var do_things_flicker: bool = true
+var lasso_keybind: bool = false
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
