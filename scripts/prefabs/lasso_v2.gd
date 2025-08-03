@@ -55,7 +55,8 @@ func _process(delta: float):
 	if not Input.is_action_pressed("pull_lasso"):
 		if Globals.lasso_keybind:
 			amnt = 0.1 if Input.is_action_pressed("lasso_bind") else 0.0
-		amnt = max(amnt, angle_diff * angle_multiplier)
+		if abs(angle_diff * angle_multiplier) > amnt:
+			amnt = angle_diff * angle_multiplier
 	all_mouse_angles.append(amnt)
 	mouse_angle_time.append(cumulative_delta)
 	
