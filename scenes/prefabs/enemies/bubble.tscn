@@ -15,7 +15,7 @@ script = ExtResource("1_ftmly")
 sprite_frames = ExtResource("2_j53f6")
 animation = &"points"
 autoplay = "boot"
-frame_progress = 0.0751828
+frame_progress = 0.0344697
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ftmly")
