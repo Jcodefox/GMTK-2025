@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://des4eilq7pml8"]
+[gd_scene load_steps=6 format=3 uid="uid://des4eilq7pml8"]
 
 [ext_resource type="Theme" uid="uid://bk5ddumg2jusp" path="res://assets/style/text.tres" id="1_eo3kg"]
 [ext_resource type="Script" uid="uid://o4f3t1b6uml7" path="res://scripts/prefabs/hud.gd" id="1_ijk2n"]
+[ext_resource type="Texture2D" uid="uid://bqlcnggnpqoem" path="res://assets/art/ui_hud/sheriff_star.png" id="3_brmql"]
+[ext_resource type="Texture2D" uid="uid://2aw0o4hj63d0" path="res://assets/art/ui_hud/ui_hat.png" id="3_jxby8"]
+[ext_resource type="Texture2D" uid="uid://xnccibcjwepn" path="res://assets/art/ui_hud/ui_boot.png" id="4_iahu7"]
 
 [node name="HUD" type="Control"]
 process_mode = 3
@@ -11,6 +14,18 @@ offset_left = 9.0
 offset_right = 247.0
 offset_bottom = 20.0
 script = ExtResource("1_ijk2n")
+
+[node name="NumberOfLives" type="Sprite2D" parent="."]
+position = Vector2(8, 10)
+texture = ExtResource("3_brmql")
+
+[node name="HasExtraHit" type="Sprite2D" parent="."]
+position = Vector2(42, 10)
+texture = ExtResource("3_jxby8")
+
+[node name="HasExtraJump" type="Sprite2D" parent="."]
+position = Vector2(70, 10)
+texture = ExtResource("4_iahu7")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(238, 20)
@@ -23,8 +38,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_eo3kg")
 bbcode_enabled = true
-text = "Lives:
-COWBOY x 3"
+text = "
+         x3"
 
 [node name="Score" type="RichTextLabel" parent="HBoxContainer"]
 layout_mode = 2
