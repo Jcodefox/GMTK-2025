@@ -23,6 +23,7 @@ enum OUTMODES {
 	MOTHICKS,
 	MOTH_BOMB,
 	
+	MIXED_4,
 	
 	SPIKEBALL_COUGH,
 	
@@ -58,6 +59,9 @@ func change_out_mode_to(out_mode_input: int) -> void:
 		OUTMODES.MOTH_BOMB:
 			time_until_new_out_mode = randf_range(0.5, 1.0)
 			spawn_rate_min_wait = 0.1; spawn_rate_max_wait = 0.2
+		OUTMODES.MIXED_4:
+			time_until_new_out_mode = randf_range(4.0, 6.0)
+			spawn_rate_min_wait = 1.0; spawn_rate_max_wait = 2.0
 		OUTMODES.SPIKEBALL_COUGH:
 			time_until_new_out_mode = randf_range(0.2, 0.35)
 			spawn_rate_min_wait = 0.05; spawn_rate_max_wait = 0.15
@@ -89,7 +93,7 @@ func _process(delta: float) -> void:
 			#change_out_mode_to(OUTMODES.FULL_RANDOM)
 		
 		if out_mode == OUTMODES.PAUSE:
-			change_out_mode_to(OUTMODES.SPIKEBALL_COUGH)
+			change_out_mode_to(OUTMODES.MIXED_4)
 		else:
 			change_out_mode_to(OUTMODES.PAUSE)
 	
@@ -108,8 +112,18 @@ func _process(delta: float) -> void:
 							spawn_enemy(ENEMY.MOTHICK)
 			OUTMODES.MOTH_BOMB:
 				spawn_enemy(ENEMY.MOTHICK)
+			OUTMODES.MIXED_4:
+				match randi_range(0, 6):
+					0, 1:
+						spawn_enemy(ENEMY.SPIKRO)
+					2, 3:
+						spawn_enemy(ENEMY.MOTHICK)
+					4:
+						spawn_enemy(ENEMY.SHOCK_WISP)
+					5, 6:
+						spawn_enemy(ENEMY.SPROING)
 			OUTMODES.SPIKEBALL_COUGH:
-				spawn_enemy(ENEMY.SPIKEBALL, 0, Vector2(randf_range(0, 120), randf_range(0, -45)))
+				spawn_enemy(ENEMY.SPIKEBALL, 0, Vector2(randf_range(0, 200), randf_range(0, -45)))
 			OUTMODES.FULL_RANDOM:
 				match randi_range(0, 6):
 					0:
