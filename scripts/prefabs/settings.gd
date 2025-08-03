@@ -23,12 +23,16 @@ func _back() -> void:
 		
 func _toggle_music(val: bool) -> void:
 	Globals.music = val
+	Globals.save_high_score()
 	
 func _toggle_sfx(val: bool) -> void:
 	Globals.sfx = val
+	Globals.save_high_score()
 	
 func _toggle_flicker(val: bool) -> void:
 	Globals.do_things_flicker = not val
+	Globals.save_high_score()
 	
 func _toggle_lasso_keybind(val: bool) -> void:
 	Globals.lasso_keybind = val
+	Globals.save_high_score()

@@ -51,7 +51,12 @@ func _process(delta: float):
 		angle_diff = TAU - angle_diff
 	if angle_diff < -PI:
 		angle_diff = -TAU - angle_diff
-	all_mouse_angles.append(angle_diff * angle_multiplier)
+	var amnt: float = 0.0
+	if not Input.is_action_pressed("pull_lasso"):
+		if Globals.lasso_keybind:
+			amnt = 0.1 if Input.is_action_pressed("lasso_bind") else 0.0
+		amnt = max(amnt, angle_diff * angle_multiplier)
+	all_mouse_angles.append(amnt)
 	mouse_angle_time.append(cumulative_delta)
 	
 	var cumulative_angle: float = abs(all_mouse_angles.reduce(func(acc, val): return acc + val, 0))

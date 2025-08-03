@@ -47,10 +47,13 @@ func _process(_delta: float) -> void:
 	if still_held:
 		return
 	if cumulative_delta < lifespan - 0.5:
+		modulate.a = 1.0
 		visible = true
 	elif Globals.do_things_flicker:
 		visible = frames_alive % 4 < 2
 		frames_alive += 1
+	else:
+		modulate.a = 0.5
 
 func _physics_process(delta: float) -> void:
 	if dead_ball:

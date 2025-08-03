@@ -112,7 +112,18 @@ func save_high_score() -> void:
 	var config = ConfigFile.new()
 	config.set_value("Player", "high_score", high_score)
 	config.set_value("Player", "longest_time", longest_time)
+	
+	config.set_value("Player", "do_things_flicker", do_things_flicker)
+	config.set_value("Player", "sfx", sfx)
+	config.set_value("Player", "music", music)
+	config.set_value("Player", "lasso_keybind", lasso_keybind)
+	
 	config.save("user://high_score.cfg")
+	apply_settings()
+	
+func apply_settings() -> void:
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"), sfx)
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), music)
 
 func load_high_score() -> void:
 	var config: ConfigFile = ConfigFile.new()
@@ -121,6 +132,12 @@ func load_high_score() -> void:
 		return
 	high_score = config.get_value("Player", "high_score", 0)
 	longest_time = config.get_value("Player", "longest_time", 0)
+	
+	do_things_flicker = config.get_value("Player", "do_things_flicker", true)
+	sfx = config.get_value("Player", "sfx", true)
+	music = config.get_value("Player", "music", true)
+	lasso_keybind = config.get_value("Player", "lasso_keybind", false)
+	apply_settings()
 
 func update_enemy_i_frames(enemy: Node2D) -> void:
 	if enemy.time_alive >= enemy.time_until_enemy_hurts or not do_things_flicker:

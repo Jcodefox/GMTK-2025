@@ -21,9 +21,12 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if time_alive > time_until_enemy_hurts and not time_alive > spikeball_lifespan - 0.5:
 		visible = true
+		modulate.a = 1.0
 	elif Globals.do_things_flicker:
 		visible = frames_alive % 4 < 2
 		frames_alive += 1
+	else:
+		modulate.a = 0.5
 
 func _physics_process(delta: float) -> void:
 	if dead:
