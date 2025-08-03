@@ -25,12 +25,12 @@ enum OUTMODES {
 	SHOCK_WISP_BURST,
 	MIXED_5,
 	MIXED_5_BURST,
+	SPIKEBALL_COUGH,
 	MIXED_6,
 	MIXED_6_BURST,
 	MIXED_7,
 	MIXED_7_BURST,
-	
-	SPIKEBALL_COUGH,
+	DRONES_AND_BOTS,
 	
 	FULL_RANDOM,
 }
@@ -73,7 +73,7 @@ func change_out_mode_to(out_mode_input: int) -> void:
 		OUTMODES.SPIKEBALL_COUGH:
 			time_until_new_out_mode = randf_range(0.2, 0.35)
 			spawn_rate_min_wait = 0.05; spawn_rate_max_wait = 0.15
-		OUTMODES.MIXED_5:
+		OUTMODES.MIXED_5, OUTMODES.DRONES_AND_BOTS:
 			time_until_new_out_mode = randf_range(4.0, 6.0)
 			spawn_rate_min_wait = 0.75; spawn_rate_max_wait = 1.25
 		OUTMODES.MIXED_6:
@@ -82,6 +82,9 @@ func change_out_mode_to(out_mode_input: int) -> void:
 		OUTMODES.MIXED_7:
 			time_until_new_out_mode = randf_range(4.0, 6.0)
 			spawn_rate_min_wait = 0.5; spawn_rate_max_wait = 0.8
+		OUTMODES.FULL_RANDOM:
+			time_until_new_out_mode = randf_range(2.0, 6.0)
+			spawn_rate_min_wait = 0.25; spawn_rate_max_wait = 0.6
 
 
 func _process(delta: float) -> void:
@@ -95,7 +98,7 @@ func _process(delta: float) -> void:
 		if Globals.time_passed < 0:
 			change_out_mode_to(OUTMODES.PAUSE)
 		elif Globals.time_passed < 20:
-			match randi_range(0,5):
+			match randi_range(0,6):
 				0:
 					change_out_mode_to(OUTMODES.PAUSE)
 				2:
@@ -129,7 +132,7 @@ func _process(delta: float) -> void:
 				4, 5, 6:
 					change_out_mode_to(OUTMODES.MIXED_5)
 		elif Globals.time_passed < 120:
-			match randi_range(0,6):
+			match randi_range(0,3):
 				0:
 					change_out_mode_to(OUTMODES.MIXED_SPIKROS_MOTHS)
 				1:
@@ -149,7 +152,7 @@ func _process(delta: float) -> void:
 				12:
 					change_out_mode_to(OUTMODES.SPIKEBALL_COUGH)
 		elif Globals.time_passed < 200:
-			match randi_range(0,9):
+			match randi_range(0,10):
 				0:
 					change_out_mode_to(OUTMODES.PAUSE)
 				1:
@@ -165,7 +168,7 @@ func _process(delta: float) -> void:
 				10: 
 					change_out_mode_to(OUTMODES.MIXED_7)
 		elif Globals.time_passed < 260:
-			match randi_range(0,9):
+			match randi_range(0,10):
 				0:
 					change_out_mode_to(OUTMODES.PAUSE)
 				1, 2, 3:
@@ -178,8 +181,40 @@ func _process(delta: float) -> void:
 					change_out_mode_to(OUTMODES.MIXED_7_BURST)
 				9, 10:
 					change_out_mode_to(OUTMODES.SPIKEBALL_COUGH)
+		elif Globals.time_passed < 310:
+			match randi_range(0,9):
+				0:
+					change_out_mode_to(OUTMODES.PAUSE)
+				5, 6, 7: 
+					change_out_mode_to(OUTMODES.MIXED_7)
+				8:
+					change_out_mode_to(OUTMODES.MIXED_7_BURST)
+				9, 10:
+					change_out_mode_to(OUTMODES.SPIKEBALL_COUGH)
+		elif Globals.time_passed < 360:
+			match randi_range(0,6):
+				0, 1:
+					change_out_mode_to(OUTMODES.PAUSE)
+				2, 3: 
+					change_out_mode_to(OUTMODES.MIXED_7)
+				4:
+					change_out_mode_to(OUTMODES.MIXED_7_BURST)
+				5:
+					change_out_mode_to(OUTMODES.SPIKEBALL_COUGH)
+				6:
+					change_out_mode_to(OUTMODES.DRONES_AND_BOTS)
 		else:
-			change_out_mode_to(OUTMODES.FULL_RANDOM)
+			match randi_range(0,6):
+				0, 1:
+					change_out_mode_to(OUTMODES.PAUSE)
+				2: 
+					change_out_mode_to(OUTMODES.MIXED_7)
+				3:
+					change_out_mode_to(OUTMODES.MIXED_7_BURST)
+				4, 5:
+					change_out_mode_to(OUTMODES.DRONES_AND_BOTS)
+				6:
+					change_out_mode_to(OUTMODES.FULL_RANDOM)
 		
 		#if not out_mode == OUTMODES.SHOCK_WISP_BURST:
 			#change_out_mode_to(OUTMODES.SHOCK_WISP_BURST)
@@ -225,7 +260,9 @@ func _process(delta: float) -> void:
 						spawn_enemy(ENEMY.SPROING)
 					4:
 						spawn_enemy(ENEMY.NAMELESS)
-			OUTMODES.MIXED_6, OUTMODES.MIXED_5_BURST:
+			OUTMODES.SPIKEBALL_COUGH:
+				spawn_enemy(ENEMY.SPIKEBALL, 0, Vector2(randf_range(0, 200), randf_range(0, -45)))
+			OUTMODES.MIXED_6, OUTMODES.MIXED_6_BURST:
 				match randi_range(0, 5):
 					0:
 						spawn_enemy(ENEMY.SPIKRO)
@@ -255,8 +292,14 @@ func _process(delta: float) -> void:
 						spawn_enemy(ENEMY.DRONE)
 					6:
 						spawn_enemy(ENEMY.EXPRESS_BOT)
-			OUTMODES.SPIKEBALL_COUGH:
-				spawn_enemy(ENEMY.SPIKEBALL, 0, Vector2(randf_range(0, 200), randf_range(0, -45)))
+			OUTMODES.DRONES_AND_BOTS:
+				match randi_range(0, 6):
+					0:
+						spawn_enemy(ENEMY.DRONE)
+					1:
+						spawn_enemy(ENEMY.EXPRESS_BOT)
+					2:
+						spawn_enemy(ENEMY.SPIKEBALL, 0, Vector2(randf_range(0, 200), randf_range(0, -45)))
 			OUTMODES.FULL_RANDOM:
 				match randi_range(0, 6):
 					0:
