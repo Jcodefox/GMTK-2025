@@ -7,9 +7,9 @@ var lives: int = 3
 var time_passed: float = 0
 var score: int = 0
 
-var next: int = 1000
-var next_count: int = 2
-var next_base_increase: float = 500
+var next: int = 2500
+var next_increase_multiplier: int = 1
+var next_base_increase: float = 5000
 
 var high_score: int = 0
 var longest_time: int = 0
@@ -29,8 +29,8 @@ func _ready() -> void:
 func _process(delta):
 	if score >= next:
 		lives += 1
-		next_count += 1
-		next = next + (next_count * next_base_increase)
+		next = next + (next_increase_multiplier * next_base_increase)
+		next_increase_multiplier += 1
 	
 	if not get_tree().paused:
 		time_passed += delta
