@@ -78,6 +78,12 @@ position = Vector2(144, 48)
 enemy_holder_node = NodePath("../Enemies")
 
 [node name="Bubble" parent="." instance=ExtResource("11_df8f4")]
-position = Vector2(256, 128)
+position = Vector2(-20, 147)
+min_time_to_appear = 0.0
+max_time_to_appear = 0.0
+bubble_lifespan = 10.0
+speed = 25.0
 spawn_points = Array[Vector2]([Vector2(0, 128), Vector2(0, 56), Vector2(256, 56), Vector2(256, 128)])
 spawn_move_left = Array[bool]([false, false, true, true])
+default_gravity = 625.0
+time_until_enemy_hurts = 1.0
