@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cwak838kpjbeg" path="res://assets/art/terrain/cloud 2.png" id="6_ed28v"]
 [ext_resource type="Script" uid="uid://cbsnpfn5tcbcj" path="res://scripts/prefabs/cloud.gd" id="6_rfs2g"]
 [ext_resource type="PackedScene" uid="uid://c7sqyqehhxymg" path="res://scenes/prefabs/game_over_screen.tscn" id="7_d18oc"]
-[ext_resource type="PackedScene" uid="uid://sc0fuu7hh41j" path="res://scenes/prefabs/pause_menu.tscn" id="8_d18oc"]
+[ext_resource type="PackedScene" path="res://scenes/prefabs/pause_menu.tscn" id="8_d18oc"]
 [ext_resource type="PackedScene" uid="uid://ni48dlph7c7c" path="res://scenes/prefabs/enemy_spawner.tscn" id="9_d18oc"]
 [ext_resource type="PackedScene" uid="uid://dp7poqfx4r2a5" path="res://scenes/prefabs/enemies/bubble.tscn" id="11_df8f4"]
 [ext_resource type="Texture2D" uid="uid://uyedc1kk76dd" path="res://assets/art/terrain/background_all_together.png" id="12_iube2"]
