@@ -28,3 +28,4 @@ position = Vector2(0, -15)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 pitch_scale = 1.5
+bus = &"SFX"

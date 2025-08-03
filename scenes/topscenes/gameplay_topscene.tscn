@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=4 uid="uid://dwe36qbpqlr3w"]
+[gd_scene load_steps=14 format=4 uid="uid://dwe36qbpqlr3w"]
 
 [ext_resource type="PackedScene" uid="uid://crq0ubo4sdfwt" path="res://scenes/prefabs/player.tscn" id="1_rncwu"]
-[ext_resource type="AudioStream" uid="uid://cqhknwhmbtsxq" path="res://assets/sounds/walk_2.wav" id="2_81lo5"]
 [ext_resource type="AudioStream" uid="uid://dmg2hnkdqkxfx" path="res://assets/sounds/walk_1.wav" id="2_vgafc"]
 [ext_resource type="PackedScene" uid="uid://des4eilq7pml8" path="res://scenes/prefabs/hud.tscn" id="3_ks65t"]
 [ext_resource type="Texture2D" uid="uid://drjswa8p2rpnx" path="res://assets/art/ui_hud/hudframe.png" id="3_pyq0w"]
@@ -20,7 +19,6 @@
 [node name="Player" parent="." node_paths=PackedStringArray("game_over_screen") instance=ExtResource("1_rncwu")]
 z_index = 8
 position = Vector2(128, 152)
-walk_audio = ExtResource("2_81lo5")
 jump_audio = ExtResource("2_vgafc")
 game_over_screen = NodePath("../HudCanvasLayer/GameOverScreen")
 

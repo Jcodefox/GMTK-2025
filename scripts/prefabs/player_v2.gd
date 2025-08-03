@@ -1,8 +1,12 @@
 extends CharacterBody2D
 
-@export var walk_audio: AudioStream
+@export var walk_audio: Array[AudioStream]
+@export var crouch_walk_audio: Array[AudioStream]
 @export var jump_audio: AudioStream
 @export var hurt_audio: AudioStream
+
+var walk_audio_index: int = 0
+var crouch_walk_audio_index: int = 0
 
 @export var game_over_screen: Node
 
@@ -131,6 +135,12 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("move_down"):
 		if horizontal_input_axis != 0:
 			set_animation("duckwalk")
+			if not $AudioStreamPlayer.playing:
+				playsound(crouch_walk_audio[crouch_walk_audio_index])
+				crouch_walk_audio_index += 1
+				crouch_walk_audio_index = crouch_walk_audio_index % crouch_walk_audio.size()
+				$AudioStreamPlayer.volume_linear = 0.3
+				$AudioStreamPlayer.pitch_scale = 0.75
 		else:
 			set_animation("duckhide")
 	else:
@@ -141,8 +151,11 @@ func _physics_process(delta: float) -> void:
 		else:
 			if horizontal_input_axis != 0:
 				set_animation("run_left" if visual_facing_left else "run_right")
-				playsound(walk_audio)
-				$AudioStreamPlayer.volume_linear = 0.3
+				if not $AudioStreamPlayer.playing:
+					playsound(walk_audio[walk_audio_index])
+					walk_audio_index += 1
+					walk_audio_index = walk_audio_index % walk_audio.size()
+					$AudioStreamPlayer.volume_linear = 0.3
 			else:
 				set_animation("idle")
 	
@@ -226,6 +239,7 @@ func playsound(audio: AudioStream, force: bool = false) -> void:
 	if $AudioStreamPlayer.playing and $AudioStreamPlayer.stream == audio and not force:
 		return
 	$AudioStreamPlayer.volume_linear = 1.0
+	$AudioStreamPlayer.pitch_scale = 1.0
 	$AudioStreamPlayer.stream = audio
 	$AudioStreamPlayer.play()
 		

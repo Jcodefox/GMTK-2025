@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://crq0ubo4sdfwt"]
+[gd_scene load_steps=11 format=3 uid="uid://crq0ubo4sdfwt"]
 
 [ext_resource type="Script" uid="uid://dgc1ud1pmx2lv" path="res://scripts/prefabs/player_v2.gd" id="1_tou0u"]
+[ext_resource type="AudioStream" uid="uid://dmg2hnkdqkxfx" path="res://assets/sounds/walk_1.wav" id="2_6o77n"]
 [ext_resource type="SpriteFrames" uid="uid://bf6o51up71rto" path="res://assets/art/player/player_sprite_frames.tres" id="2_tou0u"]
+[ext_resource type="AudioStream" uid="uid://cqhknwhmbtsxq" path="res://assets/sounds/walk_2.wav" id="3_6v0jn"]
 [ext_resource type="PackedScene" uid="uid://byjfep6lctpr3" path="res://scenes/prefabs/lasso.tscn" id="3_n0leu"]
 [ext_resource type="Texture2D" uid="uid://bd16750dl1tv5" path="res://assets/art/player/hat.png" id="4_8cdkg"]
+[ext_resource type="AudioStream" uid="uid://b8cklr5bmjbjp" path="res://assets/sounds/jump.wav" id="4_r053x"]
 [ext_resource type="AudioStream" uid="uid://bdvrcfhnaorrr" path="res://assets/sounds/ow.wav" id="5_56dyf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tou0u"]
@@ -15,6 +18,9 @@ size = Vector2(8, 14)
 [node name="Player" type="CharacterBody2D"]
 process_mode = 1
 script = ExtResource("1_tou0u")
+walk_audio = Array[AudioStream]([ExtResource("2_6o77n"), ExtResource("3_6v0jn")])
+crouch_walk_audio = Array[AudioStream]([ExtResource("2_6o77n"), ExtResource("3_6v0jn")])
+jump_audio = ExtResource("4_r053x")
 hurt_audio = ExtResource("5_56dyf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -52,3 +58,4 @@ texture = ExtResource("4_8cdkg")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
+bus = &"SFX"
