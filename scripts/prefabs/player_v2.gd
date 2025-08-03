@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var crouch_walk_audio: Array[AudioStream]
 @export var jump_audio: AudioStream
 @export var hurt_audio: AudioStream
+@export var death_audio: AudioStream
 
 var walk_audio_index: int = 0
 var crouch_walk_audio_index: int = 0
@@ -188,13 +189,15 @@ func area_hit_body(body: Node2D) -> void:
 	if dead or i_frame_time > 0:
 		return
 	if body.is_in_group("enemy") and body.time_alive > body.time_until_enemy_hurts:
-		playsound(hurt_audio, true)
 		if extra_health > 0:
+			playsound(hurt_audio, true)
 			extra_health -= 1
 			i_frame_time = 0.5
 			hat_two_position = Globals.convert_to_visible_pos(global_position) + hat_two_offset
 			hat_two_velocity = Vector2(randf_range(-15.0, 15.0), -5)
 			return
+		playsound(death_audio, true)
+		$AudioStreamPlayer.volume_linear = 0.25
 		dead = true
 		Globals.lives -= 1
 		set_animation("death")
