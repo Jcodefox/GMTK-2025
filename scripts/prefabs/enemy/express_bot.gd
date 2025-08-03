@@ -56,13 +56,13 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-func slingballed(_ball: Node2D) -> int:
+func slingballed(_ball: Node2D, ith_enemy: int = 0) -> int:
 	if time_since_hurt < hurt_i_frame_time:
 		return 0
 	health -= 1
 	time_since_hurt = 0.0
 	if health == 0:
-		die()
+		die(ith_enemy)
 		return 80
 	playsound(hurt_audio)
 	return 0

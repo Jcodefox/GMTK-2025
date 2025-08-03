@@ -1,19 +1,21 @@
 extends Enemy
 
 @export var pop_audio: AudioStream
-@export var min_time_to_appear: float = 30
-@export var max_time_to_appear: float = 90
-@export var bubble_lifespan: float = 10
-@export var speed: float = 25
+@export var min_time_to_appear: float = 90
+@export var max_time_to_appear: float = 270
+@export var bounce_force_min: float = 200
+@export var bounce_force_max: float = 250
+@export var speed: float = 32
 @export var spawn_points: Array[Vector2] = []
 @export var spawn_move_left: Array[bool] = []
 
-var intended_direction: Vector2 = Vector2.ZERO
-var ball_type: int = 0
+var intended_direction: float = 1
 
 func _ready() -> void:
 	time_until_enemy_hurts = 0
 	die(0, false)
+func _process(delta: float) -> void:
+	pass
 
 func _physics_process(delta: float) -> void:
 	if dead:
@@ -21,23 +23,24 @@ func _physics_process(delta: float) -> void:
 	super(delta)
 	die_outside_world()
 	
+	velocity.y += default_gravity * delta
+	
 	if is_on_wall():
-		intended_direction.x = -intended_direction.x
-	if is_on_ceiling() or is_on_floor():
-		intended_direction.y = -intended_direction.y
+		die()
+	if is_on_floor():
+		velocity.y = randf_range(-bounce_force_min, -bounce_force_max)
 
-	velocity = intended_direction * speed
+	velocity.x = intended_direction * speed
 	
 	move_and_slide()
+	
+func lassod() -> int:
+	queue_free()
+	return 100
 			
 func slingballed(_ball: Node2D, ith_enemy: int = 0) -> int:
 	die()
-	if Globals.player:
-		if ball_type == 1:
-			Globals.player.extra_health = 1
-		if ball_type == 0:
-			Globals.player.max_extra_jumps = 1
-	return [50, 50, 500][ball_type]
+	return 100
 
 func die(enemy_multiplier: int = 0, animate: bool = true) -> void:
 	dead = true
@@ -47,8 +50,8 @@ func die(enemy_multiplier: int = 0, animate: bool = true) -> void:
 		playsound(pop_audio, true)
 		$AudioStreamPlayer.volume_linear = 0.3
 		set_animation("death")
+		visible = false
 		await get_tree().create_timer(0.5).timeout
-	visible = false
 	get_tree().create_timer(randf_range(min_time_to_appear, max_time_to_appear)).timeout.connect(appear)
 
 func die_outside_world() -> void:
@@ -69,21 +72,12 @@ func appear() -> void:
 	if spawn_points.size() != 0:
 		var choice: int = randi_range(0, spawn_points.size() - 1)
 		global_position = spawn_points[choice]
-		intended_direction = Vector2(-1 if spawn_move_left[choice] else 1, [-1, 1].pick_random()).normalized()
+		intended_direction = -1 if spawn_move_left[choice] else 1
 	else:
-		intended_direction = [Vector2(1,1), Vector2(1,-1), Vector2(-1,1), Vector2(-1,-1)].pick_random().normalized()
+		intended_direction = [-1, 1].pick_random()
+	velocity.y = randf_range(-bounce_force_min, -bounce_force_max)
 	collision_mask = 2
 	collision_layer = 4
-	var options: Array[int] = []
-	if Globals.player != null:
-		if Globals.player.extra_health == 0:
-			options.push_back(1)
-		if Globals.player.max_extra_jumps == 0:
-			options.push_back(0)
-	if options.size() == 0:
-		options = [2]
-	ball_type = options.pick_random()
-	set_animation(["boot", "hat", "points"][ball_type])
 	
 func playsound(audio: AudioStream, force: bool = false) -> void:
 	if $AudioStreamPlayer.playing and $AudioStreamPlayer.stream == audio and not force:
