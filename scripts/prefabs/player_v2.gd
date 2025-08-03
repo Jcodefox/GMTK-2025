@@ -20,6 +20,8 @@ extends CharacterBody2D
 @export var air_jump_init_x_velocity: float = 60
 @export var terminal_fall_velocity: float = 275
 
+var i_frame_time: float = 0
+
 var extra_health: int = 0
 
 var max_extra_jumps: int = 0
@@ -39,6 +41,7 @@ var visual_facing_left: bool = false
 # Used to prevent player input when playing death animation
 var dead: bool = false
 var dead_hat_velocity: Vector2 = Vector2.ZERO
+var frames_alive: int = 0
 
 func _ready() -> void:
 	Globals.player = self
@@ -51,6 +54,15 @@ func _ready() -> void:
 
 	$HurtBox.body_entered.connect(area_hit_body)
 	$HurtBox.area_exited.connect(area_exited_area)
+	
+func _process(_delta: float) -> void:
+	if dead:
+		return
+	if i_frame_time == 0:
+		visible = true
+	elif Globals.do_things_flicker:
+		visible = frames_alive % 4 < 2
+		frames_alive += 1
 
 func _physics_process(delta: float) -> void:
 	if dead:
@@ -58,6 +70,9 @@ func _physics_process(delta: float) -> void:
 		$Hat.position += dead_hat_velocity * delta
 		move_and_slide()
 		return 
+	
+	i_frame_time -= delta
+	i_frame_time = max(i_frame_time, 0)
 
 	global_position = Globals.apply_loop_teleport(global_position)
 	time_since_on_floor += delta
@@ -129,9 +144,13 @@ func _physics_process(delta: float) -> void:
 	$Lasso.player_pos = Globals.convert_to_visible_pos(global_position)
 
 func area_hit_body(body: Node2D) -> void:
-	if dead:
+	if dead or i_frame_time > 0:
 		return
 	if body.is_in_group("enemy") and body.time_alive > body.time_until_enemy_hurts:
+		if extra_health > 0:
+			extra_health -= 1
+			i_frame_time = 0.5
+			return
 		dead = true
 		Globals.lives -= 1
 		set_animation("death")
