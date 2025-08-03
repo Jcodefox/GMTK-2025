@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://1q6i4n47h2kj"
-path="res://.godot/imported/crwalk2.wav-ba6331e19a5e3e29f76ed269c9d8d1cd.sample"
+path="res://.godot/imported/crwalk2.wav-181246e28e809286d641748350b2949f.sample"
 
 [deps]
 
-source_file="res://assets/crwalk2.wav"
-dest_files=["res://.godot/imported/crwalk2.wav-ba6331e19a5e3e29f76ed269c9d8d1cd.sample"]
+source_file="res://assets/sounds/crwalk2.wav"
+dest_files=["res://.godot/imported/crwalk2.wav-181246e28e809286d641748350b2949f.sample"]
 
 [params]
 
