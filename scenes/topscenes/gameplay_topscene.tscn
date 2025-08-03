@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dwe36qbpqlr3w"]
+[gd_scene load_steps=16 format=4 uid="uid://dwe36qbpqlr3w"]
 
 [ext_resource type="PackedScene" uid="uid://crq0ubo4sdfwt" path="res://scenes/prefabs/player.tscn" id="1_rncwu"]
 [ext_resource type="AudioStream" uid="uid://dmg2hnkdqkxfx" path="res://assets/sounds/walk_1.wav" id="2_vgafc"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dp7poqfx4r2a5" path="res://scenes/prefabs/enemies/bubble.tscn" id="11_df8f4"]
 [ext_resource type="Texture2D" uid="uid://uyedc1kk76dd" path="res://assets/art/terrain/background_all_together.png" id="12_iube2"]
 [ext_resource type="PackedScene" uid="uid://djbc7o2rxjwwu" path="res://scenes/prefabs/enemies/tumbleweed.tscn" id="14_81lo5"]
+[ext_resource type="AudioStream" uid="uid://bbngg72kwdt7n" path="res://assets/music/w5po2c.wav" id="15_7wfbg"]
 
 [node name="GameplayTopscene" type="Node2D"]
 
@@ -90,3 +91,9 @@ spawn_move_left = Array[bool]([false, false, true, true])
 position = Vector2(232, 192)
 spawn_points = Array[Vector2]([Vector2(24, 192), Vector2(232, 192)])
 spawn_move_left = Array[bool]([false, true])
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_7wfbg")
+volume_db = -3.0
+autoplay = true
+bus = &"Music"
