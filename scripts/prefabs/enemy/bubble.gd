@@ -1,8 +1,8 @@
 extends Enemy
 
 @export var pop_audio: AudioStream
-@export var min_time_to_appear: float = 30
-@export var max_time_to_appear: float = 90
+@export var min_time_to_appear: float = 20
+@export var max_time_to_appear: float = 40
 @export var bubble_lifespan: float = 10
 @export var speed: float = 25
 @export var spawn_points: Array[Vector2] = []
